@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid2D;
     Animator animator;
-   public float jumpForce = 0f;
-   public float walkForce = 0f;
-    public float maxWalkSpeed = 0f;
+
+    [SerializeField] float jumpForce = 0f;      //ジャンプ力
+    [SerializeField] float moveForce = 0f;      //歩行速度
+    [SerializeField] float maxWalkSpeed = 0f;
+
+    Vector3 dir = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.R) || transform.position.y < -10)
+        if(transform.position.y < -10)
         {
             transform.position = new Vector3(0, 0, 0);
             this.rigid2D.AddForce(-transform.up * this.jumpForce);
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         if(speedx < this.maxWalkSpeed)//AddForceは力をかけ続けるメソッド。続けているとどんどん力が加算されてめちゃくちゃ早くなる。なので、最大速度を変数で設定し、動きが早くなりすぎるのを防いでいる
         {
-            this.rigid2D.AddForce(transform.right * key * walkForce);
+            this.rigid2D.AddForce(transform.right * key * moveForce);
         }
 
         if(key != 0)　//keyが0じゃない＝押されているとき
@@ -81,6 +84,74 @@ public class PlayerController : MonoBehaviour
         //}
 
     }
+
+    void LeftPlayerController()
+    {
+        int key = 0;
+        if (Input.GetKey(KeyCode.A)) key = 1;
+        if (Input.GetKey(KeyCode.D)) key = -1;
+
+        dir = Vector3.zero;
+        dir = rigid2D.velocity;
+        dir.x = key * moveForce;
+        rigid2D.velocity = dir;
+
+
+        if (Input.GetKeyDown(KeyCode.W))    //ジャンプ
+        {
+            JumpControll();
+        }
+
+        ScaleControll(key);
+
+    }
+
+    void RightPlayerController()
+    {
+        int key = 0;
+        if (Input.GetKey(KeyCode.LeftArrow)) key = 1;
+        if (Input.GetKey(KeyCode.RightArrow)) key = -1;
+
+        MoveControll(key);
+
+        ScaleControll(key);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            JumpControll();
+        }
+    }
+
+    void MoveControll(int key)
+    {
+        dir = Vector3.zero;
+        dir = rigid2D.velocity;
+        dir.x = key * moveForce;
+        rigid2D.velocity = dir;
+    }
+
+    void JumpControll()
+    {
+        Vector2 vel = rigid2D.velocity;
+        vel.y = 0;              //Yの速度を初期化
+        rigid2D.velocity = vel;    //上の初期化を反映
+
+        //ジャンプ力を加える
+        rigid2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    void ScaleControll(int key)
+    {
+        if (key != 0)
+        {
+            Vector3 scl = transform.localScale;
+
+            //Mathf.Abs:絶対値のこと
+            scl.x = Mathf.Abs(scl.x) * key;       //向き設定
+            transform.localScale = scl;               //拡縮設定
+        }
+    }
+
 
 
      void OnTriggerEnter2D(Collider2D other)
