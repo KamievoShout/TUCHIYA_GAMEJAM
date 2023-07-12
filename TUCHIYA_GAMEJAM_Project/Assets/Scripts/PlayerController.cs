@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     float jumpForce = 680.0f;
     float walkForce = 30.0f;
     float maxWalkSpeed = 2.0f;
-
+    
     void Start()
     {
         Application.targetFrameRate = 60;
