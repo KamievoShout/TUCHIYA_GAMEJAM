@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Cameras
 {
-    GameObject player;
-    // Start is called before the first frame update
-    void Start()
+    public class CameraController : MonoBehaviour
     {
-        this.player = GameObject.Find("cat");
-    }
+        private GameObject _player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 playerPos = this.player.transform.position;
-        transform.position = new Vector3(transform.position.x, playerPos.y, transform.position.z);
+        private void Start()
+        {
+            _player = GameObject.FindWithTag("Player");
+        }
+
+        private void LateUpdate()
+        {
+            Vector3 playerPos = _player.transform.position;
+
+            transform.position = new Vector3(transform.position.x, playerPos.y, transform.position.z);
+        }
     }
 }
