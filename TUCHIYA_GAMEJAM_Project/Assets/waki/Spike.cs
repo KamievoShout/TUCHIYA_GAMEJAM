@@ -10,7 +10,7 @@ public class Spike : MonoBehaviour
         // プレイヤーのダメージの奴出来るまで待機なう
         if(collision.GetComponent<PlayerController>() != null)
         {
-
+            Debug.Log("ダメージダメージ");
         }
     }
 
