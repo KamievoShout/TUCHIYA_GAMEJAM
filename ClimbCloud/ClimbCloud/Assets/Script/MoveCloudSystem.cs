@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class oaho : MonoBehaviour
+public class MoveCloudSystem : MonoBehaviour
 {
+    [Seliazi]
+
     // Start is called before the first frame update
     void Start()
     {
