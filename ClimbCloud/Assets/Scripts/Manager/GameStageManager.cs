@@ -65,10 +65,10 @@ public class GameStageManager : MonoBehaviour
         switch (gimmickKind)
         {
             case GimmickKinds.MoveReverse:
-                rightStage.UseMoveReverse();
+                rightStage.UseMoveReverseLeft();
                 break;
             case GimmickKinds.Buff:
-                rightStage.UseBuff();
+                rightStage.UseBuffLeft();
                 break;
             case GimmickKinds.MoveLift:
                 rightStage.UseMoveLift();
@@ -89,10 +89,10 @@ public class GameStageManager : MonoBehaviour
         switch (gimmickKind)
         {
             case GimmickKinds.MoveReverse:
-                leftStage.UseMoveReverse();
+                leftStage.UseMoveReverseRight();
                 break;
             case GimmickKinds.Buff:
-                leftStage.UseBuff();
+                leftStage.UseBuffRight();
                 break;
             case GimmickKinds.MoveLift:
                 leftStage.UseMoveLift();
