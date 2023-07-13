@@ -13,5 +13,10 @@ namespace CheckPoint
         {
             restartPosition = checkPosition;
         }
+
+        public Vector3 Restart()
+        {
+            return restartPosition;
+        }
     }
 }
