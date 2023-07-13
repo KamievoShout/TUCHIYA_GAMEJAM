@@ -72,6 +72,8 @@ namespace createMaps
 
                     GameObject cloud = Instantiate(_clouds[index], new Vector3(0, _nextGeneratePositionY, 0), Quaternion.identity);
 
+                    cloud.transform.parent = transform;
+
                     _cloudsList.Add(cloud);
 
                     _nextGeneratePositionY += 360.0f;
