@@ -29,6 +29,7 @@ public class GimmickSeed : MonoBehaviour
     /// </summary>
     public GimmickKinds GetGimmickKindType()
     {
+        //gimmickKind = GimmickKinds.MoveReverse;
         return gimmickKind;
     }
 }

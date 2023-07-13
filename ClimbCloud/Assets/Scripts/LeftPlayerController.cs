@@ -36,6 +36,9 @@ public class LeftPlayerController : MonoBehaviour
     [Header("パワーアップデバフ")]
     public bool powerUpDebuff;
 
+    [SerializeField, Header("デバフ状態を表示する")]
+    private DisplayPlayerDebuff displayPlayerDebuff;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,17 +59,24 @@ public class LeftPlayerController : MonoBehaviour
         //操作反転デバフ
         if (reverse)
         {
+            displayPlayerDebuff.ShowMoveReverseUi();
             key *= -1;
+        }
+        else
+        {
+            displayPlayerDebuff.HideMoveReverseUi();
         }
 
         //パワーアップデバフ
         if (!powerUpDebuff)
         {
+            displayPlayerDebuff.HideBuffUi();
             moveForce = normalMoveForce;
             jumpForce = normalJumpForce;
         }
         else
         {
+            displayPlayerDebuff.ShowBuffUi();
             moveForce = debuffMoveForce;
             jumpForce = debuffJumpForce;
         }
