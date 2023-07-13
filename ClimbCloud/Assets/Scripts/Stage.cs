@@ -59,19 +59,87 @@ public class Stage : MonoBehaviour
     /// <summary>
     /// 移動を反転させる
     /// </summary>
-    public void UseMoveReverse()
+    public void UseMoveReverseLeft()
     {
+        if (gimmicks.isMoveReverse == true)
+        {
+            return;
+        }
         Debug.Log(gameObject.name + "反転");
         gimmicks.isMoveReverse = true;
+        StartCoroutine(RightRevers());
+    }
+
+    private IEnumerator RightRevers()
+    {
+        playerObj.GetComponent<RightPlayerController>().reverse = true;
+        yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
+        playerObj.GetComponent<RightPlayerController>().reverse = false;
+        gimmicks.isMoveReverse = false;
+
+    }
+
+    public void UseMoveReverseRight()
+    {
+        if (gimmicks.isMoveReverse == true)
+        {
+            return;
+        }
+        Debug.Log(gameObject.name + "反転");
+        gimmicks.isMoveReverse = true;
+        StartCoroutine(LeftRevers());
+
+    }
+
+    private IEnumerator LeftRevers()
+    {
+        playerObj.GetComponent<LeftPlayerController>().reverse = true;
+        yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
+        playerObj.GetComponent<LeftPlayerController>().reverse = false;
+        gimmicks.isMoveReverse = false;
+
     }
 
     /// <summary>
     /// バフ状態にする
     /// </summary>
-    public void UseBuff()
+    public void UseBuffLeft()
     {
+        if(gimmicks.isBuff == true)
+        {
+            return;
+        }
         Debug.Log(gameObject.name + "バフ");
         gimmicks.isBuff = true;
+        StartCoroutine(BuffRight());
+    }
+
+    private IEnumerator BuffRight()
+    {
+        playerObj.GetComponent<RightPlayerController>().powerUpDebuff = true;
+        yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
+        playerObj.GetComponent<RightPlayerController>().powerUpDebuff = false;
+        gimmicks.isBuff = false;
+    }
+
+    public void UseBuffRight()
+    {
+        if (gimmicks.isBuff == true)
+        {
+            return;
+        }
+        Debug.Log(gameObject.name + "バフ");
+        gimmicks.isBuff = true;
+        StartCoroutine(BuffLeft());
+
+    }
+
+    private IEnumerator BuffLeft()
+    {
+        playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = true;
+        yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
+        playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = false;
+        gimmicks.isBuff = false;
     }
 
     /// <summary>
