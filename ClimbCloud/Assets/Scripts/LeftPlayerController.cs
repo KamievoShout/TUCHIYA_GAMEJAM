@@ -39,6 +39,9 @@ public class LeftPlayerController : MonoBehaviour
     [SerializeField, Header("デバフ状態を表示する")]
     private DisplayPlayerDebuff displayPlayerDebuff;
 
+    // 歩くサウンドを出す
+    private PlayerWalkSound walkSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +58,16 @@ public class LeftPlayerController : MonoBehaviour
         //キーの入力感知
         if (Input.GetKey(KeyCode.A)) key = -1;
         if (Input.GetKey(KeyCode.D)) key = 1;
+
+        // キー入力があったら歩きアニメーションに移動する
+        if (key != 0f)
+        {
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
 
         //操作反転デバフ
         if (reverse)

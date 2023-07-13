@@ -62,6 +62,16 @@ public class RightPlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
 
+        // キー入力があったら歩きアニメーションに移動する
+        if (key != 0f)
+        {
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
+
         //操作反転デバフ
         if (reverse)
         {
