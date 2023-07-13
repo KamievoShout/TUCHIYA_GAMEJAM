@@ -229,8 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcd9424be7d41b4d873c2e188b2579d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMoveForce: 2
-  normalJumpForce: 5
+  normalMoveForce: 5
+  normalJumpForce: 8
   debuffMoveForce: 20
   debuffJumpForce: 30
   reverse: 0
