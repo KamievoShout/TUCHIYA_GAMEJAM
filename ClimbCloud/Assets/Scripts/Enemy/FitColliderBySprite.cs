@@ -11,7 +11,6 @@ public class FitColliderBySprite : MonoBehaviour
     private void Update()
     {
         col.size = rend.size + padding;
-        Debug.Log(rend.sprite.pivot / rend.sprite.rect.size);
         col.offset = Vector2.Scale(rend.size, new Vector2(0.5f, 0.5f) - (rend.sprite.pivot / rend.sprite.rect.size));
     }
 }

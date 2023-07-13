@@ -64,7 +64,6 @@ public class ThunderCloudEnemy : MonoBehaviour
                 shotTime = 0;
                 isShot = false;
                 animator.SetTrigger("Move");
-                Debug.Log("O");
             }
         }
     }

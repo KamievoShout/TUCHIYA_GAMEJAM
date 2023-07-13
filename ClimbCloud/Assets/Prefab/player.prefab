@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2221857850690742002}
   - component: {fileID: 7675431065610635867}
   - component: {fileID: 2924343048052637226}
-  - component: {fileID: 1753776492042368186}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -35,7 +34,7 @@ Transform:
   - {fileID: 8472965447059930235}
   - {fileID: 474884850259615165}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2221857850690742002
 CircleCollider2D:
@@ -141,20 +140,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   spriteObj: {fileID: 6027324500877732514}
   dethEffect: {fileID: 165734306722611725}
-  isControl: 0
---- !u!114 &1753776492042368186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932456841058289213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7620856a436377c478abc28ee9049a0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  animator: {fileID: 2283257332000686446}
   stanTime: 3
+  isControl: 0
 --- !u!1 &6027324500877732514
 GameObject:
   m_ObjectHideFlags: 0

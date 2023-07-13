@@ -34,7 +34,7 @@ Transform:
   - {fileID: 5465125623846867100}
   - {fileID: 1385517612751710709}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7525221697322319048
 Animator:
@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 5304505316893925715}
   - component: {fileID: 1463832422534517423}
   - component: {fileID: 3584546916165143916}
+  - component: {fileID: 5066933583301271051}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -359,3 +360,15 @@ MonoBehaviour:
   rend: {fileID: 5304505316893925715}
   col: {fileID: 1463832422534517423}
   padding: {x: -32, y: 0}
+--- !u!114 &5066933583301271051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357046478444716291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1408201224a22d8489381d915005aed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

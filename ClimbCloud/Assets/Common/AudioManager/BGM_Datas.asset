@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BGM_Datas
   m_EditorClassIdentifier: 
   datas:
-  - name: Title
-    clip: {fileID: 8300000, guid: 5f0ab9b4bb8ace846ad525ea30fa7c08, type: 3}
   - name: Game
     clip: {fileID: 8300000, guid: d53f0c061cdb6e9449ae7150ddb15933, type: 3}
+  - name: Title
+    clip: {fileID: 8300000, guid: 5f0ab9b4bb8ace846ad525ea30fa7c08, type: 3}

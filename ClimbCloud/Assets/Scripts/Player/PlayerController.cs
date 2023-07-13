@@ -28,7 +28,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     ParticleSystem dethEffect;
+
+    [SerializeField]
     Animator animator;
+
     [SerializeField]
     float stanTime;
 
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
     float inputX;
     float jumpAccumulat;
     bool isGround;
-    public bool isControl;
+    bool isControl;
 
     bool flg;
     Tween tween;
@@ -51,7 +54,6 @@ public class PlayerController : MonoBehaviour
         isGround = true;
         isControl = true;
 
-        animator = gameObject.GetComponentInChildren<Animator>();
         flg = false;
 
         Locator<PlayerController>.Register(this);
@@ -86,7 +88,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (AccumulateLimit >= jumpAccumulat)
                     jumpAccumulat += Time.deltaTime * chargeSpeed;
-                Debug.Log(jumpAccumulat);
             }
         }
         else if(rb.velocity.y<=0.1f)
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
     public void Stan()
     {
         if (!flg)
-            StartCoroutine("stanMotion");
+            StartCoroutine(stanMotion());
     }
     IEnumerator stanMotion()
     {
