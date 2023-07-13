@@ -9,7 +9,7 @@ public class FallPillar : Gimmick
     private GameObject _pillar;
 
     [SerializeField, Header("プレイヤーから離す距離")]
-    private Vector2 _diffPosition;
+    private float _diffPosition;
 
     /// <summary>
     /// 柱を生成する
@@ -17,7 +17,7 @@ public class FallPillar : Gimmick
     /// <param name="playerPos">プレイヤーの現在座標</param>
     public void GeneratePillar(Vector2 playerPos)
     {
-        Vector2 generatePos = playerPos + _diffPosition;
+        Vector2 generatePos = new Vector2(playerPos.x, playerPos.y + _diffPosition);
         Instantiate(_pillar, generatePos, Quaternion.identity);
     }
 
