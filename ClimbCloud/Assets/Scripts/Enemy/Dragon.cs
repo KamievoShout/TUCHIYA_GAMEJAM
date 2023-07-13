@@ -18,7 +18,6 @@ public class Dragon : MonoBehaviour
     {
         transform.position += new Vector3(0, moveSpeed * Time.deltaTime);
 
-        Debug.Log(player.transform.position.y - transform.position.y);
         if (player.transform.position.y - transform.position.y > skipDistance)
         {
             transform.position = new Vector3(0, player.transform.position.y - skipDistance);

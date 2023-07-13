@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BatEnemy : MonoBehaviour
+public class BirdEnemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float moveRangeMin = -128;
@@ -24,7 +24,7 @@ public class BatEnemy : MonoBehaviour
             transform.localScale = new Vector3(moveDir, 1, 1);
         }
         else
-        if(transform.position.x <= moveRangeMin)
+        if (transform.position.x <= moveRangeMin)
         {
             moveDir = 1;
             transform.localScale = new Vector3(moveDir, 1, 1);
