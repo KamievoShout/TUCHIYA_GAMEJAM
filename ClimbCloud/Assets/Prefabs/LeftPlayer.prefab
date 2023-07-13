@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2639631969822514541}
   - component: {fileID: 1713407204634683413}
   - component: {fileID: 5678740848057888592}
+  - component: {fileID: 1665567066859599092}
+  - component: {fileID: 4624195780131117095}
   m_Layer: 7
   m_Name: LeftPlayer
   m_TagString: Untagged
@@ -237,6 +239,30 @@ MonoBehaviour:
   reverse: 0
   powerUpDebuff: 0
   displayPlayerDebuff: {fileID: 1069495244876055206}
+--- !u!114 &1665567066859599092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5697124907060829896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becf57f520ec0cf428b82e0128333748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4624195780131117095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5697124907060829896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8929f33f42d904fb85039fd50fb214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3518773278472843924
 PrefabInstance:
   m_ObjectHideFlags: 0
