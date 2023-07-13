@@ -5,17 +5,34 @@ using UnityEngine;
 public class LeftPlayerController : MonoBehaviour
 {
 
-    [SerializeField] private Color fadeColor = Color.black;
-    [SerializeField] private float fadeSpeedMultiplier = 1.0f;
-
     Rigidbody2D rigid2D;
     Animator animator;
 
-    [SerializeField] float jumpForce = 0f;      //ジャンプ力
-    [SerializeField] float moveForce = 0f;      //歩行速度
-    [SerializeField] float maxWalkSpeed = 0f;
-
     Vector3 dir = Vector3.zero;
+
+    int key = 0;    //キー入力感知
+
+    float jumpForce = 0f;      //ジャンプ力
+    float moveForce = 0f;      //歩行速度
+
+    //通常時
+    [Header("通常時の移動速度")]
+    [SerializeField] float normalMoveForce = 0;
+    [Header("通常時のジャンプ力")]
+    [SerializeField] float normalJumpForce = 0;
+
+    //デバフ
+    [Header("デバフ時の移動速度")]
+    [SerializeField] float debuffMoveForce = 0;
+    [Header("デバフ時のジャンプ力")]
+    [SerializeField] float debuffJumpForce = 0;
+
+    //操作反転
+    [Header("操作反転デバフ")]
+    public bool reverse;
+
+    [Header("パワーアップデバフ")]
+    public bool powerUpDebuff;
 
     // Start is called before the first frame update
     void Start()
@@ -28,23 +45,44 @@ public class LeftPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int key = 0;
+        key = 0;
+        //キーの入力感知
         if (Input.GetKey(KeyCode.A)) key = -1;
         if (Input.GetKey(KeyCode.D)) key = 1;
 
-        MoveControll(key);      //向きの制御
-        ScaleControll(key);     //動きの制御
+        //操作反転デバフ
+        if (reverse)
+        {
+            key *= -1;
+        }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        //パワーアップデバフ
+        if (!powerUpDebuff)
+        {
+            moveForce = normalMoveForce;
+            jumpForce = normalJumpForce;
+        }
+        else
+        {
+            moveForce = debuffMoveForce;
+            jumpForce = debuffJumpForce;
+        }
+
+        MoveControll(key,moveForce);      //動きの制御
+        ScaleControll(key);     //向きの制御
+
+
+        //ジャンプ制御
+        if (Input.GetKeyDown(KeyCode.W) && rigid2D.velocity.y == 0)
         {
             this.animator.SetTrigger("JumpTrigger");
-            JumpControll();
+            JumpControll(jumpForce);
         }
     }
 
 
 
-    void MoveControll(int key)
+    void MoveControll(int key, float moveForce)  //左右移動
     {
         dir = Vector3.zero;
         dir = rigid2D.velocity;
@@ -52,25 +90,23 @@ public class LeftPlayerController : MonoBehaviour
         rigid2D.velocity = dir;
     }
 
-    void JumpControll()
+    void JumpControll(float jumpForce) //ジャンプ
     {
         Vector2 vel = rigid2D.velocity;
-        vel.y = 0;              //Yの速度を初期化
-        rigid2D.velocity = vel;    //上の初期化を反映
+        vel.y = 0;
+        rigid2D.velocity = vel;
 
-        //ジャンプ力を加える
-        rigid2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigid2D.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
     }
 
-    void ScaleControll(int key)
+    void ScaleControll(int key) //向き調整
     {
         if (key != 0)
         {
             Vector3 scl = transform.localScale;
 
-            //Mathf.Abs:絶対値のこと
-            scl.x = Mathf.Abs(scl.x) * key;       //向き設定
-            transform.localScale = scl;               //拡縮設定
+            scl.x = Mathf.Abs(scl.x) * key;
+            transform.localScale = scl;
         }
     }
 }
