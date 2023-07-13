@@ -29,7 +29,7 @@ public class GimmickSeed : MonoBehaviour
     /// </summary>
     public GimmickKinds GetGimmickKindType()
     {
-        gimmickKind = GimmickKinds.BlackOut;
+        gimmickKind = GimmickKinds.Pillar;
         return gimmickKind;
     }
 }

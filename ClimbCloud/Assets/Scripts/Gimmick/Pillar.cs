@@ -15,7 +15,7 @@ public class Pillar : MonoBehaviour
         // カメラ外に行ったら自身を消す
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

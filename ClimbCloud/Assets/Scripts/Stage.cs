@@ -34,6 +34,11 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private ViewBlackOut blackOut;
 
+    [SerializeField]
+    private FallPillar fallPillar;
+    
+    
+    
     
     public Gimmicks gimmicks;
 
@@ -107,5 +112,6 @@ public class Stage : MonoBehaviour
     {
         Debug.Log(gameObject.name + "’Œ");
         gimmicks.isPillar = true;
+        fallPillar.GeneratePillar(playerObj.transform.position);
     }
 }
