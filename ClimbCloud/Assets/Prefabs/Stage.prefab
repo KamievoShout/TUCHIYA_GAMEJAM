@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagObj: {fileID: 700354728027725291}
+  playerObj: {fileID: 0}
 --- !u!1 &1449213010812152728
 GameObject:
   m_ObjectHideFlags: 0

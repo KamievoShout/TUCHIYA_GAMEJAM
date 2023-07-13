@@ -121,6 +121,6 @@ public class RightPlayerController : MonoBehaviour
     {
         GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
         GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
-        gameStageManager.TouchGimmick(this, gimmickKind);
+        gameStageManager.TouchGimmickRight(this, gimmickKind);
     }
 }

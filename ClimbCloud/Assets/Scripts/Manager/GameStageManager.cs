@@ -60,28 +60,7 @@ public class GameStageManager : MonoBehaviour
         rightPlayerGoalDistText.text = Mathf.Floor(rightPlayerGoalDist).ToString();
     }
 
-    /// <summary>
-    /// ギミックを相手に送り込む
-    /// </summary>
-    /// <param name="playerObj">ギミックの種に触れたプレイヤー</param>
-    public void TouchGimmick(GameObject playerObj)
-    {
-        // TODO:スイッチで頑張って分岐する
-
-
-
-        if(playerObj.GetComponent<LeftPlayerController>() != null)
-        {
-            rightStage.UseMoveReverse();
-        }
-
-        if(playerObj.GetComponent<RightPlayerController>() != null)
-        {
-            leftStage.UseMoveReverse();
-        }
-    }
-
-    public void TouchGimmick(LeftPlayerController leftPlayerController, GimmickKinds gimmickKind)
+    public void TouchGimmickLeft(LeftPlayerController leftPlayerController, GimmickKinds gimmickKind)
     {
         switch (gimmickKind)
         {
@@ -105,7 +84,7 @@ public class GameStageManager : MonoBehaviour
         }
     }
 
-    public void TouchGimmick(RightPlayerController rightPlayerController, GimmickKinds gimmickKind)
+    public void TouchGimmickRight(RightPlayerController rightPlayerController, GimmickKinds gimmickKind)
     {
         switch (gimmickKind)
         {

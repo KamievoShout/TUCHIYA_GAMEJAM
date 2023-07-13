@@ -31,12 +31,10 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private GameObject playerObj;
 
+    [SerializeField]
+    private ViewBlackOut blackOut;
 
-    // TODO:ギミックのListを作る
-    //[SerializeField]
-    //private List<>
-
-
+    
     public Gimmicks gimmicks;
 
 
@@ -86,8 +84,7 @@ public class Stage : MonoBehaviour
     public void UseBlackOut()
     {
         Debug.Log(gameObject.name + "暗転");
-        gimmicks.isBlackOut = true;
-}
+    }
 
     /// <summary>
     /// 柱を出現させる

@@ -78,7 +78,11 @@ public class ViewBlackOut : Gimmick
     /// </summary>
     private void Initialized()
     {
-        _blackOutImg = GameObject.Find("BlackOutImg").GetComponent<Image>();
+        // ‰æ–Ê‚ğˆÃ‚­‚·‚é‰æ‘œ‚ğ‚Á‚Ä‚¢‚È‚©‚Á‚½‚çAƒGƒ‰[‚ğ‚Í‚­
+        if (_blackOutImg == null)
+        {
+            Debug.LogError("ˆÃ‚­‚·‚é‰æ‘œ‚ğ‚Á‚Ä‚¢‚È‚¢");
+        }
         _blackOutImg.color = new Color(0, 0, 0, 0);
     }
 
