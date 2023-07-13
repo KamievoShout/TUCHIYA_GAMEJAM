@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Goal
+  - dead
   layers:
   - Default
   - TransparentFX
