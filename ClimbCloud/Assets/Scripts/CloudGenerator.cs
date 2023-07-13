@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class CloudGenerator : MonoBehaviour
 {
-    [Tooltip("Ží“Ü")]
-    [SerializeField] private GameObject SeedCloud;
     [Tooltip("¬“Ü")]
     [SerializeField] private GameObject CloudS;
     [Tooltip("’†‚Ì“Ü")]
@@ -14,8 +12,6 @@ public class CloudGenerator : MonoBehaviour
     [Tooltip("‘å“Ü")]
     [SerializeField] private GameObject CloudL;
 
-    [Tooltip("¬‰_‚Ì¶¬ŽžŠÔ")]
-    [SerializeField] private float GeneTimeS;
     [Tooltip("’†‰_‚Ì¶¬ŽžŠÔ")]
     [SerializeField] private float GeneTimeM;
     [Tooltip("‘å‰_‚Ì¶¬ŽžŠÔ")]
@@ -28,15 +24,13 @@ public class CloudGenerator : MonoBehaviour
     [SerializeField] private float WaterGauge;
     [Tooltip("…ƒGƒlƒ‹ƒM[‚ÌŽ©‘R‰ñ•œ’l")]
     [SerializeField] private float WaterStock;
-    [Tooltip("Ží‰_‚ÌÁ”ï…ƒQ[ƒW")]
-    [SerializeField] private float WaterCostF;
     [Tooltip("¬‰_‚ÌÁ”ï…ƒQ[ƒW")]
     [SerializeField] private float WaterCostS;
     [Tooltip("’†‰_‚ÌÁ”ï…ƒQ[ƒW")]
     [SerializeField] private float WaterCostM;
     [Tooltip("‘å‰_‚ÌÁ”ï…ƒQ[ƒW")]
     [SerializeField] private float WaterCostL;
-    [SerializeField] private float NowWater;
+    private float NowWater;
 
     [Tooltip("…ƒQ[ƒW‚ÌƒXƒ‰ƒCƒ_[UI")]
     [SerializeField] Slider WaterSlider;
@@ -68,31 +62,24 @@ public class CloudGenerator : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             time += Time.deltaTime;
-            if (size == 0 && NowWater >= WaterCostF)
+            if (size == 0 && NowWater >= WaterCostS)
             {
-                Cloud = Instantiate(SeedCloud, pos, Quaternion.identity);
-                size = 1;
-                NowWater -= WaterCostF;
-            }
-            else if (GeneTimeS <= time && size == 1 && NowWater >= WaterCostS)
-            {
-                Destroy(Cloud);
                 Cloud = Instantiate(CloudS, pos, Quaternion.identity);
-                size = 2;
+                size = 1;
                 NowWater -= WaterCostS;
             }
-            else if (GeneTimeM <= time && size == 2 && NowWater >= WaterCostM)
+            else if (GeneTimeM <= time && size == 1 && NowWater >= WaterCostM)
             {
                 Destroy(Cloud);
                 Cloud = Instantiate(CloudM, pos, Quaternion.identity);
-                size = 3;
+                size = 2;
                 NowWater -= WaterCostM;
             }
-            else if (GeneTimeL <= time && size == 3 && NowWater >= WaterCostL)
+            else if (GeneTimeL <= time && size == 2 && NowWater >= WaterCostL)
             {
                 Destroy(Cloud);
                 Cloud = Instantiate(CloudL, pos, Quaternion.identity);
-                size = 4;
+                size = 3;
                 NowWater -= WaterCostL;
             }
             if (Cloud)
