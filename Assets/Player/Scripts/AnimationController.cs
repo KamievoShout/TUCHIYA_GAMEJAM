@@ -15,6 +15,7 @@ public class AnimationController : MonoBehaviour
         Jump,
         Stay,
         Walk,
+        DoubleJump
     }
 
     public void AnimInit()
@@ -26,7 +27,6 @@ public class AnimationController : MonoBehaviour
     {
         // enumをstringに変換
         animName = playAnim.ToString();
-        Debug.Log(animName);
 
         // 現在再生中のアニメーター名と一致しなければ再生
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName(animName))

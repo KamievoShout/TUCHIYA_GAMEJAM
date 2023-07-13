@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum jumpState
+{
+    notJumping,
+    singleJump,
+    doubleJump,
+    falling
+}
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Collider2D circleCollider2d;
     [SerializeField] float jumpForce = 680.0f;
     [SerializeField] float walkForce = 30.0f;
-    float maxWalkSpeed = 2.0f;
     float inputDirKey;                  // 方向キー入力の向き
     bool inputJumpKey;                  // ジャンプキー入力
     [SerializeField] LayerMask lMask;   // レイヤーマスク
     AnimationController animScript;     // アニメーション管理スクリプト
+    Vector3 jumpedPos;                  // ジャンプした位置
+    jumpState nowJumpState;             // ダブルジャンプが可能か
+    [SerializeField]
+    Vector2 doubleJumpForce =           // ダブルジャンプの力
+        new Vector2(10f, 4f);
+    public bool isGoal = false;         // ゴールしたか
 
     void Start()
     {
@@ -34,77 +47,65 @@ public class PlayerController : MonoBehaviour
         // ジャンプキーの入力取得
         inputJumpKey = Input.GetButtonDown("Jump");
 
-
-#if false
-        // ジャンプする
-        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
-        {
-            this.animator.SetTrigger("JumpTrigger");
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        }
-
-        // 左右移動
-        float key = 0;
-        key = Input.GetAxisRaw("Horizontal");
-
-        // プレイヤーの速度
-        float speedx = Mathf.Abs(this.rigid2D.velocity.x);
-
-        // スピード制限
-        if (speedx < this.maxWalkSpeed)
-        {
-            this.rigid2D.AddForce(transform.right * key * this.walkForce);
-        }
-
-        // 動く方向に応じて反転
-        if (key != 0)
-        {
-            transform.localScale = new Vector3(key, 1, 1);
-        }
-
-        // プレイヤーの速度に応じてアニメーション速度を変える
-        if (this.rigid2D.velocity.y == 0)
-        {
-            this.animator.speed = speedx / 2.0f;
-        }
-        else
-        {
-            this.animator.speed = 1.0f;
-        }
-
-        // 画面外に出た場合は最初から
-        if (transform.position.y < -10)
-        {
-            SceneManager.LoadScene("GameScene");
-        }
-#endif
     }
 
     private void FixedUpdate()
     {
-        if (CheckCloud())
+        // 2段ジャンプを有効化
+        if (CheckCloud()) nowJumpState = jumpState.notJumping;
+
+        if (inputJumpKey && nowJumpState != jumpState.falling)
         {
+            // 速度初期化
+            Vector2 vel = rigid2D.velocity;
+            vel.y = 0;
+            rigid2D.velocity = vel;
+
             // 地面にいるときの処理
             // ジャンプキーが押されているか
-            if (inputJumpKey)
+            if (CheckCloud())
             {
-                // 速度初期化
-                Vector2 vel = rigid2D.velocity;
-                vel.y = 0;
-                rigid2D.velocity = vel;
 
                 // ジャンプする
                 rigid2D.AddForce(transform.up * this.jumpForce);
-
+                nowJumpState = jumpState.singleJump;
                 // Jumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.Jump);
                 // サウンド再生
 
+
+                // ジャンプした位置取得
+                jumpedPos = transform.position;
+
+                inputJumpKey = false;
+            }
+            else if (nowJumpState != jumpState.doubleJump)
+            {
+                // 向いている方向へダブルジャンプ
+                doubleJumpForce.x = Mathf.Abs(doubleJumpForce.x) * transform.localScale.x;
+
+                rigid2D.AddForce(doubleJumpForce);
+                nowJumpState = jumpState.doubleJump;
+
+                // DoubleJumpアニメーション再生
+                animScript.AnimPlay(AnimationController.animationParameter.DoubleJump);
+                // サウンド再生
+
+
+                inputJumpKey = false;
             }
         }
 
-        // 左右キーが押されているか
-        if (inputDirKey != 0)
+        // ダブルジャンプしたかつ位置がとんだ場所より下の時
+        if(nowJumpState == jumpState.doubleJump && transform.position.y < jumpedPos.y)
+        {
+            nowJumpState = jumpState.falling;
+            // Jumpアニメーション再生
+            animScript.AnimPlay(AnimationController.animationParameter.Jump);
+        }
+
+        // 左右キーが押されているか かつダブルジャンプをしていない
+        if (inputDirKey != 0 && nowJumpState != jumpState.doubleJump)
         {
             // 入力方向へ移動させる
             Vector2 position = rigid2D.velocity;
@@ -116,22 +117,24 @@ public class PlayerController : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);       // 実数化
             scale.x *= inputDirKey;
             transform.localScale = scale;
-
-            // Walkアニメーション再生
-            animScript.AnimPlay(AnimationController.animationParameter.Walk);
+            if (CheckCloud())
+            {
+                // Walkアニメーション再生
+                animScript.AnimPlay(AnimationController.animationParameter.Walk);
+            }
         }
-        else
+        else if (CheckCloud())
         {
             // 押されていないとき
             // Stayアニメーション
             animScript.AnimPlay(AnimationController.animationParameter.Stay);
-
         }
     }
 
     // ゴールに到達
     void OnTriggerEnter2D(Collider2D other)
     {
+        isGoal = true;
         SceneManager.LoadScene("ClearScene");
     }
 
@@ -146,10 +149,12 @@ public class PlayerController : MonoBehaviour
         float colRadiusX = circleCollider2d.bounds.extents.x;
 
         // レイの長さ指定
-        Vector3 rayStart = GetFootPos() * 1.1f;     // レイのスタート
+        Vector3 rayStart = GetFootPos();     // レイのスタート
         rayStart.x -= colRadiusX;
-        Vector3 rayEnd = GetFootPos() * 1.1f;     // レイの終わり
+        rayStart.y -= 0.01f;
+        Vector3 rayEnd = GetFootPos();     // レイの終わり
         rayEnd.x += colRadiusX;
+        rayEnd.y -= 0.01f;
 
         // レイ射出
         RaycastHit2D rayResult;
@@ -176,5 +181,13 @@ public class PlayerController : MonoBehaviour
         footPos.y -= colRadiusY;
 
         return footPos;
+    }
+
+
+    private void OnBecameInvisible()
+    {
+        Vector3 pos = transform.position;
+        pos.x *= -1;
+        transform.position = pos;
     }
 }
