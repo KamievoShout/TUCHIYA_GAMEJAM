@@ -40,7 +40,7 @@ public class RightPlayerController : MonoBehaviour
     [Header("パワーアップデバフ")]
     public bool powerUpDebuff;
 
-    [SerializeField, Header("デバフ状態を表示する")]
+    [SerializeField]
     private DisplayPlayerDebuff displayPlayerDebuff;
 
     // Start is called before the first frame update

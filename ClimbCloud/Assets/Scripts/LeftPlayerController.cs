@@ -36,7 +36,7 @@ public class LeftPlayerController : MonoBehaviour
     [Header("パワーアップデバフ")]
     public bool powerUpDebuff;
 
-    [SerializeField, Header("デバフ状態を表示する")]
+    [SerializeField]
     private DisplayPlayerDebuff displayPlayerDebuff;
 
     // 歩くサウンドを出す
