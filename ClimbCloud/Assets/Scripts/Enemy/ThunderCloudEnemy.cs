@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utility;
 
 public class ThunderCloudEnemy : MonoBehaviour
 {
@@ -9,19 +10,25 @@ public class ThunderCloudEnemy : MonoBehaviour
     [SerializeField] private int firstMoveDir = 1;
     [SerializeField] private float moveDuration = 3f;
     [SerializeField] private float shotDuration = 1f;
+    [SerializeField] private float noticeDistance = 300;
 
     private float moveTime;
     private int moveDir;
     private float shotTime;
     private bool isShot = false;
+    private GameObject player;
 
     private void Start()
     {
         moveDir = firstMoveDir;
+        player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
     {
+        if (player == null) return;
+        if (Mathf.Abs(Mathf.Abs(player.transform.position.y) - Mathf.Abs(transform.position.y)) > noticeDistance) return;
+
         if (!isShot)
         {
             if (moveTime < moveDuration)

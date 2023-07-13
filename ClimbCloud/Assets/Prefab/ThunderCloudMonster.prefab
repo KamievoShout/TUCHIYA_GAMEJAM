@@ -128,6 +128,7 @@ MonoBehaviour:
   firstMoveDir: 1
   moveDuration: 2
   shotDuration: 2
+  noticeDistance: 128
 --- !u!1 &5100497812296445348
 GameObject:
   m_ObjectHideFlags: 0
