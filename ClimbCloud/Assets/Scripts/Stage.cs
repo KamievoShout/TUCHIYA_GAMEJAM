@@ -83,7 +83,21 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void UseBlackOut()
     {
-        Debug.Log(gameObject.name + "ˆÃ“]");
+        if(gimmicks.isBlackOut == true)
+        {
+            return;
+        }
+
+        gimmicks.isBlackOut = true;
+        StartCoroutine(BlackOut());
+    }
+
+    private IEnumerator BlackOut()
+    {
+        blackOut.StartBlackOut();
+        yield return new WaitForSeconds(GimmickStaticData.BLACKOUT_TIME);
+        blackOut.QuitBlackOut();
+        gimmicks.isBlackOut = false;
     }
 
     /// <summary>
