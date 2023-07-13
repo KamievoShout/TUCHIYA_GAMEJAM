@@ -10,8 +10,6 @@ public class LeftPlayerController : MonoBehaviour
 
     Vector3 dir = Vector3.zero;
 
-    GimmickSeed gimmickSeed;
-    GimmickKinds gimmickKinds;
     GameStageManager gameStageManager;
 
     int key = 0;    //ÉLÅ[ì¸óÕä¥ím
@@ -117,7 +115,8 @@ public class LeftPlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
-        gimmickKinds = gimmickSeed.GetGimmickKindType();
+        GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
+        GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
+        gameStageManager.TouchGimmick(this,gimmickKind);
     }
 }
