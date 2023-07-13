@@ -209,7 +209,7 @@ Transform:
   m_Children:
   - {fileID: 330477872599976660}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3704386885846992143
 MonoBehaviour:
@@ -225,3 +225,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxImgageAlpha: 0.5
   _addAlpha: 0.5
+  _blackOutImg: {fileID: 879970504946080826}
