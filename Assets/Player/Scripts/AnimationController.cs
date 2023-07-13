@@ -8,6 +8,7 @@ public class AnimationController : MonoBehaviour
     private Animator animator;
     private string animName;
     private string nowPlayingAnim;
+    public animationParameter animParameter;
 
     public enum animationParameter
     {
@@ -18,17 +19,17 @@ public class AnimationController : MonoBehaviour
 
     public void AnimInit()
     {
-        animator       = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void AnimPlay(animationParameter playAnim)
     {
         // enumをstringに変換
         animName = playAnim.ToString();
+        Debug.Log(animName);
 
-        // 現在再生中のアニメーター名を取得
-        nowPlayingAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if(nowPlayingAnim != animName)
+        // 現在再生中のアニメーター名と一致しなければ再生
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(animName))
         {
             animator.Play(animName);
         }
