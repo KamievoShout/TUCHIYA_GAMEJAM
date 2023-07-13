@@ -68,6 +68,6 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("ÉSÅ[Éã");
-        SceneManager.LoadScene("ClearScene");
+        //SceneManager.LoadScene("ClearScene");
     }
 }
