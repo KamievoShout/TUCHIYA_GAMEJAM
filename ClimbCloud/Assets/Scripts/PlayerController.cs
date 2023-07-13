@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
-    bool NotMoveSwitch = true;
+    bool NotMoveSwitch = false;//操作選別,true=動けない
+    private float WAIT_TIME = 0.75f;//ノックバック時の停止時間
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        if(NotMoveSwitch)
+        if(!NotMoveSwitch)
         {
             float x = Input.GetAxisRaw("Horizontal");
             Vector2 MoveX = new Vector2(x, 0) * Speed * Time.deltaTime;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && rb.velocity.y == 0)
             {
                 float j = JUMPING_NUM_PLUS + JumpFouce * JUMPING_NUM_PERCENT;
+                rb.velocity = Vector2.zero;
                 rb.AddForce(new Vector2(0, j) * Time.deltaTime);
             }
             //ジャンプ
@@ -121,7 +123,16 @@ public class PlayerController : MonoBehaviour
             knockback.x *= front;
             rb.velocity = Vector2.zero;
             rb.AddForce(knockback);
+            StartCoroutine(MovePause());
         }
     }
     //ノックバック
+
+    private IEnumerator MovePause()
+    {
+        NotMoveSwitch = true;
+        yield return new WaitForSeconds(WAIT_TIME);
+        NotMoveSwitch = false;
+    }
+    //動作を一定時間制限する
 }
