@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using Utility;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     ParticleSystem dethEffect;
+    Animator animator;
+    [SerializeField]
+    float stanTime;
 
     Rigidbody2D rb;
     float inputX;
@@ -34,6 +38,7 @@ public class PlayerController : MonoBehaviour
     bool isGround;
     public bool isControl;
 
+    bool flg;
     Tween tween;
 
 
@@ -45,6 +50,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         isGround = true;
         isControl = true;
+
+        animator = gameObject.GetComponentInChildren<Animator>();
+        flg = false;
+
+        Locator<PlayerController>.Register(this);
     }
 
     // Update is called once per frame
@@ -123,5 +133,21 @@ public class PlayerController : MonoBehaviour
         spriteObj.SetActive(false);
         dethEffect.Play();
         OnDead?.Invoke();
+    }
+
+    public void Stan()
+    {
+        if (!flg)
+            StartCoroutine("stanMotion");
+    }
+    IEnumerator stanMotion()
+    {
+        flg = true;
+        isControl = false;
+        animator.Play("PL_stanAnimation");
+        yield return new WaitForSeconds(stanTime);
+        isControl = true;
+        animator.Play("PL_defaultAnimation");
+        flg = false;
     }
 }
