@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ViewBlackOut : MonoBehaviour
+public class ViewBlackOut : MonoBehaviour, Gimmick
 {
     [SerializeField, Header("‰æ–Ê‚ğˆÃ‚­‚·‚éŠ„‡‚ÌÅ‘å’l"), Range(0, 1f)]
     private float _maxImgageAlpha;
@@ -57,7 +57,7 @@ public class ViewBlackOut : MonoBehaviour
         }
 
         // ‰æ–Ê‚ğˆÃ‚­‚³‚¹‚é
-        _blackOutImg.color += new Color(0, 0, 0, _addAlpha/100);
+        _blackOutImg.color += new Color(0, 0, 0, _addAlpha / 100);
 
     }
 
