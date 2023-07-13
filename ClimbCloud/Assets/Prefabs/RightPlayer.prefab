@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMoveForce: 5
   normalJumpForce: 8
-  debuffMoveForce: 0
-  debuffJumpForce: 0
+  debuffMoveForce: 20
+  debuffJumpForce: 30
   reverse: 0
   powerUpDebuff: 0

@@ -36,11 +36,15 @@ public class Stage : MonoBehaviour
 
     [SerializeField]
     private FallPillar fallPillar;
-    
-    
+
+    [SerializeField]
+    private CameraShake cameraShake;
     
     
     public Gimmicks gimmicks;
+
+    private float cameraShakeDuration = 0.3f;
+    private float cameraShakeMagnitude = 0.1f;
 
 
     void Start()
@@ -72,6 +76,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator RightRevers()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         playerObj.GetComponent<RightPlayerController>().reverse = true;
         yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
         playerObj.GetComponent<RightPlayerController>().reverse = false;
@@ -93,6 +98,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator LeftRevers()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         playerObj.GetComponent<LeftPlayerController>().reverse = true;
         yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
         playerObj.GetComponent<LeftPlayerController>().reverse = false;
@@ -116,6 +122,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator BuffRight()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         playerObj.GetComponent<RightPlayerController>().powerUpDebuff = true;
         yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
         playerObj.GetComponent<RightPlayerController>().powerUpDebuff = false;
@@ -136,6 +143,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator BuffLeft()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = true;
         yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
         playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = false;
@@ -167,6 +175,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator BlackOut()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         blackOut.StartBlackOut();
         yield return new WaitForSeconds(GimmickStaticData.BLACKOUT_TIME);
         blackOut.QuitBlackOut();
@@ -178,6 +187,7 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void UsePillar()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // ƒJƒƒ‰‚ğU“®‚³‚¹‚é
         Debug.Log(gameObject.name + "’Œ");
         gimmicks.isPillar = true;
         fallPillar.GeneratePillar(playerObj.transform.position);
