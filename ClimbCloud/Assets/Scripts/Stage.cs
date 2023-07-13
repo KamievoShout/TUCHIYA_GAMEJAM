@@ -69,7 +69,6 @@ public class Stage : MonoBehaviour
         {
             return;
         }
-        Debug.Log(gameObject.name + "反転");
         gimmicks.isMoveReverse = true;
         StartCoroutine(RightRevers());
     }
@@ -90,7 +89,6 @@ public class Stage : MonoBehaviour
         {
             return;
         }
-        Debug.Log(gameObject.name + "反転");
         gimmicks.isMoveReverse = true;
         StartCoroutine(LeftRevers());
 
@@ -115,7 +113,6 @@ public class Stage : MonoBehaviour
         {
             return;
         }
-        Debug.Log(gameObject.name + "バフ");
         gimmicks.isBuff = true;
         StartCoroutine(BuffRight());
     }
@@ -135,7 +132,6 @@ public class Stage : MonoBehaviour
         {
             return;
         }
-        Debug.Log(gameObject.name + "バフ");
         gimmicks.isBuff = true;
         StartCoroutine(BuffLeft());
 
@@ -148,15 +144,6 @@ public class Stage : MonoBehaviour
         yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
         playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = false;
         gimmicks.isBuff = false;
-    }
-
-    /// <summary>
-    /// リフトを移動させる
-    /// </summary>
-    public void UseMoveLift()
-    {
-        Debug.Log(gameObject.name + "リフト移動");
-        gimmicks.isMoveLift = true;
     }
 
     /// <summary>
@@ -188,7 +175,6 @@ public class Stage : MonoBehaviour
     public void UsePillar()
     {
         cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
-        Debug.Log(gameObject.name + "柱");
         gimmicks.isPillar = true;
         fallPillar.GeneratePillar(playerObj.transform.position);
     }
