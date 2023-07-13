@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1102559920876305728}
   - component: {fileID: 2045161473165859559}
   - component: {fileID: 8462970200166025046}
+  - component: {fileID: 3777087052176593432}
   m_Layer: 0
   m_Name: Respawnflag
   m_TagString: Respawn
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2045161473165859559
 SpriteRenderer:
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.66, y: 1.03}
   m_EdgeRadius: 0
+--- !u!114 &3777087052176593432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755240839463072591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6823f20848792548afd49a14d553d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -66,13 +66,13 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         accelerator = airGravityaccelerator;
-        if (RespawnPos == Vector3.zero)
+        if (RespawnController.instance.RespawnPos == Vector3.zero)
         {
-            RespawnPos = this.transform.position;
+            RespawnController.instance.RespawnPos = this.transform.position;
         }
         else
         {
-            this.transform.position = RespawnPos;
+            this.transform.position = RespawnController.instance.RespawnPos;
         }
 
         Application.targetFrameRate = 60;
@@ -93,17 +93,18 @@ public class PlayerController1 : MonoBehaviour
     {
         if (other.tag == "Respawn")
         {
-            RespawnPos = other.transform.position;
+            RespawnController.instance.RespawnPos = other.transform.position;
             Debug.Log("RespawnçXêV");
         }
         else if (other.tag == "Goal")
         {
             Debug.Log("ÉSÅ[Éã");
-            SceneManager.LoadScene("ClearScene");
+            Destroy(RespawnController.instance.obj);
+            SceneManager.LoadScene("ClearScene 1");
         }
         else if (other.tag == "dead")
         {
-            this.transform.position = RespawnPos;
+            SceneManager.LoadScene(GameSceneName);
         }
     }
 
