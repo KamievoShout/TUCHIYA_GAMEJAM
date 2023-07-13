@@ -10,6 +10,8 @@ public class RightPlayerController : MonoBehaviour
 
     Vector3 dir = Vector3.zero;
 
+    GameStageManager gameStageManager;
+
     int key = 0;    //ÉLÅ[ì¸óÕä¥ím
 
 
@@ -45,6 +47,7 @@ public class RightPlayerController : MonoBehaviour
         this.rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         reversDir = 1;
+        gameStageManager = Locator<GameStageManager>.GetT();
     }
 
     // Update is called once per frame
@@ -112,5 +115,12 @@ public class RightPlayerController : MonoBehaviour
             scl.x = Mathf.Abs(scl.x) * key;
             transform.localScale = scl;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
+        GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
+        gameStageManager.TouchGimmick(this, gimmickKind);
     }
 }

@@ -10,6 +10,8 @@ public class LeftPlayerController : MonoBehaviour
 
     Vector3 dir = Vector3.zero;
 
+    GameStageManager gameStageManager;
+
     int key = 0;    //キー入力感知
 
     float jumpForce = 0f;      //ジャンプ力
@@ -40,6 +42,7 @@ public class LeftPlayerController : MonoBehaviour
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        gameStageManager = Locator<GameStageManager>.GetT();
     }
 
     // Update is called once per frame
@@ -108,5 +111,12 @@ public class LeftPlayerController : MonoBehaviour
             scl.x = Mathf.Abs(scl.x) * key;
             transform.localScale = scl;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
+        GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
+        gameStageManager.TouchGimmick(this,gimmickKind);
     }
 }
