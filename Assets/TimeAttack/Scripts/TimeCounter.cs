@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TimeCounter : MonoBehaviour
 {
+    // プレイヤーのゴール判定を知りたい
+    [SerializeField]
+    PlayerController playerController;
+    [SerializeField]
+    TimeCashAsset timeCashAsset;
+
     float time = 0;
     public float CurrentTime => time;
     bool isCounting = false;
@@ -17,5 +23,8 @@ public class TimeCounter : MonoBehaviour
     {
         if (!isCounting) return;
         time += Time.deltaTime;
+        // ゴールしたらカウントをやめてスクリプタブルオブジェクトに代入する
+        //if (playerController.)
+        //timeCashAsset.SetTime(time);
     }
 }

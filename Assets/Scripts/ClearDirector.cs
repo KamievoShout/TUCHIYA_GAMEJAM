@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ClearDirector : MonoBehaviour
 {
+    [SerializeField]
+
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
