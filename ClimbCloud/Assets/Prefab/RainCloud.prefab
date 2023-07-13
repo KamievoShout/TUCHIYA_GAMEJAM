@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4181437043378840589}
   - component: {fileID: 1999612030830122617}
+  - component: {fileID: 6087923639299874114}
   m_Layer: 0
   m_Name: RainCloud
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 6774778707723808901}
   - {fileID: 4313897105924039743}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1999612030830122617
 MonoBehaviour:
@@ -50,6 +51,23 @@ MonoBehaviour:
   dropInterval: 0.5
   rainObj: {fileID: 7923411927286674911, guid: 0870241f714fddf4bbacf005d5d55813, type: 3}
   dropOffSetY: -1.5
+--- !u!114 &6087923639299874114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4519668343424039514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291c26fe043058549b1730512d288567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 3
+  cloudObj:
+  - {fileID: 7533492729022639500}
+  - {fileID: 8663772599606032829}
+  - {fileID: 5331518906586657056}
 --- !u!1 &5331518906586657056
 GameObject:
   m_ObjectHideFlags: 0
