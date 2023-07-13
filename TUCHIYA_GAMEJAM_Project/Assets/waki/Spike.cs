@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class Spike : SwitchObjectBase
 {
     [SerializeField]
     private int spikeDamage;
