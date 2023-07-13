@@ -13,6 +13,7 @@ public class ViewBlackOut : Gimmick
     private float _addAlpha;
 
     // 画面を暗くする画像
+    [SerializeField,Header("暗くさせる画像")]
     private Image _blackOutImg;
 
     // 画面を暗くさせるか
@@ -54,10 +55,10 @@ public class ViewBlackOut : Gimmick
         // 画面を暗くしたくないときはしない
         if (!_isBlackOut) { return; }
 
-        // 画面を暗くする画像を持っていなかったら、取得する
+        // 画面を暗くする画像を持っていなかったら、エラーをはく
         if (_blackOutImg == null)
         {
-            _blackOutImg = GameObject.Find("BlackOutImg").GetComponent<Image>();
+            Debug.LogError("暗くする画像を持っていない");
         }
 
         // 指定した最大値よりα値が大きくなったら辞める
