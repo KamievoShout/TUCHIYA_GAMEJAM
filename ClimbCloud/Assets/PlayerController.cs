@@ -7,15 +7,56 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Animator animator;
-    float jumpForce = 680.0f;
-    float walkForce = 30.0f;
-    float maxWalkSpeed = 2.0f;
+    
+    // ゲームシーン名
+    [SerializeField] private string GameSceneName = "GameScene";
+    // 足元の当たり判定補正
+    [SerializeField] private float UnderRayAsist = 0.35f;
+    // 歩く時に加える力
+    [SerializeField] private float WalkForce = 0.15f;
+    // 飛ぶときに加える力
+    [SerializeField] private float JumpForce = 0.15f;
+    // 飛ぶスピード
+    [SerializeField] private float JumpSpeed = 1;
+    // 重力
+    [SerializeField] private float GravityScale = 0.15f;
+    // 壁に触れているときにかかる壁との摩擦を加味した重力(としたもの)
+    [SerializeField] private float isWallGravityScale = 0.15f;
+    // 地面のレイヤーマスク
+    [SerializeField] private LayerMask GroundLayerMask;
+    // 壁のレイヤーマスク
+    [SerializeField] private LayerMask WallLayerMask;
+
+    // 自身の当たり判定サイズ
+    private Vector2 myColliderSize;
+
+    // 以下true条件
+    // 地面に設置している
+    private bool isGround = true;
+    // 壁に触れている
+    private bool isWall = false;
+    // ジャンプしている
+    private bool jump = false;
+    // 壁をけっている
+    private bool WallKick = false;
+    // 右の壁に触れている
+    private bool isRightWall = true;
+
+    int i = 0;
+    int j = 0;
+
+    private float[,] jumpvec = { { 1, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f,  0.4f,  0.3f,  0.2f,  0.1f,  0 },       // x変位
+                                 { 1, 0.8f, 0.4f, 0.2f, 0.1f,    0, -0.1f, -0.2f, -0.3f, -0.6f, -1 } };     // y変位
+    private int[] jumptime =     { 10,  10,    5,    2,    1,   20,    12,     8,     4,     4, -1 };       //それぞれ何フレーム力を加えるか
 
     void Start()
     {
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+
+        // 自身のスケールも加味した当たり判定の大きさを取得
+        myColliderSize = this.GetComponent<BoxCollider2D>().bounds.size;
     }
 
     void Update()
@@ -26,54 +67,159 @@ public class PlayerController : MonoBehaviour
     //ゴールに到着
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ゴール");
-        SceneManager.LoadScene("ClearScene");
+        if (other.tag == "Goal")
+        {
+            Debug.Log("ゴール");
+            SceneManager.LoadScene("ClearScene");
+        }
     }
 
     // Playerの移動を行う
     private void PlayerMove()
     {
-        //ジャンプする
-        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
-        {
-            this.animator.SetTrigger("JumpTrigger");
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        }
+        Vector3 movePos = this.transform.position;
 
         //左右移動
-        int key = 0;
+        float key = 0;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) key = 1;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) key = -1;
 
-        //プレイヤの速度
-        float sppedx = Mathf.Abs(this.rigid2D.velocity.x);
 
-        //スピード制限
-        if (sppedx < this.maxWalkSpeed)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            this.rigid2D.AddForce(transform.right * key * this.walkForce);
+            if (isGround)       // 通常ジャンプ
+            {
+                jump = true;
+                this.animator.SetTrigger("JumpTrigger");
+            }
+            else if (isWall)    // 壁キック
+            {
+                jump = true;
+                WallKick = true;
+                this.animator.SetTrigger("JumpTrigger");
+            }
         }
+
+        if (jump)
+        {
+            // yの変位を加える
+            movePos.y += jumpvec[1, i] * JumpForce * JumpSpeed * Time.deltaTime;
+
+            // 壁キックをしているときはxの変位も加える
+            if (WallKick)
+            {
+                key /= 2;
+                if (isRightWall)
+                {
+                    key += -jumpvec[0, i] * 1.5f;
+                }
+                else
+                {
+                    key += jumpvec[0, i] * 1.5f;
+                }
+            }
+
+            if (j < jumptime[i] / JumpSpeed)
+            {
+                ++j;
+            }
+            else if (jumptime[i] == -1)         // ジャンプ終了
+            {
+                WallKick = false;
+                JumpFinish();
+            }
+            else
+            {
+                j = 0;
+                ++i;
+            }
+        }
+        else if (isWall)
+        {
+            movePos.y -= isWallGravityScale * Time.deltaTime;
+        }
+        else
+        {
+            // 重力
+            movePos.y -= GravityScale * Time.deltaTime;
+        }
+
+        // xの最終的な変位を加える
+        movePos.x += key * WalkForce * Time.deltaTime;
 
         //動く方向に応じて反転
         if (key != 0)
         {
-            transform.localScale = new Vector3(key, 1, 1);
+            if (key > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
 
-        //プレイヤの速度に応じてアニメーション速度を変える
-        if (this.rigid2D.velocity.y == 0)
+        // 自身のポジション
+        Vector2 myPos = this.transform.position;
+
+
+
+        isWall = false;
+
+        // 右の壁判定
+        RaycastHit2D hit = Physics2D.Raycast(myPos, Vector3.right, 100, WallLayerMask);
+
+        if (hit.collider && movePos.x + myColliderSize.x / 2 > hit.transform.position.x - hit.collider.bounds.size.x / 2)
         {
-            this.animator.speed = sppedx / 2.0f;
+            movePos.x = hit.transform.position.x - hit.collider.bounds.size.x / 2 - myColliderSize.x / 2;
+            isWall = true;
+            isRightWall = true;
+            JumpFinish();
+        }
+
+        // 左の壁判定
+        hit = Physics2D.Raycast(myPos, Vector3.left, 100, WallLayerMask);
+
+        if (hit.collider && movePos.x - myColliderSize.x / 2 < hit.transform.position.x + hit.collider.bounds.size.x / 2)
+        {
+            movePos.x = hit.transform.position.x + hit.collider.bounds.size.x / 2 + myColliderSize.x / 2;
+            isWall = true;
+            isRightWall = false;
+            JumpFinish();
+        }
+
+        // レイの発生地点を足元に変更する。
+        myPos.y -= myColliderSize.y / 2 + UnderRayAsist;
+
+        hit = Physics2D.Raycast(myPos, Vector3.down, 100, GroundLayerMask);
+
+        if (hit.collider && movePos.y < hit.transform.position.y + myColliderSize.y / 2 + hit.collider.bounds.size.y / 2)
+        {
+            isGround = true;
+            movePos.y = hit.transform.position.y + myColliderSize.y / 2 + hit.collider.bounds.size.y / 2;
+            JumpFinish();
         }
         else
         {
-            this.animator.speed = 1.0f;
+            // 空中
+            isGround = false;
         }
+
+        // 移動
+        this.transform.position = movePos;
 
         //画面外に出た場合は最初から
         if (transform.position.y < -10)
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene(GameSceneName);
         }
+    }
+
+    private void JumpFinish()
+    {
+        jump = false;
+        WallKick = false;
+        i = 0; j = 0;
     }
 }
