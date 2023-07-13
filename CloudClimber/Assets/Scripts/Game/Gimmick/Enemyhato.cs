@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Crow : MonoBehaviour
+public class Enemyhato : MonoBehaviour
 {
     //‚â‚è‚½‚¢–
     //“G‚ğ©“®‚Å¶‰E‚ÉˆÚ“®‚³‚¹‚é
@@ -13,6 +13,7 @@ public class Enemy_Crow : MonoBehaviour
     [SerializeField,PropertyName("“G‚ÌˆÚ“®‘¬“x")]
     private float EnemySpeed = 3.0f;
     #endregion
+
     private void Start()
     {
         //‘½•ªrb‚ÉRigidbody2D‚ğ“ü‚ê‚é

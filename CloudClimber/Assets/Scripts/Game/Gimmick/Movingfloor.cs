@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moving_floor : MonoBehaviour
+public class Movingfloor : MonoBehaviour
 {
     //‚â‚è‚½‚¢Ž–
     //‰E•ûŒü‚Éˆê’è‚Ì‘¬“x‚Å“®‚©‚µ‚½‚¢
