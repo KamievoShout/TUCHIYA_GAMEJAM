@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField]
     GameObject player;
-
-    void Start()
-    {
-        this.player = GameObject.Find("cat");
-    }
 
     // Update is called once per frame
     void Update()
