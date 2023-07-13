@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Ando/TitleScene.unity
+    guid: be2cdac5048572b4785250a1bbfd4b35
+  - enabled: 1
     path: Assets/Fujiysohi/GameScene 1.unity
     guid: 297141183117f2d42ab6936fcdc5788c
   - enabled: 1
