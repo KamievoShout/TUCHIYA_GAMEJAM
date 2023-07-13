@@ -80,4 +80,52 @@ public class GameStageManager : MonoBehaviour
             leftStage.UseMoveReverse();
         }
     }
+
+    public void TouchGimmick(LeftPlayerController leftPlayerController, GimmickKinds gimmickKind)
+    {
+        switch (gimmickKind)
+        {
+            case GimmickKinds.MoveReverse:
+                rightStage.UseMoveReverse();
+                break;
+            case GimmickKinds.Buff:
+                rightStage.UseBuff();
+                break;
+            case GimmickKinds.MoveLift:
+                rightStage.UseMoveLift();
+                break;
+            case GimmickKinds.BlackOut:
+                rightStage.UseBlackOut();
+                break;
+            case GimmickKinds.Pillar:
+                rightStage.UsePillar();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void TouchGimmick(RightPlayerController rightPlayerController, GimmickKinds gimmickKind)
+    {
+        switch (gimmickKind)
+        {
+            case GimmickKinds.MoveReverse:
+                leftStage.UseMoveReverse();
+                break;
+            case GimmickKinds.Buff:
+                leftStage.UseBuff();
+                break;
+            case GimmickKinds.MoveLift:
+                leftStage.UseMoveLift();
+                break;
+            case GimmickKinds.BlackOut:
+                leftStage.UseBlackOut();
+                break;
+            case GimmickKinds.Pillar:
+                leftStage.UsePillar();
+                break;
+            default:
+                break;
+        }
+    }
 }
