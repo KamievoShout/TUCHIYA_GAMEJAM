@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeReference]
     GameObject spriteObj;
 
+    [SerializeField]
+    ParticleSystem dethEffect;
+
     Rigidbody2D rb;
     float inputX;
     float jumpAccumulat;
@@ -31,6 +35,9 @@ public class PlayerController : MonoBehaviour
     public bool isControl;
 
     Tween tween;
+
+
+    public event Action OnDaed;
 
     // Start is called before the first frame update
     void Start()
@@ -112,8 +119,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Deth()
+    public void Death()
     {
-
+        spriteObj.SetActive(false);
+        dethEffect.Play();
+        OnDaed?.Invoke();
     }
 }
