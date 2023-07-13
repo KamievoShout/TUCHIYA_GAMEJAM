@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     Vector2 doubleJumpForce =           // ダブルジャンプの力
         new Vector2(10f, 4f);
     public bool isGoal = false;         // ゴールしたか
+    bool isPlaySE;                      // 雲のSEを再生できるか
 
     void Start()
     {
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         // 2段ジャンプを有効化
         if (CheckCloud()) nowJumpState = jumpState.notJumping;
+        else isPlaySE = true;
 
         if (inputJumpKey && nowJumpState != jumpState.falling)
         {
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 // Jumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.Jump);
                 // サウンド再生
-
+                SeManager.Instance.Play("SingleJump");
 
                 // ジャンプした位置取得
                 jumpedPos = transform.position;
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
                 // DoubleJumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.DoubleJump);
                 // サウンド再生
-
+                SeManager.Instance.Play("DoubleJump");
 
                 inputJumpKey = false;
             }
@@ -136,6 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         isGoal = true;
         SceneManager.LoadScene("ClearScene");
+        SeManager.Instance.Play("Goal");
     }
 
     /// <summary>
@@ -151,10 +154,10 @@ public class PlayerController : MonoBehaviour
         // レイの長さ指定
         Vector3 rayStart = GetFootPos();     // レイのスタート
         rayStart.x -= colRadiusX;
-        rayStart.y -= 0.01f;
+        rayStart.y -= 0.025f;
         Vector3 rayEnd = GetFootPos();     // レイの終わり
         rayEnd.x += colRadiusX;
-        rayEnd.y -= 0.01f;
+        rayEnd.y -= 0.025f;
 
         // レイ射出
         RaycastHit2D rayResult;
@@ -164,6 +167,7 @@ public class PlayerController : MonoBehaviour
         {
             // レイが雲にヒットしたとき
             isGround = true;
+            if(isPlaySE) CloudSE(rayResult.collider.tag);
         }
 
         return isGround;
@@ -183,7 +187,23 @@ public class PlayerController : MonoBehaviour
         return footPos;
     }
 
+    // 雲SE
+    void CloudSE(string tag)
+    {
+        if(tag == "Bounce")
+        {
+            SeManager.Instance.Play("BounceCloud");
+        }
 
+        if(tag == "Slip")
+        {
+            SeManager.Instance.Play("SlipCloud");
+        }
+
+        isPlaySE = false;
+    }
+
+    // 画面外に出た時に反対側へ
     private void OnBecameInvisible()
     {
         Vector3 pos = transform.position;
