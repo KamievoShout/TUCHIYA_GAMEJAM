@@ -504,8 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c0eb12d72b1b74fb62bce9af2b849f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 6
-  min: 6
+  max: 2
+  min: 2
 --- !u!114 &617234215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +529,10 @@ MonoBehaviour:
   WaterCostS: 20
   WaterCostM: 30
   WaterCostL: 40
+  CloudMove: 0
   WaterSlider: {fileID: 526763916}
+  WindGene: 0
+  wind: {fileID: 617234216}
 --- !u!114 &617234216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +550,8 @@ MonoBehaviour:
   ThunderStock: 0.05
   ThunderCost: 0.1
   ThunderSlider: {fileID: 1034073392}
+  cloud: {fileID: 617234215}
+  CloudGene: 0
 --- !u!1 &1021330741
 GameObject:
   m_ObjectHideFlags: 0
