@@ -19,6 +19,12 @@ public class WindGenerator : MonoBehaviour
 
     [Tooltip("電気ゲージのスライダーUI")]
     [SerializeField] Slider ThunderSlider;
+
+    [Tooltip("雲のスクリプト")]
+    [SerializeField] CloudGenerator cloud;
+
+    [Tooltip("雲を生成しているかどうか")]
+    public bool CloudGene;
     void Start()
     {
         NowThunder = ThunderGauge;
@@ -27,6 +33,7 @@ public class WindGenerator : MonoBehaviour
 
     void Update()
     {
+        //電気回復
         NowThunder += ThunderStock;
         if (NowThunder >= ThunderGauge)
         {
@@ -34,14 +41,17 @@ public class WindGenerator : MonoBehaviour
         }
         ThunderSlider.value = NowThunder / ThunderGauge;
 
-        if (Input.GetMouseButtonDown(1)&&ThunderCost <= NowThunder)
+        //風生成
+        if (Input.GetMouseButtonDown(1)&&ThunderCost <= NowThunder&&CloudGene == false)
         {
             wind = Instantiate(Wind, gameObject.transform.position, Quaternion.identity);
         }
-        if (Input.GetMouseButton(1) && ThunderCost <= NowThunder)
+        if (Input.GetMouseButton(1) && ThunderCost <= NowThunder&&wind)
         {
             wind.transform.position = gameObject.transform.position + new Vector3(0, 4, 0);
+            cloud.CloudMove = false;
             NowThunder -= ThunderCost;
+            cloud.WindGene = true;
         }
         if (Input.GetMouseButtonUp(1) || ThunderCost >= NowThunder)
         {
@@ -49,6 +59,7 @@ public class WindGenerator : MonoBehaviour
             {
                 Destroy(wind);
             }
+            cloud.WindGene = false;
         }
         Vector3 ThunderPos = ThunderSlider.transform.position;
         ThunderPos.x = gameObject.transform.position.x;
