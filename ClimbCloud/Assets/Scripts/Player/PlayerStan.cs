@@ -9,22 +9,27 @@ public class PlayerStan : MonoBehaviour
     [SerializeField]
     float stanTime;
 
+    bool flg;
+
     private void Start()
     {
         playerController = gameObject.GetComponent<PlayerController>();
         animator = gameObject.GetComponentInChildren<Animator>();
-
+        flg = false;
     }
     public void Stan()
     {
-        StartCoroutine("stanMotion");
+        if(!flg)
+            StartCoroutine("stanMotion");
     }
     IEnumerator stanMotion()
     {
+        flg = true;
         playerController.isControl = false;
         animator.Play("PL_stanAnimation");
         yield return new WaitForSeconds(stanTime);
         playerController.isControl = true;
         animator.Play("PL_defaultAnimation");
+        flg = false;
     }
 }

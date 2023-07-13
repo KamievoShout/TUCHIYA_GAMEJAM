@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     Tween tween;
 
 
-    public event Action OnDaed;
+    public event Action OnDead;
 
     // Start is called before the first frame update
     void Start()
@@ -105,24 +105,23 @@ public class PlayerController : MonoBehaviour
             if(!isGround)
             {
                 isGround = true;
-                spriteObj.transform.DOScale(new Vector3(1.5f, 0.5f), 0.15f).onComplete += () =>
-                {
-                    //spriteObj.transform.DOScale(new Vector3(1f, 1f), 0.3f);
-                };
-                spriteObj.transform.DOLocalMoveY(-2f, 0.15f).onComplete += () =>
-                {
-                    spriteObj.transform.DOLocalMoveY(0f, 0.3f);               
-                };
+                //spriteObj.transform.DOScale(new Vector3(1.5f, 0.5f), 0.15f).onComplete += () =>
+                //{
+                //    //spriteObj.transform.DOScale(new Vector3(1f, 1f), 0.3f);
+                //};
+                //spriteObj.transform.DOLocalMoveY(-2f, 0.15f).onComplete += () =>
+                //{
+                //    spriteObj.transform.DOLocalMoveY(0f, 0.3f);               
+                //};
             }
         }
-
-
     }
 
     public void Death()
     {
+        isControl = false;
         spriteObj.SetActive(false);
         dethEffect.Play();
-        OnDaed?.Invoke();
+        OnDead?.Invoke();
     }
 }
