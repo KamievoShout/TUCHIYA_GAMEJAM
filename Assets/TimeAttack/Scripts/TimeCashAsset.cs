@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "TimeCashAsset")]
 public class TimeCashAsset : ScriptableObject
 {
-    float time;
+    float time = 0;
 
     public void SetTime(float time)
     {
