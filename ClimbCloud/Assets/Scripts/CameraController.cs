@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.player = GameObject.Find("cat");
+        this.player = GameObject.Find("LeftPlayer");
     }
 
     // Update is called once per frame
