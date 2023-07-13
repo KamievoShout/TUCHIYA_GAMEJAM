@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
     //ƒS[ƒ‹‚É“’…
     void OnTriggerEnter2D(Collider2D other)
     {
-<<<<<<< HEAD
         if (other.tag == "Goal")
         {
             Debug.Log("ƒS[ƒ‹");
@@ -222,9 +221,7 @@ public class PlayerController : MonoBehaviour
         jump = false;
         WallKick = false;
         i = 0; j = 0;
-=======
         Debug.Log("ƒS[ƒ‹");
-        //SceneManager.LoadScene("ClearScene");
->>>>>>> watanabe
+        SceneManager.LoadScene("ClearScene");
     }
 }
