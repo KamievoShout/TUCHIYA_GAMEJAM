@@ -32,6 +32,10 @@ public class GameStageManager : MonoBehaviour
     private Vector2 leftFlagPos;
     private Vector2 rightFlagPos;
 
+    private void Awake()
+    {
+        Locator<GameStageManager>.Bind(this);
+    }
 
     void Start()
     {
