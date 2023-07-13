@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;      //LoadSceneを使うために必要！！
 
-public class PlayerController : MonoBehaviour
+public class PlayerController1 : MonoBehaviour
 {
     Vector3 movePos = Vector3.zero;
 
@@ -22,12 +22,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float JumpSpeed = 1;
     // 重力
     [SerializeField] private float GravityScale = 0.15f;
+    [SerializeField] private float airGravityaccelerator = 0.98f;
+    private float accelerator;
     // 壁に触れているときにかかる壁との摩擦を加味した重力(としたもの)
     [SerializeField] private float isWallGravityScale = 0.15f;
     // 地面のレイヤーマスク
     [SerializeField] private LayerMask GroundLayerMask;
     // 壁のレイヤーマスク
     [SerializeField] private LayerMask WallLayerMask;
+
+    [SerializeField] private Wind1 WindScript;
 
     // 自身の当たり判定サイズ
     private Vector2 myColliderSize;
@@ -44,15 +48,33 @@ public class PlayerController : MonoBehaviour
     // 右の壁に触れている
     private bool isRightWall = true;
 
+    // 風インターバル
+    private float windcount = 0f;
+    [SerializeField] private float windinterval = 10f;
+    [SerializeField] private float inwind = 3f;
+
+    Vector3 RespawnPos = Vector3.zero;
+
     int i = 0;
     int j = 0;
 
     private float[,] jumpvec = { { 1, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f,  0.4f,  0.3f,  0.2f,  0.1f,  0 },       // x変位
                                  { 1, 0.8f, 0.4f, 0.2f, 0.1f,    0, -0.1f, -0.2f, -0.3f, -0.6f, -1 } };     // y変位
     private int[] jumptime =     { 10,  10,    5,    2,    1,   20,    12,     8,     4,     4, -1 };       //それぞれ何フレーム力を加えるか
+    
 
     void Start()
     {
+        accelerator = airGravityaccelerator;
+        if (RespawnPos == Vector3.zero)
+        {
+            RespawnPos = this.transform.position;
+        }
+        else
+        {
+            this.transform.position = RespawnPos;
+        }
+
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
@@ -69,16 +91,27 @@ public class PlayerController : MonoBehaviour
     //ゴールに到着
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Goal")
+        if (other.tag == "Respawn")
+        {
+            RespawnPos = other.transform.position;
+            Debug.Log("Respawn更新");
+        }
+        else if (other.tag == "Goal")
         {
             Debug.Log("ゴール");
             SceneManager.LoadScene("ClearScene");
+        }
+        else if (other.tag == "dead")
+        {
+            this.transform.position = RespawnPos;
         }
     }
 
     // Playerの移動を行う
     private void PlayerMove()
     {
+        windcount += Time.deltaTime;
+
         movePos = this.transform.position;
 
         //左右移動
@@ -142,8 +175,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (!isGround)
+            {
+                accelerator *= airGravityaccelerator;
+            }
             // 重力
-            movePos.y -= GravityScale * Time.deltaTime;
+            movePos.y -= (GravityScale * Time.deltaTime) / accelerator;
         }
 
         // xの最終的な変位を加える
@@ -198,6 +235,7 @@ public class PlayerController : MonoBehaviour
 
         if (hit.collider && movePos.y < hit.transform.position.y + myColliderSize.y / 2 + hit.collider.bounds.size.y / 2)
         {
+            accelerator = airGravityaccelerator;
             isGround = true;
             movePos.y = hit.transform.position.y + myColliderSize.y / 2 + hit.collider.bounds.size.y / 2;
             JumpFinish();
@@ -206,6 +244,17 @@ public class PlayerController : MonoBehaviour
         {
             // 空中
             isGround = false;
+        }
+
+        // 10より大きく13より小さい
+        if (windcount >= windinterval && windcount <= windinterval + inwind)
+        {
+            movePos += WindScript.WindVector();
+            movePos.y += GravityScale * Time.deltaTime / 4;
+        }
+        else if (windcount > windinterval + inwind)
+        {
+            windcount = 0;
         }
 
         // 移動

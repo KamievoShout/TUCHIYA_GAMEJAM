@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -244,6 +248,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -504,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -569,6 +581,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -640,6 +656,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -710,6 +730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -776,6 +800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -841,6 +869,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d5ca81aa3d3664b8eb3f32f92f6a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameSceneName: GameScene
+  UnderRayAsist: 0.35
+  WalkForce: 0.15
+  JumpForce: 0.15
+  JumpSpeed: 1
+  GravityScale: 0.15
+  isWallGravityScale: 0.15
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  WallLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!61 &713726758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1139,6 +1180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1247,7 +1292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 910234991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cloudPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,6 +1390,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1513,6 +1562,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1761,6 +1814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1826,6 +1883,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1893,6 +1954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1958,6 +2023,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2029,6 +2098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2099,6 +2172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cloudPrefab (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2164,6 +2241,10 @@ PrefabInstance:
     - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
       propertyPath: m_Name
       value: cloudPrefab (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944699780369059581, guid: 3449e38c46b383f40897a99ffd9dec95, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
