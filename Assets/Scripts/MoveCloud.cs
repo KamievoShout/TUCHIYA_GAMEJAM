@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MoveCloud : MonoBehaviour
 {
-    // Rigidbody2D rb2D;
+    Rigidbody2D rb2D;
 
     public bool axisX = true;
     public bool axisY = false;
+
+    bool onPlayer = false;
 
     public int moveDir = 1;
 
@@ -18,7 +20,7 @@ public class MoveCloud : MonoBehaviour
 
     void Start()
     {
-        // rb2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -39,6 +41,22 @@ public class MoveCloud : MonoBehaviour
         {
             nowMoveAmount = 0;
             moveDir *= -1;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.parent = this.gameObject.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.parent = null;
         }
     }
 }
