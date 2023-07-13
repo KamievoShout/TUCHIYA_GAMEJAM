@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4766596832399898895
 SpriteRenderer:
@@ -229,8 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6801ddd693a84249aab869b8fea1e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeColor: {r: 0, g: 0, b: 0, a: 1}
-  fadeSpeedMultiplier: 1
-  jumpForce: 5
-  moveForce: 2
-  maxWalkSpeed: 0
+  normalMoveForce: 5
+  normalJumpForce: 8
+  debuffMoveForce: 0
+  debuffJumpForce: 0
+  reverse: 0
+  powerUpDebuff: 0
