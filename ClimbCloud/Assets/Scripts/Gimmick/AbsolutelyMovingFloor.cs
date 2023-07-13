@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbsolutelyMovingFloor : MonoBehaviour, Gimmick
+public class AbsolutelyMovingFloor : Gimmick
 {
     List<GameObject> _floor = new List<GameObject>();
     private void Update()

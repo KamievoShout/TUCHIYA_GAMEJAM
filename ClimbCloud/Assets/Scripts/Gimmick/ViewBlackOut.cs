@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ViewBlackOut : MonoBehaviour, Gimmick
+public class ViewBlackOut : Gimmick
 {
     [SerializeField, Header("‰æ–Ê‚ğˆÃ‚­‚·‚éŠ„‡‚ÌÅ‘å’l"), Range(0, 1f)]
     private float _maxImgageAlpha;
@@ -22,21 +22,32 @@ public class ViewBlackOut : MonoBehaviour, Gimmick
     {
         _isBlackOut = false;
         Initialized();
-
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            _isBlackOut = true;
-        }
-
         BlackOut();
     }
 
     /// <summary>
     /// ‰æ–Ê‚ğˆÃ‚­‚³‚¹‚é
+    /// </summary>
+    public void StartBlackOut()
+    {
+        _isBlackOut = true;
+    }
+
+
+    /// <summary>
+    /// ˆÃ‚­‚³‚¹‚é‚Ì‚ğ‚â‚ß‚é
+    /// </summary>
+    public void QuitBlackOut()
+    {
+        Initialized();
+    }
+
+    /// <summary>
+    /// ‰æ–Ê‚ğˆÃ‚­‚³‚¹‚éˆ—
     /// </summary>
     private void BlackOut()
     {
