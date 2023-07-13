@@ -31,12 +31,10 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private GameObject playerObj;
 
+    [SerializeField]
+    private ViewBlackOut blackOut;
 
-    // TODO:ÉMÉ~ÉbÉNÇÃListÇçÏÇÈ
-    //[SerializeField]
-    //private List<>
-
-
+    
     public Gimmicks gimmicks;
 
 
@@ -87,6 +85,9 @@ public class Stage : MonoBehaviour
     {
         Debug.Log(gameObject.name + "à√ì]");
         gimmicks.isBlackOut = true;
+
+        blackOut.StartBlackOut();
+        Debug.Log(blackOut.gameObject.transform.root.gameObject.name);
 }
 
     /// <summary>

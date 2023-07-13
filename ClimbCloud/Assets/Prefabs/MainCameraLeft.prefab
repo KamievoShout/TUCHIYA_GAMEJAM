@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4492433724952857573, guid: 876b80f2bc5f15149937a0b283614644, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 6149045158571365682}
     - target: {fileID: 5092503585878545799, guid: 876b80f2bc5f15149937a0b283614644, type: 3}
       propertyPath: m_Name
       value: BlackOut
@@ -229,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7507138460509667856, guid: 876b80f2bc5f15149937a0b283614644, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -479.99997
+      value: -480
       objectReference: {fileID: 0}
     - target: {fileID: 7507138460509667856, guid: 876b80f2bc5f15149937a0b283614644, type: 3}
       propertyPath: m_AnchoredPosition.y
