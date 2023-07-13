@@ -12,10 +12,10 @@ public class GameStageManager : MonoBehaviour
     private GameObject rightPlayer;
 
     [SerializeField]
-    private GameObject leftStageObj;
+    private Stage leftStage;
 
     [SerializeField]
-    private GameObject rightStageObj;
+    private Stage rightStage;
 
     [SerializeField]
     private TextMeshProUGUI leftPlayerGoalDistText;
@@ -35,8 +35,8 @@ public class GameStageManager : MonoBehaviour
 
     void Start()
     {
-        leftFlagPos = leftStageObj.GetComponent<Stage>().GetFlagPos();
-        rightFlagPos = rightStageObj.GetComponent<Stage>().GetFlagPos();
+        leftFlagPos = leftStage.GetFlagPos();
+        rightFlagPos = rightStage.GetFlagPos();
     }
 
     void Update()
@@ -54,5 +54,26 @@ public class GameStageManager : MonoBehaviour
 
         leftPlayerGoalDistText.text = Mathf.Floor(leftPlayerGoalDist).ToString();
         rightPlayerGoalDistText.text = Mathf.Floor(rightPlayerGoalDist).ToString();
+    }
+
+    /// <summary>
+    /// ギミックを相手に送り込む
+    /// </summary>
+    /// <param name="playerObj">ギミックの種に触れたプレイヤー</param>
+    public void TouchGimmick(GameObject playerObj)
+    {
+        // TODO:スイッチで頑張って分岐する
+
+
+
+        if(playerObj.GetComponent<LeftPlayerController>() != null)
+        {
+            rightStage.UseMoveReverse();
+        }
+
+        if(playerObj.GetComponent<RightPlayerController>() != null)
+        {
+            leftStage.UseMoveReverse();
+        }
     }
 }
