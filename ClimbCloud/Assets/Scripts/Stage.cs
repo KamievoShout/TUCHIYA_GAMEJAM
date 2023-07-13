@@ -84,11 +84,7 @@ public class Stage : MonoBehaviour
     public void UseBlackOut()
     {
         Debug.Log(gameObject.name + "à√ì]");
-        gimmicks.isBlackOut = true;
-
-        blackOut.StartBlackOut();
-        Debug.Log(blackOut.gameObject.transform.root.gameObject.name);
-}
+    }
 
     /// <summary>
     /// íåÇèoåªÇ≥ÇπÇÈ
