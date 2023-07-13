@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class GameStageManager : MonoBehaviour
 {
@@ -17,17 +17,21 @@ public class GameStageManager : MonoBehaviour
     [SerializeField]
     private Stage rightStage;
 
-    [SerializeField]
-    private TextMeshProUGUI leftPlayerGoalDistText;
-
-    [SerializeField]
-    private TextMeshProUGUI rightPlayerGoalDistText;
-
     [HideInInspector]
     public float leftPlayerGoalDist;
 
     [HideInInspector]
     public float rightPlayerGoalDist;
+
+    [SerializeField]
+    private Image[] leftPlayerGoalDistImages = new Image[3];
+
+    [SerializeField]
+    private Image[] rightPlayerGoalDistImages = new Image[3];
+
+    private const int DIGITS = 3;
+
+    private IntToImage intToImage;
 
     private Vector2 leftFlagPos;
     private Vector2 rightFlagPos;
@@ -39,6 +43,8 @@ public class GameStageManager : MonoBehaviour
 
     void Start()
     {
+        intToImage = GetComponent<IntToImage>();
+
         leftFlagPos = leftStage.GetFlagPos();
         rightFlagPos = rightStage.GetFlagPos();
 
@@ -58,8 +64,17 @@ public class GameStageManager : MonoBehaviour
         leftPlayerGoalDist = Vector2.Distance(leftPlayer.transform.position, leftFlagPos);
         rightPlayerGoalDist = Vector2.Distance(rightPlayer.transform.position, rightFlagPos);
 
-        leftPlayerGoalDistText.text = Mathf.Floor(leftPlayerGoalDist).ToString();
-        rightPlayerGoalDistText.text = Mathf.Floor(rightPlayerGoalDist).ToString();
+        Sprite[] leftSprites = intToImage.GetSprites((int)Mathf.Floor(leftPlayerGoalDist), DIGITS);
+        for (int i = 0; i < leftPlayerGoalDistImages.Length; i++)
+        {
+            leftPlayerGoalDistImages[i].sprite = leftSprites[i];
+        }
+
+        Sprite[] rightSprites = intToImage.GetSprites((int)Mathf.Floor(rightPlayerGoalDist), DIGITS);
+        for (int i = 0; i < rightPlayerGoalDistImages.Length; i++)
+        {
+            rightPlayerGoalDistImages[i].sprite = rightSprites[i];
+        }
     }
 
     public void TouchGimmickLeft(LeftPlayerController leftPlayerController, GimmickKinds gimmickKind)
