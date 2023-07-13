@@ -9,7 +9,7 @@ public class ViewBlackOut : Gimmick
     [SerializeField, Header("画面を暗くする割合の最大値"), Range(0, 1f)]
     private float _maxImgageAlpha;
 
-    [SerializeField, Header("画面を暗くさせる割合"), Range(0, 1f)]
+    [SerializeField, Header("画面を暗くさせる割合(暗くさせるスピード)"), Range(0, 10f)]
     private float _addAlpha;
 
     // 画面を暗くする画像
