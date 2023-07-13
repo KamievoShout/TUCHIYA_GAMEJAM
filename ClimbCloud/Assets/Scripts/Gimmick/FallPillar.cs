@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class FallPillar : Gimmick
@@ -7,15 +8,17 @@ public class FallPillar : Gimmick
     [SerializeField, Header("柱のオブジェクト")]
     private GameObject _pillar;
 
-    [SerializeField, Header("プレイヤーのTransform")]
-    private Transform _playerTransform;
+    [SerializeField, Header("プレイヤーから離す距離")]
+    private Vector2 _diffPosition;
 
-    private void Update()
+    /// <summary>
+    /// 柱を生成する
+    /// </summary>
+    /// <param name="playerPos">プレイヤーの現在座標</param>
+    public void GeneratePillar(Vector2 playerPos)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Instantiate(_pillar, new Vector3(0, 0, 0), Quaternion.identity);
-        }
+        Vector2 generatePos = playerPos + _diffPosition;
+        Instantiate(_pillar, generatePos, Quaternion.identity);
     }
 
 }
