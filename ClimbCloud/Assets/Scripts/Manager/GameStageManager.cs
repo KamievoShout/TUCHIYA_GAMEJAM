@@ -41,6 +41,8 @@ public class GameStageManager : MonoBehaviour
     {
         leftFlagPos = leftStage.GetFlagPos();
         rightFlagPos = rightStage.GetFlagPos();
+
+        BgmManager.Instance.Play("Battle");
     }
 
     void Update()
