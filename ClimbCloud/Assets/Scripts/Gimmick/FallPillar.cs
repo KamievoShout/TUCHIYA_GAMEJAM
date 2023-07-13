@@ -11,17 +11,6 @@ public class FallPillar : Gimmick
     [SerializeField, Header("プレイヤーから離す距離")]
     private Vector2 _diffPosition;
 
-     // テスト用のプレイヤー座標
-   　// public Transform t;
-
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    GeneratePillar(t.position);
-        //}
-    }
-
     /// <summary>
     /// 柱を生成する
     /// </summary>
