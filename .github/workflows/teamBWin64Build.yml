@@ -1,4 +1,4 @@
-name: teamAWin64Build
+name: teamBWin64Build
 
 on:
   workflow_dispatch:
