@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class itemController : MonoBehaviour
 {
+    [SerializeField] Image inventory;
     [SerializeField] Rocket rocket;
     [SerializeField] Parachute parachute;
     Rigidbody2D rigid2D;
@@ -18,13 +20,14 @@ public class itemController : MonoBehaviour
     void Start() {
         this.rigid2D = GetComponent<Rigidbody2D>();
         holdItemCheck = false;
+        inventory.enabled = false;
     }
 
     void Update() {
         //アイテムの使用
         if (Input.GetKeyDown(KeyCode.Z) && holdItemCheck) {
+            inventory.enabled = false;
             holdItemCheck = false;
-            rigid2D.velocity = Vector3.zero;
             switch (stockItem) {    //使用アイテムチェック
                 case item.rocket:
                     rocket.rocketUseItem(rigid2D);

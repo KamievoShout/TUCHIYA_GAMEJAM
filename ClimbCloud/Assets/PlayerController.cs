@@ -221,7 +221,5 @@ public class PlayerController : MonoBehaviour
         jump = false;
         WallKick = false;
         i = 0; j = 0;
-        Debug.Log("ÉSÅ[Éã");
-        //SceneManager.LoadScene("ClearScene");
     }
 }
