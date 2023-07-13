@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace PlayerInternal
@@ -43,6 +46,12 @@ namespace PlayerInternal
         private Coroutine gravityHandle;
         private Coroutine knockbackHandle;
 
+        private Subject<Unit> jumpingSubject = new Subject<Unit>();
+        public IObservable<Unit> Jumping => jumpingSubject;
+
+        private FloatReactiveProperty currentSpeed = new FloatReactiveProperty();
+        public IReadOnlyReactiveProperty<float> Speed => currentSpeed;
+
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -75,6 +84,8 @@ namespace PlayerInternal
         private void Move(float max, float accel)
         {
             rb.Move(Input.GetAxisRaw("Horizontal"), accel, accel, max);
+
+            currentSpeed.Value = rb.velocity.x / groundSpeedMax;
         }
 
         public void Jump(float height)
@@ -92,6 +103,8 @@ namespace PlayerInternal
             if (gravityHandle != null) StopCoroutine(gravityHandle);
 
             gravityHandle = StartCoroutine(GravityHandle());
+
+            jumpingSubject.OnNext(Unit.Default);
         }
 
         private IEnumerator GravityHandle()
