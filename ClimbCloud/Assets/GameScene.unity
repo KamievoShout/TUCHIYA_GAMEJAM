@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 979383899}
   - component: {fileID: 979383898}
   - component: {fileID: 979383902}
+  - component: {fileID: 979383905}
   - component: {fileID: 979383903}
   - component: {fileID: 979383904}
   m_Layer: 0
@@ -925,6 +926,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &979383905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979383897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa0591a81f7fda44a4ce6800a9d2c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocket: {fileID: -9060394717695047111, guid: 474e93255ae2abb4da053d1856a69ee0, type: 3}
+  parachute: {fileID: 2554854608410571756, guid: 4688dd055a32f4c4485a525afb276eba, type: 3}
 --- !u!1001 &1076202216
 PrefabInstance:
   m_ObjectHideFlags: 0
