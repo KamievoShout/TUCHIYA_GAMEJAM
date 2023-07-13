@@ -72,9 +72,6 @@ public class GameStageManager : MonoBehaviour
             case GimmickKinds.Buff:
                 rightStage.UseBuffLeft();
                 break;
-            case GimmickKinds.MoveLift:
-                rightStage.UseMoveLift();
-                break;
             case GimmickKinds.BlackOut:
                 rightStage.UseBlackOut();
                 break;
@@ -95,9 +92,6 @@ public class GameStageManager : MonoBehaviour
                 break;
             case GimmickKinds.Buff:
                 leftStage.UseBuffRight();
-                break;
-            case GimmickKinds.MoveLift:
-                leftStage.UseMoveLift();
                 break;
             case GimmickKinds.BlackOut:
                 leftStage.UseBlackOut();
