@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &8341838426019423730
 ParticleSystem:
@@ -222,8 +222,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.29622638, g: 0.40888005, b: 1, a: 1}
-      maxColor: {r: 0.4660377, g: 0.7113915, b: 1, a: 1}
+      minColor: {r: 0.2980392, g: 0.7903619, b: 1, a: 1}
+      maxColor: {r: 0.4666667, g: 0.99999976, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

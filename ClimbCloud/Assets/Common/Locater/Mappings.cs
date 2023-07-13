@@ -12,8 +12,17 @@ namespace Utility
         [SerializeField] PostEffectCamera postEffectCamera = null;
         [SerializeField] PostEffectMaterialDB materialDB = null;
 
+        private static bool isActive = false;
+
         private void Awake()
         {
+            if (isActive) 
+            {
+                Destroy(gameObject);
+                return;
+			}
+            isActive = true;
+
             Locator<IPlayAudio>.Register(audioPlayer);
             Locator<IAudioVolumeChange>.Register(audioPlayer);
             Locator<IGetAudioVolume>.Register(audioPlayer);
@@ -30,6 +39,11 @@ namespace Utility
 		{
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+		private void OnDestroy()
+        {
+            isActive = false;
         }
 	}
 }
