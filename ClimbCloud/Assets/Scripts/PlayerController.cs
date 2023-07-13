@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if(transform.position.y < -10)
+        if (transform.position.y < -10)
         {
             transform.position = new Vector3(0, 0, 0);
             this.rigid2D.AddForce(-transform.up * this.jumpForce);
@@ -40,34 +40,34 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if(Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity .y == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
         {
             this.animator.SetTrigger("JumpTrigger");
             //AddForce:Rigidbodyのメンバ変数の一つで、「オブジェクトに力を加えることができる」メソッド。
             //今回は「transform.up * jumpForce」としているので、上方向にjumpForce分の力が加わる。upは上方向、つまりYと同義で*(0,jumpForce,0)と同じことをしている。
             this.rigid2D.AddForce(transform.up * this.jumpForce);
-            
+
         }
 
 
-        int key  = 0;
-        if(Input.GetKey(KeyCode.RightArrow)) key = 1;
-        if(Input.GetKey(KeyCode.LeftArrow)) key = -1;
+        int key = 0;
+        if (Input.GetKey(KeyCode.RightArrow)) key = 1;
+        if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
 
         float speedx = Mathf.Abs(this.rigid2D.velocity.x);
 
 
-        if(speedx < this.maxWalkSpeed)//AddForceは力をかけ続けるメソッド。続けているとどんどん力が加算されてめちゃくちゃ早くなる。なので、最大速度を変数で設定し、動きが早くなりすぎるのを防いでいる
+        if (speedx < this.maxWalkSpeed)//AddForceは力をかけ続けるメソッド。続けているとどんどん力が加算されてめちゃくちゃ早くなる。なので、最大速度を変数で設定し、動きが早くなりすぎるのを防いでいる
         {
             this.rigid2D.AddForce(transform.right * key * moveForce);
         }
 
-        if(key != 0)　//keyが0じゃない＝押されているとき
+        if (key != 0) //keyが0じゃない＝押されているとき
         {
-            transform.localScale = new Vector3(key,1,1);//このオブジェクトのスケールを変更している。keyは右が押されたときは１,左は-1なので、左を押したときに反転することがわかる
+            transform.localScale = new Vector3(key, 1, 1);//このオブジェクトのスケールを変更している。keyは右が押されたときは１,左は-1なので、左を押したときに反転することがわかる
         }
 
-        this.animator.speed = speedx /  2.0f;
+        this.animator.speed = speedx / 2.0f;
 
         if (this.rigid2D.velocity.y == 0)
         {
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Initiate.Fade("ClearScene", fadeColor, fadeSpeedMultiplier);
         Debug.Log("Goal");
