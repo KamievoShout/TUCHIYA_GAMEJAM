@@ -11,27 +11,32 @@ public class PlayerController1 : MonoBehaviour
     Animator animator;
     
     // ゲームシーン名
-    [SerializeField] private string GameSceneName = "GameScene";
+    [SerializeField] private string GameSceneName = "Stage02";
     // 足元の当たり判定補正
     [SerializeField] private float UnderRayAsist = 0.35f;
     // 歩く時に加える力
-    [SerializeField] private float WalkForce = 0.15f;
+    [SerializeField] private float WalkForce = 5;
     // 飛ぶときに加える力
-    [SerializeField] private float JumpForce = 0.15f;
+    [SerializeField] private float JumpForce = 5.25f;
     // 飛ぶスピード
-    [SerializeField] private float JumpSpeed = 1;
+    [SerializeField] private float JumpSpeed = 2;
     // 重力
-    [SerializeField] private float GravityScale = 0.15f;
+    [SerializeField] private float GravityScale = 5;
     [SerializeField] private float airGravityaccelerator = 0.98f;
     private float accelerator;
     // 壁に触れているときにかかる壁との摩擦を加味した重力(としたもの)
-    [SerializeField] private float isWallGravityScale = 0.15f;
+    [SerializeField] private float isWallGravityScale = 2.5f;
     // 地面のレイヤーマスク
     [SerializeField] private LayerMask GroundLayerMask;
     // 壁のレイヤーマスク
     [SerializeField] private LayerMask WallLayerMask;
 
     [SerializeField] private Wind1 WindScript;
+
+    [SerializeField] private float windinterval = 10f;
+    [SerializeField] private float inwind = 3f;
+
+    [SerializeField] private float GravityLimit = 0.075f;
 
     // 自身の当たり判定サイズ
     private Vector2 myColliderSize;
@@ -50,8 +55,6 @@ public class PlayerController1 : MonoBehaviour
 
     // 風インターバル
     private float windcount = 0f;
-    [SerializeField] private float windinterval = 10f;
-    [SerializeField] private float inwind = 3f;
 
     Vector3 RespawnPos = Vector3.zero;
 
@@ -66,18 +69,14 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         accelerator = airGravityaccelerator;
-        if (RespawnController.instance != null  )
+        if ( RespawnController.instance != null && RespawnController.instance.RespawnPos == Vector3.zero)
         {
-            if (RespawnController.instance.RespawnPos == Vector3.zero)
-            {
-                RespawnController.instance.RespawnPos = this.transform.position;
-            }
-            else
-            {
-                this.transform.position = RespawnController.instance.RespawnPos;
-            }
+            RespawnController.instance.RespawnPos = this.transform.position;
         }
-        
+        else
+        {
+            this.transform.position = RespawnController.instance.RespawnPos;
+        }
 
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
@@ -118,6 +117,10 @@ public class PlayerController1 : MonoBehaviour
         else if (other.tag == "dead")
         {
             SceneManager.LoadScene(GameSceneName);
+        }
+        else if (other.tag == "DeadLine")
+        {
+            SceneManager.LoadScene("TitleScene");
         }
     }
 
@@ -190,12 +193,17 @@ public class PlayerController1 : MonoBehaviour
         }
         else
         {
-            if (!isGround)
-            {
-                accelerator *= airGravityaccelerator;
-            }
             // 重力
             movePos.y -= (GravityScale * Time.deltaTime) / accelerator;
+            if (!isGround && (GravityScale * Time.deltaTime) / accelerator < GravityLimit)
+            {
+                accelerator *= airGravityaccelerator;
+                Debug.Log((GravityScale * Time.deltaTime) / accelerator);
+            }
+            else
+            {
+
+            }
         }
 
         // xの最終的な変位を加える
@@ -215,9 +223,15 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 10より大きく13より小さい
-
-        movePos += WindScript.WindVector();
-        movePos.y += GravityScale * Time.deltaTime / 4;
+        if (windcount >= windinterval && windcount <= windinterval + inwind)
+        {
+            movePos += WindScript.WindVector();
+            movePos.y += GravityScale * Time.deltaTime / 4;
+        }
+        else if (windcount > windinterval + inwind)
+        {
+            windcount = 0;
+        }
 
         // 自身のポジション
         Vector2 myPos = this.transform.position;

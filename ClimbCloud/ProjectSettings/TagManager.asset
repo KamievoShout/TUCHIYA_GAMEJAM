@@ -10,6 +10,8 @@ TagManager:
   - Ground
   - Rocket
   - Umbrella
+  - Dead
+  - DeadLine
   layers:
   - Default
   - TransparentFX
