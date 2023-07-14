@@ -66,14 +66,18 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         accelerator = airGravityaccelerator;
-        if (RespawnController.instance.RespawnPos == Vector3.zero)
+        if (RespawnController.instance != null  )
         {
-            RespawnController.instance.RespawnPos = this.transform.position;
+            if (RespawnController.instance.RespawnPos == Vector3.zero)
+            {
+                RespawnController.instance.RespawnPos = this.transform.position;
+            }
+            else
+            {
+                this.transform.position = RespawnController.instance.RespawnPos;
+            }
         }
-        else
-        {
-            this.transform.position = RespawnController.instance.RespawnPos;
-        }
+        
 
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
@@ -211,15 +215,9 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 10より大きく13より小さい
-        if (windcount >= windinterval && windcount <= windinterval + inwind)
-        {
-            movePos += WindScript.WindVector();
-            movePos.y += GravityScale * Time.deltaTime / 4;
-        }
-        else if (windcount > windinterval + inwind)
-        {
-            windcount = 0;
-        }
+
+        movePos += WindScript.WindVector();
+        movePos.y += GravityScale * Time.deltaTime / 4;
 
         // 自身のポジション
         Vector2 myPos = this.transform.position;

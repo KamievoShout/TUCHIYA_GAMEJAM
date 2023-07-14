@@ -16,20 +16,19 @@ public class Wind1 : MonoBehaviour
 
     // 風関係のタイマー
     private float windCtr = 0;
-    public float windWait = 5;
-
+    public float windWait = 10;
+    [SerializeField]
+    private int windWhile = 3;
     // 風向き
     public float windDir = 0;
     private Vector2 windVec;
+
+    private int windNo = 0;
+  
     void Start()
     {     
         plvec = player.transform.position;
         windDirUI = windUI.GetComponent<WindUI>();
-        
-        windDir = Random.Range(0,181);
-        windDirUI.moveWind(windDir);
-        Debug.Log("windDir " + windDir);
-        windVec = AngleToVector2(windDir);
     }
 
     // Update is called once per frame
@@ -51,16 +50,42 @@ public class Wind1 : MonoBehaviour
 
     public Vector3 WindVector()
     {
-        windCtr += Time.deltaTime;
-        if (windCtr >= windWait)
+        switch (windNo)
         {
-            windDir = Random.Range(0, 181);
-            windDirUI.moveWind(windDir);
-            Debug.Log("windDir " + windDir);
-            windVec = AngleToVector2(windDir);
-            windCtr = 0;
-        }
+            case 0:
+                windCtr += Time.deltaTime;
+                windUI.SetActive(false);
+                windVec = Vector3.zero;
+                if (windCtr >= windWait)
+                {
+                    windDir = Random.Range(0, 181);
+                    if (windDir >= 90)
+                    {
+                        windDir = 180;
+                    }
+                    else
+                    {
+                        windDir = 0;
+                    }
+                    windDirUI.moveWind(windDir);
+                    Debug.Log("windDir " + windDir);
+                    windUI.SetActive(true);
+                    windVec = AngleToVector2(windDir);
+                    windCtr = 0;
+                    windNo++;
+                }
+                break;
+            case 1:
+                windCtr += Time.deltaTime;
+                if (windCtr >= windWhile)
+                { 
+                    windCtr = 0;
+                    windNo = 0; ;
+                }
+                break;
 
+        }
+        Debug.Log(windVec);
         return windVec * Time.deltaTime * 2;
     }
 
