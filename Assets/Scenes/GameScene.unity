@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f414a6f5235b7924f966daf10ceebfb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1532502715}
 --- !u!1 &685253039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1150,8 @@ MonoBehaviour:
   lMask:
     serializedVersion: 2
     m_Bits: 8
+  doubleJumpForce: {x: 10, y: 4}
+  isGoal: 0
 --- !u!1001 &1555801734
 PrefabInstance:
   m_ObjectHideFlags: 0
