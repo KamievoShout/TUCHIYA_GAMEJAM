@@ -5,6 +5,8 @@ using DG.Tweening;
 using System;
 using Utility;
 using UnityEngine.UI;
+using Utility.Audio;
+using StageObject;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +36,12 @@ public class PlayerController : MonoBehaviour
     ParticleSystem stunEffect;
 
     [SerializeField]
+    ParticleSystem chargeEffect;
+
+    [SerializeField]
+    ParticleSystem jumpEffect;
+
+    [SerializeField]
     Slider jumpPowerSlider;
 
     [SerializeField]
@@ -45,13 +53,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float stanTime;
 
+    [SerializeField] 
+    private AfterImage aft;
+
     Rigidbody2D rb;
     float inputX;
     float jumpAccumulat;
     bool isGround;
     bool isControl;
 
-    bool flg;
+    bool isStun;
     Tween tween;
 
 
@@ -64,7 +75,7 @@ public class PlayerController : MonoBehaviour
         isGround = true;
         isControl = true;
 
-        flg = false;
+        isStun = false;
 
         Locator<PlayerController>.Register(this);
     }
@@ -86,10 +97,11 @@ public class PlayerController : MonoBehaviour
         {
             jumpAccumulat = 0.0f;        // ÉWÉÉÉìÉvÇÃó≠ÇﬂÇèâä˙âª
             jumpPowerSlider.gameObject.SetActive(true);
+            chargeEffect.Play();
         }
 
 
-        if (isGround)
+        if (isGround && !isStun)
         {
             if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -107,7 +119,7 @@ public class PlayerController : MonoBehaviour
         else if(rb.velocity.y < 0f)
         {
             tween?.Kill();
-            tween = spriteObj.transform.DOScale(new Vector3(1.25f, 0.75f, 0.0f), 0.25f);
+            tween = spriteObj.transform.DOScale(new Vector3(1.25f, 0.75f, 0.0f), 0.25f).SetLink(gameObject);
         }
     }
 
@@ -115,13 +127,16 @@ public class PlayerController : MonoBehaviour
     {
         float force = jumpPower * animCurve.Evaluate(jumpAccumulat);
         tween?.Kill();
-        tween = spriteObj.transform.DOScale(new Vector3(0.5f, 1.5f), 0.25f);
+        tween = spriteObj.transform.DOScale(new Vector3(0.5f, 1.5f), 0.25f).SetLink(gameObject);
+        chargeEffect.Stop();
+            jumpEffect.Play();
 
         isGround = false;
 
         rb.AddForce(Vector2.up * force, ForceMode2D.Force);
 
         jumpPowerSlider.gameObject.SetActive(false);
+        Locator<IPlayAudio>.Resolve().PlaySE("PlayerJump");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -133,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 isGround = true;
 
                 tween?.Kill();
-                tween = spriteObj.transform.DOScale(new Vector3(1.0f, 1.0f, 0.0f), 0.2f);
+                tween = spriteObj.transform.DOScale(new Vector3(1.0f, 1.0f, 0.0f), 0.2f).SetLink(gameObject);
             }
         }
     }
@@ -144,14 +159,16 @@ public class PlayerController : MonoBehaviour
         spriteObj.SetActive(false);
         dethEffect.Play();
         OnDead?.Invoke();
+        Locator<IPlayAudio>.Resolve().PlaySE("PlayerDead");
     }
 
     public void Stan()
     {
-        if (!flg)
+        if (!isStun)
         {
+            Locator<IPlayAudio>.Resolve().PlaySE("PlayerStun");
             stunEffect.Play();
-            flg = true;
+            isStun = true;
             isControl = false;
             animator.Play("PL_stanAnimation");
             stunTimeSlider.gameObject.SetActive(true);
@@ -164,7 +181,7 @@ public class PlayerController : MonoBehaviour
                 stunTimeSlider.gameObject.SetActive(false);
                 isControl = true;
                 animator.Play("PL_defaultAnimation");
-                flg = false;
+                isStun = false;
             };
         }
     }

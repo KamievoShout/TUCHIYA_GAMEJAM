@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
+using Utility.Audio;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class GameOverUI : MonoBehaviour
                 numberImages[i].sprite = numberSprites[num];
             }
         }
+        Locator<IPlayAudio>.Resolve().PlaySE("GameOver");
+        Locator<IPlayAudio>.Resolve().PlayBGMFade(null, 0.5f);
     }
 
     public void Retry()

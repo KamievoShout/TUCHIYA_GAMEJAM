@@ -1,5 +1,6 @@
 using UnityEngine;
 using Utility;
+using Utility.Audio;
 
 public class ThunderCloudEnemy : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class ThunderCloudEnemy : MonoBehaviour
                 moveTime = 0;
                 isShot = true;
                 animator.SetTrigger("Shot");
+                Locator<IPlayAudio>.Resolve().PlaySE("Thunder");
             }
         }
         else

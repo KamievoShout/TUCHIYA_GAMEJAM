@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868e8817e21fcf4d9ec17f46c9138e6, type: 3}
   m_Name: SE_Datas
   m_EditorClassIdentifier: 
-  datas: []
+  datas:
+  - name: PlayerJump
+    clip: {fileID: 8300000, guid: d12e7f0c63672944988efed244727901, type: 3}
+  - name: PlayerDead
+    clip: {fileID: 0}
+  - name: ShotArrow
+    clip: {fileID: 8300000, guid: 1f7248600da93cd40add24267472a956, type: 3}
+  - name: Thunder
+    clip: {fileID: 8300000, guid: bf0e6b95b1096de42a94d6608d9757c3, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 969cdeb468762eb4995ba2e89a14dd5f, type: 3}
+  - name: DeadEnemy
+    clip: {fileID: 8300000, guid: 6b9b9114034202140ac1f408529459cf, type: 3}
+  - name: StartGame
+    clip: {fileID: 8300000, guid: 8750ce5b408be4940b160ba4c3de5752, type: 3}
+  - name: PlayerStun
+    clip: {fileID: 8300000, guid: 98c5bb2cb3586174b8600c5be3db8efe, type: 3}
+  - name: Button
+    clip: {fileID: 8300000, guid: 8796639f8db251746b69568c0789d156, type: 3}

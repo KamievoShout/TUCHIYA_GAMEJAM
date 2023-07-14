@@ -1,4 +1,6 @@
 using UnityEngine;
+using Utility;
+using Utility.Audio;
 
 public class HitDragonToKillEnemy : MonoBehaviour
 {
@@ -21,7 +23,11 @@ public class HitDragonToKillEnemy : MonoBehaviour
         {
             BlowAwayEnemy blow = Instantiate(prefab, transform.position, Quaternion.identity);
             blow.Blow(target.sprite);
-            if(isDestroy) Destroy(gameObject);
+            if (isDestroy)
+            {
+                Locator<IPlayAudio>.Resolve().PlaySE("DeadEnemy");
+                Destroy(gameObject);
+            }
         }
     }
 }

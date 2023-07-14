@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
+using Utility.Audio;
 
 public class AngelEnemy : MonoBehaviour
 {
@@ -44,6 +46,7 @@ public class AngelEnemy : MonoBehaviour
 
     public void Shot()
     {
+        Locator<IPlayAudio>.Resolve().PlaySE("ShotArrow");
         Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
         Vector2 dir = ((Vector2)player.position - (Vector2)transform.transform.position).normalized;
         arrow.SetDir(dir);

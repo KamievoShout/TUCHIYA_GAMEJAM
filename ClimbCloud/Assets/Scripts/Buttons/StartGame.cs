@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utility;
+using Utility.Audio;
 using Utility.PostEffect;
 
 namespace Buttons
@@ -13,6 +15,8 @@ namespace Buttons
         [SerializeField] private Color color = Color.black;
         [SerializeField] private PostEffectType fadeID;
 
+        private bool isClick = false;
+
         private void Start()
         {
             Button button = GetComponent<Button>();
@@ -21,6 +25,9 @@ namespace Buttons
 
         public IEnumerator OnClickStartGame()
         {
+            if (isClick) yield break;
+            isClick = true;
+            Locator<IPlayAudio>.Resolve().PlaySE("StartGame");
             new PostEffector().Fade(fadeID, fadeTime, color, PostEffector.FadeType.Out);
             yield return new WaitForSeconds(0.5f);
             SceneManager.LoadSceneAsync("Game");
