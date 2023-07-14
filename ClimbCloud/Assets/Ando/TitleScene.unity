@@ -708,7 +708,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffectClips:
-  - {fileID: 8300000, guid: d212e7552cc338249b0ada4206c8b53d, type: 3}
+  - {fileID: 8300000, guid: d442f2a5fac2a2840a1a060ac6c03a44, type: 3}
+  - {fileID: 8300000, guid: 0e7e24795b8c48e49b4040cc1cd2df8e, type: 3}
+  - {fileID: 8300000, guid: 9295228dfaab5864e8c3b294b594244d, type: 3}
+  - {fileID: 8300000, guid: 51558e1d6679069428b0ce5ab39313a6, type: 3}
+  - {fileID: 8300000, guid: bd2b11ad98982374ca52a7e381ef6729, type: 3}
+  - {fileID: 8300000, guid: d861f36b2d103144496a1d1bbcf1e6fd, type: 3}
 --- !u!4 &1804706195
 Transform:
   m_ObjectHideFlags: 0
