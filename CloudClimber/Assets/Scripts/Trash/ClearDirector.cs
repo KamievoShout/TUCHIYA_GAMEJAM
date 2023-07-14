@@ -26,7 +26,7 @@ void Update()
             GameClear.SetActive(true);
             GameOver.SetActive(false);
         }
-        if (Data.TimeLeft < 0)
+        else
         {
             GameOver.SetActive(true);
             GameClear.SetActive(false);
@@ -36,9 +36,9 @@ void Update()
         {
             SceneManager.LoadScene("GameScene");
         }
-        //if(Input.GetKey(KeyCode.T))
-        //{
-        //    SceneManager.LoadScene("TitleScene");
-        //}
+        if(Input.GetKey(KeyCode.T))
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
     }
 }

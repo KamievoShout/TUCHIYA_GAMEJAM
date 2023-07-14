@@ -10,6 +10,7 @@ public class TextController : MonoBehaviour
     public Text GameOverText;
     public Text GameClearText;
     public Text TimescoreText;
+    public Text Retry;
 
     void Awake()
     {
@@ -23,5 +24,6 @@ public class TextController : MonoBehaviour
         GameClearText.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 1f).SetEase(Ease.OutBounce);
         TimescoreText.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -60), 0.5f).SetDelay(1f);
         transform.DOScale(1f, 1f).SetEase(Ease.OutBounce);
+        Retry.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -100), 0.5f).SetDelay(1f);
     }
 }
