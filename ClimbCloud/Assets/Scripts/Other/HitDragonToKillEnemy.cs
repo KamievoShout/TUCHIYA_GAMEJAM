@@ -4,7 +4,6 @@ public class HitDragonToKillEnemy : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer target;
     [SerializeField] private BlowAwayEnemy prefab;
-    [SerializeField] private float offset = 400;
     [SerializeField] private bool isDestroy = true;
 
     private Transform spike;
@@ -18,7 +17,7 @@ public class HitDragonToKillEnemy : MonoBehaviour
     {
         if (spike == null) return;
 
-        if(spike.position.y + offset > transform.position.y)
+        if(spike.position.y > transform.position.y)
         {
             BlowAwayEnemy blow = Instantiate(prefab, transform.position, Quaternion.identity);
             blow.Blow(target.sprite);

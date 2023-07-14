@@ -57,7 +57,7 @@ Material:
     - _BigFinenessPower: 10
     - _BigFinenessSize: 0.95
     - _EnableExternalAlpha: 0
-    - _Fade: 0
+    - _Fade: 0.42054516
     - _Fineness: 1000
     - _NoisePower: 0.06
     - _Power: 3

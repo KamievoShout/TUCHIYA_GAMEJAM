@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1038847386980765778}
   - component: {fileID: 9067906245692837682}
   - component: {fileID: 5672434120100163505}
+  - component: {fileID: 6679445394887951277}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -124,6 +125,22 @@ MonoBehaviour:
   moveRangeMin: -128
   moveRangeMax: 128
   firstMoveDir: 1
+--- !u!114 &6679445394887951277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543127087042440651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31dac74db524bb4487a5060c13e0b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 9067906245692837682}
+  prefab: {fileID: 7616972992055118238, guid: 0b0fe0999918abf4b950d922a08cb1d8, type: 3}
+  offset: 0
+  isDestroy: 1
 --- !u!1 &1556451530590841329
 GameObject:
   m_ObjectHideFlags: 0

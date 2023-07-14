@@ -14,9 +14,13 @@ namespace Utility.PostEffect
 
         private void Awake()
         {
-            renderTexture.width = Screen.width;
+			renderTexture.Release();
+
+			renderTexture.width = Screen.width;
             renderTexture.height = Screen.height;
-        }
+
+			renderTexture.Create();
+		}
 
 		Vector2 IPostEffectCamera.GetPosition()
 		{

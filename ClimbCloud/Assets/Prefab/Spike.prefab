@@ -32,7 +32,7 @@ Transform:
   - {fileID: 1417828547131276187}
   - {fileID: 6140716981374486246}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7712977388031659925
 MonoBehaviour:
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9397f928f81b2240921bed8bd8330c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  skipDistance: 350
+  moveSpeed: 40
+  skipDistance: 500
 --- !u!1 &2860696278356381636
 GameObject:
   m_ObjectHideFlags: 0

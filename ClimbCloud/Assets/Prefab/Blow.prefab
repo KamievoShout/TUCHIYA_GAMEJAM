@@ -4877,7 +4877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rend: {fileID: 6278531081634405763}
   rb: {fileID: 6431913617190334645}
-  blowSpeed: 400
+  blowSpeed: 800
   rotate: 100
   lifeTime: 8
   offsetX: 0.2
