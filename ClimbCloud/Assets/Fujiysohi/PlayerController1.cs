@@ -226,15 +226,11 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 10より大きく13より小さい
-        if (windcount >= windinterval && windcount <= windinterval + inwind)
-        {
-            movePos += WindScript.WindVector();
-            movePos.y += GravityScale * Time.deltaTime / 4;
-        }
-        else if (windcount > windinterval + inwind)
-        {
-            windcount = 0;
-        }
+                
+        movePos += WindScript.WindVector();
+        movePos.y += GravityScale * Time.deltaTime / 4;
+        
+
 
         // 自身のポジション
         Vector2 myPos = this.transform.position;
