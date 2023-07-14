@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Goal
   - dead
+  - item
+  - Ground
+  - Rocket
+  - Umbrella
   layers:
   - Default
   - TransparentFX

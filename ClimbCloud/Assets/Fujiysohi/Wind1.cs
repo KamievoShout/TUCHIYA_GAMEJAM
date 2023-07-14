@@ -16,7 +16,7 @@ public class Wind1 : MonoBehaviour
 
     // 風関係のタイマー
     private float windCtr = 0;
-    private float windWait = 5;
+    public float windWait = 5;
 
     // 風向き
     public float windDir = 0;

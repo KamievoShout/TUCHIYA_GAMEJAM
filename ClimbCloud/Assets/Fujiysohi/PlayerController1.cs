@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;      //LoadSceneを使うために必要！！
 
 public class PlayerController1 : MonoBehaviour
 {
+    //ゲームマスタースプリクト
+    public GameMaster gameMaster;
+
     Vector3 movePos = Vector3.zero;
 
     Rigidbody2D rigid2D;
@@ -98,9 +101,12 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (other.tag == "Goal")
         {
+            gameMaster.situation = 1;
+
+            // scene移動ではなく、クリアをUI表示にしました。
             Debug.Log("ゴール");
             Destroy(RespawnController.instance.obj);
-            SceneManager.LoadScene("ClearScene 1");
+            //SceneManager.LoadScene("ClearScene 1");
         }
         else if (other.tag == "dead")
         {
