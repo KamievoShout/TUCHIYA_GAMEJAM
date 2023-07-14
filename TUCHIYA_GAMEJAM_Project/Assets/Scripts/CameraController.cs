@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        this.player = GameObject.Find("cat");
+        this.player = GameObject.FindGameObjectWithTag("Player");
     }
     
     void Update()
