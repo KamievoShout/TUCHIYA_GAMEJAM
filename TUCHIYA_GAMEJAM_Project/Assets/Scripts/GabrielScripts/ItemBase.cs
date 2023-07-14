@@ -10,7 +10,9 @@ public abstract class ItemBase : MonoBehaviour
         DamageUpItem,
         Muteki,
         Heal,
-        Count,
+        Jump,
+        Goal,
+        Count
     }
 
     public abstract Item PowerUp();

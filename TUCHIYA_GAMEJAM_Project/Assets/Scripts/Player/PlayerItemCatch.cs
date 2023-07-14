@@ -19,6 +19,7 @@ namespace Player
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (collision.GetComponent<ItemBase>() == null) return;
             switch (collision.GetComponent<ItemBase>().PowerUp())
             {
                 case ItemBase.Item.SpeedUpItem:
@@ -29,7 +30,7 @@ namespace Player
                     break;
                 case ItemBase.Item.Heal:
                     break;
-                case ItemBase.Item.Count:
+                case ItemBase.Item.Jump:
                     rigidbody2D.velocity = Vector2.zero;
                     rigidbody2D.AddForce(transform.up * springJumpPower);
                     break;

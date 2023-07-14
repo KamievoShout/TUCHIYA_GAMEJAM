@@ -8,7 +8,7 @@ public class GoalEffect : MonoBehaviour
     private ParticleSystem[] effects;
 
     [SerializeField]
-    private CameraController cameraController;
+    private CameraController[] cameraControllers;
 
     private void Awake()
     {
@@ -19,7 +19,8 @@ public class GoalEffect : MonoBehaviour
     }
     public void Goal()
     {
-        cameraController.GoalCamera(transform.position);
+        cameraControllers[0].GoalCamera(transform.position);
+        cameraControllers[1].GoalCamera(transform.position);
         for (int i = 0; i < effects.Length; i++)
         {
             effects[i].Play();

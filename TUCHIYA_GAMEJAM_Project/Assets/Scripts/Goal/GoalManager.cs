@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountItem : ItemBase
+public class GoalManager : ItemBase
 {
     public override Item PowerUp()
     {
-        return Item.Jump;
+        return Item.Goal;
     }
 }
