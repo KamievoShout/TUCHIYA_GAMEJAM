@@ -1130,7 +1130,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 401
+  m_SortingOrder: 95
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8962264, g: 0.7399367, b: 0.59748423, a: 1}
   m_FlipX: 0
@@ -3019,11 +3019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffc0210244e0fc4f96fb62ddd791951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMaster: {fileID: 1239438904}
   GameSceneName: GameScene 1
   UnderRayAsist: 0.35
   WalkForce: 5
-  JumpForce: 9
+  JumpForce: 6
   JumpSpeed: 2
   GravityScale: 3
   airGravityaccelerator: 0.98
@@ -3037,6 +3036,7 @@ MonoBehaviour:
   WindScript: {fileID: 296179581}
   windinterval: 60
   inwind: 3
+  GravityLimit: 0.075
 --- !u!61 &2117729710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3066,7 +3066,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   itemStockController: {fileID: 2117729715}
   jumpForce: 106.6
   jumpTime: 5
-  maxJumpHeight: 8
+  maxJumpHeight: 15
 --- !u!114 &2117729715
 MonoBehaviour:
   m_ObjectHideFlags: 0
