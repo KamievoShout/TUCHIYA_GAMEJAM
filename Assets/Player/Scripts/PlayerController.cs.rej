@@ -1,0 +1,9 @@
+diff a/Assets/Player/Scripts/PlayerController.cs b/Assets/Player/Scripts/PlayerController.cs	(rejected hunks)
+@@ -70,6 +70,7 @@
+             vel.y = 0;
+             rigid2D.velocity = vel;
+ 
++<<<<<<< HEAD
+ =======
+             // �T�E���h�Đ�
+             SeManager.Instance.Play("SingleJump");
