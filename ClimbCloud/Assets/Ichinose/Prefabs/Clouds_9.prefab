@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1379942593476623018}
   - component: {fileID: 2179506255387545171}
   m_Layer: 0
-  m_Name: DangerCloud_1
+  m_Name: DangerCloud_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578242857870754006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 90, y: 320, z: 0}
+  m_LocalPosition: {x: 90, y: 340, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -951,7 +951,7 @@ Transform:
   - {fileID: 7918831327432426983}
   - {fileID: 1481934038297860396}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5600746745962434852
 GameObject:
@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 7842334362799845711}
   - component: {fileID: 336660496943678539}
   m_Layer: 0
-  m_Name: DangerCloud
+  m_Name: DangerCloud_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -979,7 +979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5600746745962434852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90, y: 320, z: 0}
+  m_LocalPosition: {x: -90, y: 340, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
