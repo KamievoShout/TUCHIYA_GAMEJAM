@@ -5,7 +5,7 @@ using UnityEngine;
 public class RespawnController : MonoBehaviour
 {
     public Vector3 RespawnPos = Vector3.zero;
-    public Object obj;
+    public GameObject[] Respawnobj;
 
     public static RespawnController instance;
     private void Awake()
@@ -23,6 +23,6 @@ public class RespawnController : MonoBehaviour
 
     private void Start()
     {
-        obj = this.gameObject;
+        GameObject.FindGameObjectsWithTag("Respawn");
     }
 }

@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;      //LoadSceneを使うために必要！！
 
 public class PlayerController1 : MonoBehaviour
 {
-    //ゲームマスタースプリクト
-    public GameMaster gameMaster;
-
     Vector3 movePos = Vector3.zero;
 
     Rigidbody2D rigid2D;
@@ -101,12 +98,18 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (other.tag == "Goal")
         {
-            gameMaster.situation = 1;
-
-            // scene移動ではなく、クリアをUI表示にしました。
             Debug.Log("ゴール");
-            Destroy(RespawnController.instance.obj);
-            //SceneManager.LoadScene("ClearScene 1");
+
+            RespawnController.instance.RespawnPos = Vector3.zero;
+
+            int RespawnNum = RespawnController.instance.Respawnobj.Length;
+
+            for (int i = 0; i < RespawnNum; i++)
+            {
+                Destroy(RespawnController.instance.Respawnobj[i]);
+            }
+
+            SceneManager.LoadScene("ClearScene 1");
         }
         else if (other.tag == "dead")
         {
@@ -150,7 +153,7 @@ public class PlayerController1 : MonoBehaviour
             // 壁キックをしているときはxの変位も加える
             if (WallKick)
             {
-                key /= 2;
+                key /= 1.5f;
                 if (isRightWall)
                 {
                     key += -jumpvec[0, i] * 1.5f;
@@ -178,6 +181,7 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (isWall)
         {
+            accelerator = airGravityaccelerator;
             movePos.y -= isWallGravityScale * Time.deltaTime;
         }
         else
@@ -206,10 +210,19 @@ public class PlayerController1 : MonoBehaviour
             }
         }
 
+        // 10より大きく13より小さい
+        if (windcount >= windinterval && windcount <= windinterval + inwind)
+        {
+            movePos += WindScript.WindVector();
+            movePos.y += GravityScale * Time.deltaTime / 4;
+        }
+        else if (windcount > windinterval + inwind)
+        {
+            windcount = 0;
+        }
+
         // 自身のポジション
         Vector2 myPos = this.transform.position;
-
-
 
         isWall = false;
 
@@ -251,17 +264,6 @@ public class PlayerController1 : MonoBehaviour
         {
             // 空中
             isGround = false;
-        }
-
-        // 10より大きく13より小さい
-        if (windcount >= windinterval && windcount <= windinterval + inwind)
-        {
-            movePos += WindScript.WindVector();
-            movePos.y += GravityScale * Time.deltaTime / 4;
-        }
-        else if (windcount > windinterval + inwind)
-        {
-            windcount = 0;
         }
 
         // 移動
