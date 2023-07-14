@@ -1272,8 +1272,14 @@ MonoBehaviour:
   lMask:
     serializedVersion: 2
     m_Bits: 8
-  doubleJumpForce: {x: 150, y: 150}
+  doubleJumpForce: {x: 300, y: 150}
   isGoal: 0
+  isBounce: 0
+  playSingleJumpSe: SingleJump
+  playDoubleJumpSe: DoubleJump
+  playBounceCloudSe: BounceCloud
+  playSlipCloudSe: SlipCloud
+  playGoalSe: Goal
 --- !u!1001 &1555801734
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
         inputDirKey = 0;
         inputDirKey = Input.GetAxisRaw("Horizontal");
 
-
+        // ジャンプキーの入力取得
+        inputJumpKey = Input.GetButtonDown("Jump");
     }
 
     private void FixedUpdate()
@@ -178,6 +179,7 @@ public class PlayerController : MonoBehaviour
             isGround = true;
             if (isPlaySE) CloudSE(rayResult.collider.tag);
         }
+        Debug.Log(isGround);
 
         return isGround;
     }
