@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ClearDirector : MonoBehaviour
 {
-    [SerializeField]
-
-
+    private void Start()
+    {
+        BgmManager.Instance.Play("ClearBGM");
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

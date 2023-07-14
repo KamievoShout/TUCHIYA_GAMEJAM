@@ -690,6 +690,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1290438336}
     m_Modifications:
     - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
+      propertyPath: moveSpd
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: moveAmount
       value: 5
       objectReference: {fileID: 0}
@@ -869,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: moveDir
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
+      propertyPath: moveSpd
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: moveAmount
@@ -2905,7 +2913,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: moveSpd
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: moveAmount
@@ -3176,6 +3184,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1290438336}
     m_Modifications:
+    - target: {fileID: 127314969009862650, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
+      propertyPath: moveSpd
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 3882872929183398992, guid: 04872a1cf86243f4b833d82ccafb6074, type: 3}
       propertyPath: m_Name
       value: MoveCloudPrefab (2)
@@ -3690,7 +3702,7 @@ MonoBehaviour:
   lMask:
     serializedVersion: 2
     m_Bits: 8
-  doubleJumpForce: {x: 300, y: 150}
+  doubleJumpForce: {x: 200, y: 150}
   isGoal: 0
   isBounce: 0
   countDown: {fileID: 1067577229}
