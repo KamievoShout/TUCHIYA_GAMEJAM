@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8771722332167385067}
   - component: {fileID: 8732277446821805167}
   - component: {fileID: 5429348625981119753}
-  - component: {fileID: 6459761817751677503}
+  - component: {fileID: 3760458314304230573}
   m_Layer: 6
   m_Name: cloudPrefab 1
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8771722332167385067
 SpriteRenderer:
@@ -116,7 +116,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -147,7 +147,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6459761817751677503
+--- !u!114 &3760458314304230573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7944699780369059581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c81605f8f719ed046ab4688b9c4f43d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2102395a01112534cb1f3f8ba53450e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTime: 1.5

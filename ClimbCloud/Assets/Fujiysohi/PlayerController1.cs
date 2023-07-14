@@ -181,6 +181,7 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (isWall)
         {
+            accelerator = airGravityaccelerator;
             movePos.y -= isWallGravityScale * Time.deltaTime;
         }
         else
@@ -209,10 +210,19 @@ public class PlayerController1 : MonoBehaviour
             }
         }
 
+        // 10より大きく13より小さい
+        if (windcount >= windinterval && windcount <= windinterval + inwind)
+        {
+            movePos += WindScript.WindVector();
+            movePos.y += GravityScale * Time.deltaTime / 4;
+        }
+        else if (windcount > windinterval + inwind)
+        {
+            windcount = 0;
+        }
+
         // 自身のポジション
         Vector2 myPos = this.transform.position;
-
-
 
         isWall = false;
 
@@ -254,17 +264,6 @@ public class PlayerController1 : MonoBehaviour
         {
             // 空中
             isGround = false;
-        }
-
-        // 10より大きく13より小さい
-        if (windcount >= windinterval && windcount <= windinterval + inwind)
-        {
-            movePos += WindScript.WindVector();
-            movePos.y += GravityScale * Time.deltaTime / 4;
-        }
-        else if (windcount > windinterval + inwind)
-        {
-            windcount = 0;
         }
 
         // 移動
