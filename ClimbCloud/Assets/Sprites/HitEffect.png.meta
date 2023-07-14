@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c480946f15bd9674a9470fd5efd27def
+guid: 3f9dd6516311b2c48850d1a697dcd5d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CountdownNumber_0
+      name: HitEffect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 224
-        height: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c3aa5cae8c9ae740a04641020ed6059
-      internalID: 655504593
+      spriteID: 5b7c3e3ec7f0da349a2adb2472774bd3
+      internalID: 1720067431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CountdownNumber_1
+      name: HitEffect_1
       rect:
         serializedVersion: 2
-        x: 224
+        x: 32
         y: 0
-        width: 224
-        height: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a382159e435c614ea107a9cd7e879f6
-      internalID: -489303552
+      spriteID: f302d3bdf13738e409b8d64c8c648845
+      internalID: -322973196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CountdownNumber_2
+      name: HitEffect_2
       rect:
         serializedVersion: 2
-        x: 448
+        x: 64
         y: 0
-        width: 224
-        height: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 780d5faf247face4ab7e44ed174375f8
-      internalID: -462536830
+      spriteID: 6d8304ab96019f44ab7d2b877c1a2915
+      internalID: 1983148538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CountdownNumber_3
+      name: HitEffect_3
       rect:
         serializedVersion: 2
-        x: 672
+        x: 96
         y: 0
-        width: 224
-        height: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,29 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ca3ed595c30f6746b0c63e656cd37b2
-      internalID: 458927993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CountdownNumber_4
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 238167b7b07ab9140ae2eb90aa30a98f
-      internalID: 1169738723
+      spriteID: 39b8ffe8fc9a0aa41a3fbb1a793fdff7
+      internalID: 1616050738
       vertices: []
       indices: 
       edges: []
@@ -222,11 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CountdownNumber_0: 655504593
-      CountdownNumber_1: -489303552
-      CountdownNumber_2: -462536830
-      CountdownNumber_3: 458927993
-      CountdownNumber_4: 1169738723
+      HitEffect_0: 1720067431
+      HitEffect_1: -322973196
+      HitEffect_2: 1983148538
+      HitEffect_3: 1616050738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
