@@ -20,6 +20,7 @@ public class SoundEffectManager : MonoBehaviour
             return;
         }
 
+
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
     }
