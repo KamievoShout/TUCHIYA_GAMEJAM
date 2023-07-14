@@ -27,13 +27,13 @@ public class GameStartSystem : MonoBehaviour
         {
             case < 1:
                 tmp.text = "3"; break;
-            case < 2:
+            case <4:
                 tmp.text = "2"; break;
-            case < 3:
+            case < 6:
                 tmp.text = "1"; break;
-            case < 4:
+            case < 8:
                 tmp.text = "Go!!"; break;
-            case < 4.5f:
+            case < 10f:
                 Debug.Log(parent);
                 Time.timeScale = 1;
                 Destroy(parent);break;

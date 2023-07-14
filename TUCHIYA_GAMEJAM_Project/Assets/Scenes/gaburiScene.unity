@@ -1284,6 +1284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79be097773b974a2384463ca37684a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1293566059}
+  lerp: 0
+  offsetY: 0
 --- !u!1 &519489392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6222375880576366328, guid: d645232e003164251a57a1a8b26dc5de, type: 3}
@@ -2697,7 +2700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293566059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.59, y: -0.3, z: 0}
+  m_LocalPosition: {x: -5.89, y: -2.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3393,7 +3396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611457649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -3, z: 0}
+  m_LocalPosition: {x: -7, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
