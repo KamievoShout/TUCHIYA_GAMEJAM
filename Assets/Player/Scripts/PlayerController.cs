@@ -63,18 +63,18 @@ public class PlayerController : MonoBehaviour
             vel.y = 0;
             rigid2D.velocity = vel;
 
+            // サウンド再生
+            SeManager.Instance.Play("Jump");
+
             // 地面にいるときの処理
             // ジャンプキーが押されているか
             if (CheckCloud())
             {
-
                 // ジャンプする
                 rigid2D.AddForce(transform.up * this.jumpForce);
                 nowJumpState = jumpState.singleJump;
                 // Jumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.Jump);
-                // サウンド再生
-                SeManager.Instance.Play("SingleJump");
 
                 // ジャンプした位置取得
                 jumpedPos = transform.position;
@@ -91,8 +91,6 @@ public class PlayerController : MonoBehaviour
 
                 // DoubleJumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.DoubleJump);
-                // サウンド再生
-                SeManager.Instance.Play("DoubleJump");
 
                 inputJumpKey = false;
             }
@@ -154,10 +152,10 @@ public class PlayerController : MonoBehaviour
         // レイの長さ指定
         Vector3 rayStart = GetFootPos();     // レイのスタート
         rayStart.x -= colRadiusX;
-        rayStart.y -= 0.025f;
+        rayStart.y -= 0.05f;
         Vector3 rayEnd = GetFootPos();     // レイの終わり
         rayEnd.x += colRadiusX;
-        rayEnd.y -= 0.025f;
+        rayEnd.y -= 0.05f;
 
         // レイ射出
         RaycastHit2D rayResult;
@@ -190,11 +188,13 @@ public class PlayerController : MonoBehaviour
     // 雲SE
     void CloudSE(string tag)
     {
+        // 跳ねる雲
         if(tag == "Bounce")
         {
             SeManager.Instance.Play("BounceCloud");
         }
 
+        // 滑る雲
         if(tag == "Slip")
         {
             SeManager.Instance.Play("SlipCloud");
