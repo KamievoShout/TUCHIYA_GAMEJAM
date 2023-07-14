@@ -6,15 +6,15 @@ public class MoveCloud : MonoBehaviour
 {
     Rigidbody2D rb2D;
 
-    public bool axisX = true;
-    public bool axisY = false;
+    [SerializeField] bool axisX = true;
+    [SerializeField] bool axisY = false;
 
     bool onPlayer = false;
 
-    public int moveDir = 1;
+    [SerializeField] int moveDir = 1;
 
-    public float moveSpd = 0.1f;
-    public float moveAmount = 3;
+    [SerializeField] float moveSpd = 0.1f;
+    [SerializeField] float moveAmount = 3;
 
     float nowMoveAmount = 0;
 
