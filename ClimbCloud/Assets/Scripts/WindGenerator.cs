@@ -61,8 +61,8 @@ public class WindGenerator : MonoBehaviour
             }
             cloud.WindGene = false;
         }
-        Vector3 ThunderPos = ThunderSlider.transform.position;
-        ThunderPos.x = gameObject.transform.position.x;
-        ThunderSlider.transform.position = ThunderPos;
+        //Vector3 ThunderPos = ThunderSlider.transform.position;
+        //ThunderPos.x = gameObject.transform.position.x;
+        //ThunderSlider.transform.position = ThunderPos;
     }
 }
