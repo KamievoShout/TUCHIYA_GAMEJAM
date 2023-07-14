@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         new Vector2(10f, 4f);
     public bool isGoal = false;         // ゴールしたか
     bool isPlaySE;                      // 雲のSEを再生できるか
+    public bool isBounce;               // 跳ねる雲に乗ったか
 
     void Start()
     {
@@ -45,8 +46,6 @@ public class PlayerController : MonoBehaviour
         inputDirKey = 0;
         inputDirKey = Input.GetAxisRaw("Horizontal");
 
-        // ジャンプキーの入力取得
-        inputJumpKey = Input.GetButtonDown("Jump");
 
     }
 
@@ -63,8 +62,6 @@ public class PlayerController : MonoBehaviour
             vel.y = 0;
             rigid2D.velocity = vel;
 
-            // サウンド再生
-            SeManager.Instance.Play("Jump");
 
             // 地面にいるときの処理
             // ジャンプキーが押されているか
@@ -79,6 +76,9 @@ public class PlayerController : MonoBehaviour
                 // ジャンプした位置取得
                 jumpedPos = transform.position;
 
+                // サウンド再生
+                SeManager.Instance.Play("SingleJump");
+
                 inputJumpKey = false;
             }
             else if (nowJumpState != jumpState.doubleJump)
@@ -91,6 +91,9 @@ public class PlayerController : MonoBehaviour
 
                 // DoubleJumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.DoubleJump);
+
+                // サウンド再生
+                SeManager.Instance.Play("DoubleJump");
 
                 inputJumpKey = false;
             }
@@ -136,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         isGoal = true;
         SceneManager.LoadScene("ClearScene");
-        SeManager.Instance.Play("Goal");
+        //SeManager.Instance.Play("Goal");
     }
 
     /// <summary>
@@ -191,6 +194,7 @@ public class PlayerController : MonoBehaviour
         // 跳ねる雲
         if(tag == "Bounce")
         {
+            isBounce = true;
             SeManager.Instance.Play("BounceCloud");
         }
 
