@@ -4,18 +4,25 @@ namespace HeightCounters
 {
     public class HeightCounterModel : MonoBehaviour
     {
-        public float Tidemark { get { return _tidemark; } }
+        public int Tidemark { get { return _tidemark; } }
 
         // 最高到達点
-        private float _tidemark = 0;
+        private int _tidemark = 0;
 
-        public void SetCounter(float y)
+        public int CurrentHeight { get { return _currentHeight; } }
+
+        // 現在の高さ
+        private int _currentHeight = 0;
+
+        public void SetCounter(int playerPositionY)
         {
             // 最高到達点よりさらに高かったら更新
-            if (_tidemark < y)
+            if (_tidemark < playerPositionY)
             {
-                _tidemark = y;
+                _tidemark = playerPositionY;
             }
+
+            _currentHeight = playerPositionY;
         }
     }
 }

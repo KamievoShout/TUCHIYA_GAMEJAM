@@ -20,16 +20,16 @@ namespace HeightCounters
                 .DistinctUntilChanged()
                 .Subscribe(posY =>
                 {
-                    _model.SetCounter(posY);
+                    _model.SetCounter((int)posY);
                 })
                 .AddTo(this);
 
-            // 最高到達点が変わったらviewに通知
-            _model.ObserveEveryValueChanged(_ => _model.Tidemark)
+            // 現在の高さが変わったらviewに通知
+            _model.ObserveEveryValueChanged(_ => _model.CurrentHeight)
                 .DistinctUntilChanged()
-                .Subscribe(tidemark =>
+                .Subscribe(currentHeight =>
                 {
-                    _view.SetCounterView(tidemark);
+                    _view.SetCounterView(currentHeight);
                 })
                 .AddTo(this);
         }

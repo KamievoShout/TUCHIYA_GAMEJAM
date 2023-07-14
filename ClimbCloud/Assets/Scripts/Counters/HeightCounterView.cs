@@ -3,14 +3,20 @@ using UnityEngine.UI;
 
 namespace HeightCounters
 {
+    [RequireComponent(typeof(Text))]
     public class HeightCounterView : MonoBehaviour
     {
-        [SerializeField]
-        private Text _tidemarkText;
+        // 現在の高さを表示するテキスト
+        private Text _currentHeightText;
 
-        public void SetCounterView(float tidemark)
+        private void Start()
         {
-            _tidemarkText.text = tidemark.ToString();
+            _currentHeightText = GetComponent<Text>();
+        }
+
+        public void SetCounterView(int currentHeight)
+        {
+            _currentHeightText.text = $"現在の高さ\n{currentHeight.ToString()}m";
         }
     }
 }
