@@ -110,7 +110,7 @@ public class CloudStatus : MonoBehaviour
     // “–‚½‚Á‚Ä‚¢‚éŠÔ
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Normal") || collision.CompareTag("Damage"))
+        if (collision.CompareTag("Normal") || collision.CompareTag("Damage") || collision.CompareTag("CreateCloud"))
         {
             speed = 0;
         }
