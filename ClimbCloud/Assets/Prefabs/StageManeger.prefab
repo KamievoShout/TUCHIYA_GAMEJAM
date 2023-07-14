@@ -341,13 +341,13 @@ MonoBehaviour:
   leftPlayerGoalDist: 0
   rightPlayerGoalDist: 0
   leftPlayerGoalDistImages:
-  - {fileID: 528607589992339985}
-  - {fileID: 9126694254062254311}
   - {fileID: 6538709189228031704}
+  - {fileID: 9126694254062254311}
+  - {fileID: 528607589992339985}
   rightPlayerGoalDistImages:
-  - {fileID: 7936795010330182586}
-  - {fileID: 5630047679653890219}
   - {fileID: 156066399139200204}
+  - {fileID: 5630047679653890219}
+  - {fileID: 7936795010330182586}
 --- !u!114 &5149494249441297677
 MonoBehaviour:
   m_ObjectHideFlags: 0
