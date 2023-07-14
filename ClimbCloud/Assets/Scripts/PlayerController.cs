@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerInput();
-        PlayerWarp();
         GameOverCheck();
     }
 
@@ -80,6 +79,8 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetInteger("CatAction", 0);
             }
+            float plx = Mathf.Clamp(this.gameObject.transform.position.x, -3.2f, 3.2f);
+            this.gameObject.transform.position = new Vector3(plx,this.gameObject.transform.position.y,0);
             //移動
 
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && rb.velocity.y == 0)
@@ -117,19 +118,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("CatAttack", false);
     }
     //攻撃コルーチン
-
-    private void PlayerWarp()
-    {
-        if (transform.position.x > 3.5)
-        {
-            transform.position -= new Vector3(7, 0,0);
-        }
-        if (transform.position.x < -3.5) 
-        {
-            transform.position += new Vector3(7, 0, 0);
-        }
-    }
-    //playerの画面端ワープ
 
     private void GameOverCheck()
     {
