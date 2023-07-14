@@ -15,6 +15,9 @@ public class CloudStatus : MonoBehaviour
     [SerializeField] float upSpeed = 1;
     // 現在の雲のスピード
     float speed = 0;
+    [Tooltip("消滅時間")]
+    [SerializeField] float destroyTime = 5.0f;
+    [SerializeField] float countTime = 0;
     [Tooltip("種雲かどうか")]
     public bool seedFlg = false;
 
@@ -23,7 +26,7 @@ public class CloudStatus : MonoBehaviour
         if (seedFlg)
         {
             // 種状態から開始した場合、雲生成機を親に設定する
-            //transform.parent = FindObjectOfType<MachineMove>().transform;
+            transform.parent = FindObjectOfType<MachineMove>().transform;
         }
     }
 
@@ -37,10 +40,16 @@ public class CloudStatus : MonoBehaviour
         else
         {
             size = Mathf.Clamp(size, 0, 3);
+
+            countTime += Time.deltaTime;
+            if (countTime > destroyTime)
+            {
+                Destroy(gameObject);
+            }
         }
 
         // 自身を上昇させる
-        transform.position += new Vector3(0, speed, 0);
+        transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
     }
 
     // 雲の表示処理
@@ -110,7 +119,10 @@ public class CloudStatus : MonoBehaviour
             // タグが「Window」だった場合
             if (collision.CompareTag("Window"))
             {
+                Debug.Log("風！");
                 speed = upSpeed;
+                // 親子関係解除
+                transform.parent = null;
             }
         }
     }
@@ -123,6 +135,7 @@ public class CloudStatus : MonoBehaviour
         {
             // 種から雲に成長
             size = growSize;
+            seedFlg = false;
             // 親子関係解除
             transform.parent = null;
             speed = 0;
