@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isGoal = false;         // ƒS[ƒ‹‚µ‚½‚©
     [HideInInspector] public bool isBounce;               // ’µ‚Ë‚é‰_‚Éæ‚Á‚½‚©
     bool isPlaySE;                      // ‰_‚ÌSE‚ðÄ¶‚Å‚«‚é‚©
+    [SerializeField] CountDown countDown;
 
     [Space]
     [SerializeField] string playSingleJumpSe = "SingleJump";
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (countDown.IsCounting) return;
+
         // •ûŒüƒL[‚Ì“ü—ÍŽæ“¾
         inputDirKey = 0;
         inputDirKey = Input.GetAxisRaw("Horizontal");
@@ -128,6 +131,7 @@ public class PlayerController : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);       // ŽÀ”‰»
             scale.x *= inputDirKey;
+            scale.x = (scale.x > 0) ? 1 : -1;
             transform.localScale = scale;
             if (CheckCloud())
             {
@@ -179,7 +183,6 @@ public class PlayerController : MonoBehaviour
             isGround = true;
             if (isPlaySE) CloudSE(rayResult.collider.tag);
         }
-        Debug.Log(isGround);
 
         return isGround;
     }
