@@ -13,6 +13,8 @@ public class GameStart : MonoBehaviour
     [SerializeField] private GameObject Count2;
     [Tooltip("カウントオブジェクト3")]
     [SerializeField] private GameObject Count3;
+    [Tooltip("スタートオブジェクト")]
+    [SerializeField] private GameObject StartObj;
 
     [Tooltip("スタートのUI")]
     [SerializeField] private Text StartUI;
@@ -95,6 +97,7 @@ public class GameStart : MonoBehaviour
             else if (time >= CountTime && Count1.activeSelf)
             {
                 Count1.SetActive(false);
+                StartObj.SetActive(true);
                 CountDown = false;
                 ScriptOn();
                 Debug.Log("0");
