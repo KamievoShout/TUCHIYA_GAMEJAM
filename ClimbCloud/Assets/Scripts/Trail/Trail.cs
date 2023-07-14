@@ -24,10 +24,10 @@ public class Trail : MonoBehaviour
     {
         Trailing();
 
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            StartTrailing(new Vector2(-2,-2),new Vector2(2,1));
-        }
+        //if(Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    StartTrailing(new Vector2(-2,-2),new Vector2(2,1));
+        //}
     }
 
 
