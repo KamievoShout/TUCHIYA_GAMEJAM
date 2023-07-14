@@ -5,7 +5,6 @@ public class CountDown : MonoBehaviour
 {
     [SerializeField]
     TimeCounter timeCounter;
-
     int currentCount;
     public int Count => currentCount;
 
@@ -21,6 +20,7 @@ public class CountDown : MonoBehaviour
 
     IEnumerator CountDownCol(int count)
     {
+        SeManager.Instance.Play("CountDown");
         for (int i = count; i > 0; i--)
         {
             currentCount = i;
