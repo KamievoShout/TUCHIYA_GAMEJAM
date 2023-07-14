@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 877c24b6556683743b64dbb6d5c12638
+guid: 4c3502203203cf247a80a4a3362a70b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,13 +107,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Machine_0
+      name: CloudSeed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8923e8febc8674e95309bc2cf0b6b9
+      internalID: -635102519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloudSeed_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 48
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b930536fedb6d1245bb44e01ec0c728a
-      internalID: 1159934102
+      spriteID: 6fdac2e5c9843fd4aaa7f87c040b7994
+      internalID: 983951568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Machine_1
+      name: CloudSeed_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 48
+        x: 25
+        y: 7
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,50 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1fac115a16d39648a7e06fcdf104fc9
-      internalID: -2136745591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Machine_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e504fd6b8046824390197473edfbd68
-      internalID: -1467366044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Machine_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e13f01d0d7f1e14e9920e3c3adeab36
-      internalID: 1728716400
+      spriteID: 614aba4277da1d04e8f695bb550b9f3b
+      internalID: 1595233098
       vertices: []
       indices: 
       edges: []
@@ -201,10 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Machine_0: 1159934102
-      Machine_1: -2136745591
-      Machine_2: -1467366044
-      Machine_3: 1728716400
+      CloudSeed_0: -635102519
+      CloudSeed_1: 983951568
+      CloudSeed_2: 1595233098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
