@@ -128,6 +128,10 @@ public class CloudStatus : MonoBehaviour
                 }
             }
         }
+        else if (collision.gameObject.name == "Attack")
+        {
+            minusSize(1);
+        }
     }
 
     // “–‚½‚Á‚Ä‚¢‚éŠÔ
