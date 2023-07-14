@@ -30,8 +30,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _BranchHeight: 7.9
-    - _Power: 10
+    - _Day: 0
+    - _Power: 5
     m_Colors:
+    - _SkyDayColor: {r: 0, g: 0.37227866, b: 0.5377358, a: 1}
     - _SkyDownColor: {r: 0.1928325, g: 0.7324387, b: 0.9433962, a: 1}
-    - _SkyUpColor: {r: 0, g: 0.00018684368, b: 0.3679245, a: 1}
+    - _SkyNightColor: {r: 0, g: 0.03631986, b: 0.4811321, a: 1}
+    - _SkyUpColor: {r: 0, g: 0.15052064, b: 0.5754717, a: 1}
   m_BuildTextureStacks: []

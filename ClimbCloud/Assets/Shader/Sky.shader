@@ -2,8 +2,10 @@ Shader "Unlit/Sky"
 {
     Properties
     {
-        _SkyUpColor ("SkyUpColor", Color) = (1, 1, 1, 1)
+        _SkyDayColor ("SkyDayColor", Color) = (1, 1, 1, 1)
+        _SkyNightColor ("SkyNightColor", Color) = (1, 1, 1, 1)
         _SkyDownColor ("SkyDownColor", Color) = (1, 1, 1, 1)
+        _Day ("Day", Range(0, 1)) = 0.5
         _Power ("Power", float) = 10.0
 
     }
@@ -32,8 +34,10 @@ Shader "Unlit/Sky"
                 float4 vertex : SV_POSITION;
             };
 
+            float3 _SkyDayColor;
+            float3 _SkyNightColor;
             float3 _SkyDownColor;
-            float3 _SkyUpColor;
+            float _Day;
             float _Power;
 
             v2f vert (appdata v)
@@ -47,7 +51,8 @@ Shader "Unlit/Sky"
             float4 frag (v2f i) : SV_Target
             {
                 float3 col = (float3)0.;
-                col = lerp(_SkyDownColor, _SkyUpColor, 1. / (1. + exp(-i.uv.y * _Power)));
+                float3 skyUpColor = lerp(_SkyNightColor, _SkyDayColor, _Day);
+                col = lerp(_SkyDownColor, skyUpColor, 1. / (1. + exp(-i.uv.y * _Power)));
                 return float4((float3)col, 1.);
             }
             ENDCG
