@@ -9,7 +9,7 @@ public class GoalEffect : MonoBehaviour
 
     [SerializeField]
     private CameraController[] cameraControllers;
-
+    
     private void Awake()
     {
         for (int i = 0; i < effects.Length; i++)

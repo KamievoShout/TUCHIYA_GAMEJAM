@@ -9,7 +9,7 @@ namespace Player
     class PlayerItemCatch : MonoBehaviour
     {
         [SerializeField] float springJumpPower;
-        
+        [SerializeField] GoalEffect goalEffect;
         PlayerCore playerCore;
         Rigidbody2D rigidbody2D;
         private void Start()
@@ -33,6 +33,9 @@ namespace Player
                 case ItemBase.Item.Jump:
                     rigidbody2D.velocity = Vector2.zero;
                     rigidbody2D.AddForce(transform.up * springJumpPower);
+                    break;
+                case ItemBase.Item.Goal:
+                    goalEffect.Goal();
                     break;
                 default:
                     break;
