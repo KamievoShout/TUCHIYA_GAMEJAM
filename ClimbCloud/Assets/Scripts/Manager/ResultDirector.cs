@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class ResultDirector : MonoBehaviour
 {
-
-
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
         {
             FadeManager.Instance.LoadScene("TitleScene", 1.0f);
         }
