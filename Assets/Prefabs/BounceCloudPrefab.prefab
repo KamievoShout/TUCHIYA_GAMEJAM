@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7795784213845220337}
   - component: {fileID: 1204194133211350524}
   - component: {fileID: 3803903651056084024}
+  - component: {fileID: 7907815649956079511}
   m_Layer: 0
   m_Name: BounceCloudPrefab
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7795784213845220337
 SpriteRenderer:
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5047501751933437840}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8e168aa5a3b2c76479733e580d1dd9b2, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -158,3 +159,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7907815649956079511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047501751933437840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0d26b936c691e4091ba0696d582332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bouncePow: 15

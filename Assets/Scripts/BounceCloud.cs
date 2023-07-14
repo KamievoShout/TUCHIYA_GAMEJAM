@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class BounceCloud : MonoBehaviour
 {
-    Rigidbody2D rb2D;
+    [SerializeField] float bouncePow = 20;
 
-    public float bouncePow = 10;
-
-    void Start()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log(collision.gameObject);
+
+
+            Vector3 vel = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            vel.y = bouncePow;
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         }
     }
 
