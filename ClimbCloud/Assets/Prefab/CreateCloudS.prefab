@@ -646,8 +646,8 @@ MonoBehaviour:
   growSize: 1
   upSpeed: 5
   destroyTime: 5
-  countTime: 0
   seedFlg: 1
+  create: 1
 --- !u!50 &1495810851551069999
 Rigidbody2D:
   serializedVersion: 4

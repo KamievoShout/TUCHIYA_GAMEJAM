@@ -20,6 +20,8 @@ public class CloudStatus : MonoBehaviour
     float countTime = 0;
     [Tooltip("Ží‰_‚©‚Ç‚¤‚©")]
     public bool seedFlg = false;
+    [Tooltip("ì‚ç‚ê‚½‰_‚©‚Ç‚¤‚©")]
+    [SerializeField] bool create = false;
 
     private void Start()
     {
@@ -39,12 +41,15 @@ public class CloudStatus : MonoBehaviour
         }
         else
         {
-            size = Mathf.Clamp(size, 0, 3);
-
-            countTime += Time.deltaTime;
-            if (countTime > destroyTime)
+            if (create)
             {
-                Destroy(gameObject);
+                size = Mathf.Clamp(size, 0, 3);
+
+                countTime += Time.deltaTime;
+                if (countTime > destroyTime)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
