@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [Tooltip("Playerのスピード")]
-    [SerializeField] private float Speed;
+    [SerializeField] private float Speed=4;
 
     private Vector2 MOVE_VECTOR=new Vector2(100,0);
     //Speedの操作値を少なくするための変数
 
     [Tooltip("Playerのジャンプ力")]
-    [SerializeField] private float JumpFouce;
+    [SerializeField] private float JumpFouce=5;
 
     private const float JUMPING_NUM_PERCENT = 70f;
     //JumpFouceの操作値を少なくするための乗算変数
@@ -26,13 +26,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
-    bool NotMoveSwitch = false;//操作選別,true=動けない
+    private bool NotMoveflg = false;//ノックバック判定,true=動けない
     [Tooltip("ノックバック時の停止時間")]
     [SerializeField]private float WAIT_TIME = 0.75f;
 
+
+    [SerializeField] private GameObject DeadPlayer;
+
     Animator animator;
+    BoxCollider2D bc;
     AnimationClip cong;//goalアニメクリップ
-    AnimationClip dead;//deadアニメクリップ
     SpriteRenderer rend;
     string SceneName;
     void Start()
@@ -43,6 +46,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetInteger("CatAction", 0);
         animator.SetBool("CatAttack", false);
+        bc = GetComponent<BoxCollider2D>();
+        bc.enabled = true;
+        NotMoveflg = false;
         SceneName = SceneManager.GetActiveScene().name;
     }
     //コンポーネント挿入
@@ -56,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        if(!NotMoveSwitch)
+        if(!NotMoveflg)
         {
             float x = Input.GetAxisRaw("Horizontal");
             Vector2 MoveX = new Vector2(x, 0) * Speed * Time.deltaTime;
@@ -128,18 +134,17 @@ public class PlayerController : MonoBehaviour
                 Vector2.Distance(transform.position, Camera.main.transform.position);
             if (dis >=5.5f)
             {
-                Debug.Log("GameOver");
-                SceneManager.LoadScene(SceneName);
+                PlayerDead();
             }
         }
     }
     //ある程度落下したらリターン
 
-    //private void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    Destroy(col.gameObject);
-    //}
-    ////攻撃を当てたら
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("雲");
+    }
+    //攻撃を当てたら
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -151,18 +156,10 @@ public class PlayerController : MonoBehaviour
             knockback.x *= front;
             rb.velocity = Vector2.zero;
             rb.AddForce(knockback);
-            StartCoroutine(MovePause());
+            bc.enabled = false;
         }
     }
-    //ノックバック
-
-    private IEnumerator MovePause()
-    {
-        NotMoveSwitch = true;
-        yield return new WaitForSeconds(WAIT_TIME);
-        NotMoveSwitch = false;
-    }
-    //動作を一定時間制限する
+    //ノックバック（ダメージ雲死亡）
 
     public void GroundCheck()
     {
@@ -173,9 +170,10 @@ public class PlayerController : MonoBehaviour
     }
     //Velocity.y=0ならステイに
 
-    private void PlayerDead()
+    public void PlayerDead()
     {
-        animator.Play(dead.name);
+        Debug.Log("GameOver");
+        Destroy(this.gameObject);
     }
     //死亡アニメ再生（予定）
     private void Conglutination()
