@@ -9,7 +9,7 @@ public class PlayerHeightUI : MonoBehaviour
     public Text heightText;
     public Transform playerTransform;
 
-    float height;
+    public static float height;
 
     private void Update()
     {
