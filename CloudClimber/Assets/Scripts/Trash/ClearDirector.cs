@@ -19,7 +19,7 @@ public class ClearDirector : MonoBehaviour
 
 void Update()
     {
-        text.text = Data.TimeLeft.ToString("Time: "+ Data.TimeLeft);
+        text.text = "Time: " + Data.TimeLeft;
 
         if (Data.IsCleared)
         {
