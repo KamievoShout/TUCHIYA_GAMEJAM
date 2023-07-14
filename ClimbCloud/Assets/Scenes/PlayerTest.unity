@@ -426,17 +426,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8966889811397126815, guid: dc79a666d86cec24881c99920801460d, type: 3}
-      propertyPath: cong
+      propertyPath: attack
       value: 
-      objectReference: {fileID: 7400000, guid: 749a00784813a5d4da5e657119a69ad1, type: 2}
-    - target: {fileID: 8966889811397126815, guid: dc79a666d86cec24881c99920801460d, type: 3}
-      propertyPath: dead
-      value: 
-      objectReference: {fileID: 7400000, guid: 749a00784813a5d4da5e657119a69ad1, type: 2}
-    - target: {fileID: 8966889811397126815, guid: dc79a666d86cec24881c99920801460d, type: 3}
-      propertyPath: DEAD_JUMP_FOUCE
-      value: 5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7400000, guid: 7b6ba65c3a551c245a4537181b1672c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

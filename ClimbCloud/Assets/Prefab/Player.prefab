@@ -66,7 +66,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.65
 --- !u!1 &7038550884683038235
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +244,10 @@ MonoBehaviour:
   JumpFouce: 5
   AttackCollider: {fileID: 4230445111759382816}
   ATTACK_TIME: 1
+  HitEffect: {fileID: 8615843082573088816, guid: 85f25f5f84fdac749b1f2968e5564b7d, type: 3}
   WAIT_TIME: 1
+  DeadPlayer: {fileID: 3207408492115182870, guid: 1ea13bfe6b0f473498abc4d37b9ad5c0, type: 3}
+  attack: {fileID: 7400000, guid: 7b6ba65c3a551c245a4537181b1672c6, type: 2}
 --- !u!95 &5051014890986237824
 Animator:
   serializedVersion: 5

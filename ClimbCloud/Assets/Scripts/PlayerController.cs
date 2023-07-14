@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("攻撃時間")]
     [SerializeField]private float ATTACK_TIME = 1f;
 
+    [Tooltip("攻撃エフェクト")]
+    [SerializeField] private GameObject HitEffect;
+
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
@@ -30,11 +33,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ノックバック時の停止時間")]
     [SerializeField]private float WAIT_TIME = 0.75f;
 
-
+    [Tooltip("死亡時にInstanceするオブジェクト")]
     [SerializeField] private GameObject DeadPlayer;
 
     Animator animator;
     BoxCollider2D bc;
+    [SerializeField] AnimationClip attack;
     AnimationClip cong;//goalアニメクリップ
     SpriteRenderer rend;
     string SceneName;
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        animator.Play(attack.name);
         animator.SetBool("CatAttack", true);
         AttackCollider.enabled = true;
         yield return new WaitForSeconds(ATTACK_TIME);
@@ -142,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("雲");
+        Instantiate(HitEffect,col.gameObject.transform.position,Quaternion.identity);
     }
     //攻撃を当てたら
 
@@ -172,7 +177,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDead()
     {
-        Debug.Log("GameOver");
+        Instantiate(DeadPlayer);
         Destroy(this.gameObject);
     }
     //死亡アニメ再生（予定）
