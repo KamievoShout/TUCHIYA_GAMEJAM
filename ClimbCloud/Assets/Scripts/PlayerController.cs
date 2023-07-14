@@ -13,26 +13,29 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Playerのジャンプ力")]
     [SerializeField] private float JumpFouce;
-    private const float JUMPING_NUM_PLUS = 1500;
-    //JumpFouceの操作値を少なくするための加算変数
-    private const float JUMPING_NUM_PERCENT = 1200;
+
+    private const float JUMPING_NUM_PERCENT = 3000f;
     //JumpFouceの操作値を少なくするための乗算変数
 
-    [Tooltip("攻撃範囲横")]
-    [SerializeField]private CircleCollider2D SideAttackCollider;
-
-    [Tooltip("攻撃範囲上")]
-    [SerializeField]private CircleCollider2D HeadAttackCollider;
+    [Tooltip("攻撃範囲")]
+    [SerializeField]private CircleCollider2D AttackCollider;
 
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
     bool NotMoveSwitch = false;//操作選別,true=動けない
     private float WAIT_TIME = 0.75f;//ノックバック時の停止時間
+
+    Animator animator;
+    AnimationClip cong;//goalアニメクリップ
+    AnimationClip dead;//deadアニメクリップ
+    SpriteRenderer rend;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        ColliderChange(false, false);
+        ColliderChange(false);
+        rend = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     //コンポーネント挿入
  
@@ -50,38 +53,43 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxisRaw("Horizontal");
             Vector2 MoveX = new Vector2(x, 0) * Speed * Time.deltaTime;
             rb.AddForce(MOVE_VECTOR * MoveX);
-            if (x != 0) { transform.localScale = new Vector3(x, 1, 1); }
+            if (x != 0) 
+            { 
+                transform.localScale = new Vector3(x, 1, 1);
+                animator.SetInteger("CatAction", 1);
+            }
+            else
+            {
+                animator.SetInteger("CatAction", 0);
+            }
             //移動
 
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && rb.velocity.y == 0)
             {
-                float j = JUMPING_NUM_PLUS + JumpFouce * JUMPING_NUM_PERCENT;
+                float j = JumpFouce*JUMPING_NUM_PERCENT;
+                Vector2 addJump = new Vector2(0, j) * Time.deltaTime;
+                //本来与えたいFouce値に設定
                 rb.velocity = Vector2.zero;
-                rb.AddForce(new Vector2(0, j) * Time.deltaTime);
+                rb.AddForce(addJump);
+                animator.SetInteger("CatAction", 2);
             }
             //ジャンプ
 
-            if (Input.GetKey(KeyCode.Space))
-            {
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                {
-                    ColliderChange(true, false);
-                }
-                else
-                {
-                    ColliderChange(false, true);
-                }
-            }
-            else { ColliderChange(false, false); }
+            bool col = Input.GetKey(KeyCode.Space) ? true : false;
+            ColliderChange(col);
             //攻撃
+
+            if (rb.velocity.y != 0)
+            {
+                animator.SetInteger("CatAction", 3);
+            }
         }
     }
     //キー入力動作
 
-    private void ColliderChange(bool head,bool side)
+    private void ColliderChange(bool attack)
     {
-        HeadAttackCollider.enabled = head;
-        SideAttackCollider.enabled = side;
+        AttackCollider.enabled =attack;
     }
     //攻撃範囲の変更操作
 
@@ -100,9 +108,14 @@ public class PlayerController : MonoBehaviour
 
     private void GameOverCheck()
     {
-        if(transform.position.y<=-20)
+        if(rend.isVisible)
         {
-            SceneManager.LoadScene("Game");
+            float dis = Vector2.Distance(transform.position, Camera.main.transform.position);
+            if (dis >=5.5f)
+            {
+                Debug.Log("GameOver");
+                SceneManager.LoadScene("Game");
+            }
         }
     }
     //ある程度落下したらリターン
@@ -135,4 +148,17 @@ public class PlayerController : MonoBehaviour
         NotMoveSwitch = false;
     }
     //動作を一定時間制限する
+
+    public void GroundCheck()
+    {
+        if(rb.velocity.y == 0)
+        {
+            animator.SetInteger("CatAction", 0);
+        }
+    }
+
+    private void Conglutination()
+    {
+
+    }
 }
