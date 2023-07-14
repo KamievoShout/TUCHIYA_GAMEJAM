@@ -25,7 +25,7 @@ public class PlayerController1 : MonoBehaviour
     [SerializeField] private float airGravityaccelerator = 0.98f;
     private float accelerator;
     // 壁に触れているときにかかる壁との摩擦を加味した重力(としたもの)
-    [SerializeField] private float isWallGravityScale = 2.5fa;
+    [SerializeField] private float isWallGravityScale = 2.5f;
     // 地面のレイヤーマスク
     [SerializeField] private LayerMask GroundLayerMask;
     // 壁のレイヤーマスク
@@ -117,6 +117,10 @@ public class PlayerController1 : MonoBehaviour
         else if (other.tag == "dead")
         {
             SceneManager.LoadScene(GameSceneName);
+        }
+        else if (other.tag == "DeadLine")
+        {
+            SceneManager.LoadScene("TitleScene");
         }
     }
 
