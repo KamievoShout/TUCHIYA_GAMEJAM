@@ -6,6 +6,7 @@ public class RespawnController : MonoBehaviour
 {
     public Vector3 RespawnPos = Vector3.zero;
     public GameObject[] Respawnobj;
+    public float height;
 
     public static RespawnController instance;
     private void Awake()

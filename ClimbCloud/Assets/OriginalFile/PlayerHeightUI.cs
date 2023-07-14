@@ -9,12 +9,13 @@ public class PlayerHeightUI : MonoBehaviour
     public Text heightText;
     public Transform playerTransform;
 
-    float height;
-
     private void Update()
     {
-        // プレイヤーの高さを取得し、UIのテキストを更新する
-        height = playerTransform.position.y;
-        heightText.text = "高さ: " + height.ToString("F2");
+        if (playerTransform != null)
+        {
+            // プレイヤーの高さを取得し、UIのテキストを更新する
+            RespawnController.instance.height = playerTransform.position.y;
+            heightText.text = "高さ: " + RespawnController.instance.height.ToString("F2");
+        }
     }
 }

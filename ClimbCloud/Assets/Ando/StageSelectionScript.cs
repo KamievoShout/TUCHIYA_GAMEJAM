@@ -11,9 +11,13 @@ public class StageSelectionScript : MonoBehaviour
 
     public Text textFrame;
     int maxSelect;
+
+    [SerializeField] private Text scoretext;
+
     void Start()
     {
         maxSelect = stageScene.Length;
+        scoretext.text = RespawnController.instance.height.ToString("F2") + "m";
     }
 
     // Update is called once per frame
