@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         if(TagCheck(col))
         {
-            NotMoveflg = false;
+            NotMoveflg = true;
             float f = transform.position.x - col.gameObject.transform.position.x;
             float front = (f<0)?-1:1;
             Vector2 knockback = KNOCKBACK_VECTOR;
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
         Instantiate(DeadPlayer);
         Destroy(this.gameObject);
     }
-    //死亡アニメ再生（予定）
+    //死亡オブジェクト生成
     private void Conglutination()
     {
         animator.Play(cong.name);
