@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
             // •ÇƒLƒbƒN‚ð‚µ‚Ä‚¢‚é‚Æ‚«‚Íx‚Ì•ÏˆÊ‚à‰Á‚¦‚é
             if (WallKick)
             {
-                key /= 2;
+                key /= 1.2f;
                 if (isRightWall)
                 {
                     key += -jumpvec[0, i] * 1.5f;
