@@ -1459,7 +1459,7 @@ MonoBehaviour:
   Count2: {fileID: 1418677618}
   Count3: {fileID: 1822480101}
   StartObj: {fileID: 678086178}
-  StartUI: {fileID: 1769309191}
+  StartUI: {fileID: 1769309189}
   TitleFadeSpeed: 2
   TitleDeth: 7
   CountTime: 1
@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 1510932765}
   FadePanel: {fileID: 1753617415}
+  StartUI: {fileID: 1769309189}
 --- !u!1 &1753617413
 GameObject:
   m_ObjectHideFlags: 0

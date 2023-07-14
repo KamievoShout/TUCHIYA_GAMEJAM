@@ -17,7 +17,7 @@ public class GameStart : MonoBehaviour
     [SerializeField] private GameObject StartObj;
 
     [Tooltip("スタートのUI")]
-    [SerializeField] private Text StartUI;
+    [SerializeField] private GameObject StartUI;
 
 
     [Tooltip("タイトルが上がるスピード")]
@@ -44,11 +44,13 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         ScriptOff();
+        StartUI.SetActive(true);
         TitleFade = false;
         CountDown = false;
         Count1.SetActive(false);
         Count2.SetActive(false);
         Count3.SetActive(false);
+        StartObj.SetActive(false);
         time = 0;
     }
 
@@ -56,7 +58,7 @@ public class GameStart : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            Destroy(StartUI);
+            StartUI.SetActive(false);
             TitleFade = true;
         }
         if (TitleFade == true)
@@ -98,9 +100,15 @@ public class GameStart : MonoBehaviour
             {
                 Count1.SetActive(false);
                 StartObj.SetActive(true);
+                Debug.Log("0");
+                time = 0;
+            }
+            else if (time >= CountTime && StartObj.activeSelf)
+            {
+                StartObj.SetActive(false);
                 CountDown = false;
                 ScriptOn();
-                Debug.Log("0");
+                Debug.Log("Start");
             }
             else if (time >= CountTime)
             {
