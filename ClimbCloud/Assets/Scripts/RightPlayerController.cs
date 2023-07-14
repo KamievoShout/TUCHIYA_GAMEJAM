@@ -152,7 +152,7 @@ public class RightPlayerController : MonoBehaviour
         if (collision.gameObject.GetComponent<Flag>() != null)
         {
             Flag flag = collision.gameObject.GetComponent<Flag>();
-            flag.TransResultScene();
+            flag.TransResultScene(false);
             return;
         }
     }
