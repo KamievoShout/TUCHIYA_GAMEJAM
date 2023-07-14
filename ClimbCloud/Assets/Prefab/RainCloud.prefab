@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6087923639299874114}
   m_Layer: 0
   m_Name: RainCloud
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,9 @@ MonoBehaviour:
   - {fileID: 7533492729022639500}
   - {fileID: 8663772599606032829}
   - {fileID: 5331518906586657056}
+  growSize: 3
+  upSpeed: 1
+  seedFlg: 0
 --- !u!1 &5331518906586657056
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +85,7 @@ GameObject:
   - component: {fileID: 5636668186241020089}
   m_Layer: 0
   m_Name: Large
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +235,7 @@ GameObject:
   - component: {fileID: 1514239799500396570}
   m_Layer: 0
   m_Name: Small
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +385,7 @@ GameObject:
   - component: {fileID: 293410608660230371}
   m_Layer: 0
   m_Name: Medium
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

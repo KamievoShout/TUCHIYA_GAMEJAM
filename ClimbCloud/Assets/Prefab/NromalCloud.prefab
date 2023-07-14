@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4523389000992270693}
   m_Layer: 0
   m_Name: Large
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 1470099010094953632}
   m_Layer: 0
   m_Name: Small
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 6229448520566967964}
   m_Layer: 0
   m_Name: NromalCloud
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,6 +352,9 @@ MonoBehaviour:
   - {fileID: 2604947860388512575}
   - {fileID: 5931601783439182887}
   - {fileID: 704252685513654898}
+  growSize: 3
+  upSpeed: 1
+  seedFlg: 0
 --- !u!1 &5931601783439182887
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +369,7 @@ GameObject:
   - component: {fileID: 8278716172814067526}
   m_Layer: 0
   m_Name: Medium
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

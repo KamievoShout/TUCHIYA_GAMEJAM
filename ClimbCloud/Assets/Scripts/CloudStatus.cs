@@ -13,10 +13,14 @@ public class CloudStatus : MonoBehaviour
 
     [Tooltip("雲の上昇スピード")]
     [SerializeField] float upSpeed = 1;
+    // 現在の雲のスピード
+    float speed = 0;
+    [Tooltip("種雲かどうか")]
+    public bool seedFlg = false;
 
     private void Start()
     {
-        if (size == 4)
+        if (seedFlg)
         {
             // 種状態から開始した場合、雲生成機を親に設定する
             //transform.parent = FindObjectOfType<MachineMove>().transform;
@@ -26,6 +30,17 @@ public class CloudStatus : MonoBehaviour
     private void Update()
     {
         ChangeSize();
+        if (seedFlg)
+        {
+            //transform.position += new Vector3(0, upSpeed, 0);
+        }
+        else
+        {
+            size = Mathf.Clamp(size, 0, 3);
+        }
+
+        // 自身を上昇させる
+        transform.position += new Vector3(0, speed, 0);
     }
 
     // 雲の表示処理
@@ -53,24 +68,32 @@ public class CloudStatus : MonoBehaviour
     }
 
     // 当たった瞬間
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("当たり！");
-        // 「CloudStatus」がアタッチされているかどうか
-        if (collision.gameObject.CompareTag("CreateCloud"))
+        if (seedFlg)
         {
-            Debug.Log("雲！");
-            // スクリプト取得
-            CloudStatus script = collision.gameObject.GetComponent<CloudStatus>();
-            if (script.cloudSize == 4)
+            // 「CloudStatus」がアタッチされているかどうか
+            if (collision.gameObject.CompareTag("Normal") || collision.gameObject.CompareTag("Damage"))
             {
-                Debug.Log("種！", this);
-                // サイズに種のサイズを加算
-                size += script.cloudSize;
-                // 0～3のサイズ内で収まるようにする
-                size = Mathf.Clamp(size, 0, 3);
-                // 種を破壊
-                Destroy(collision.gameObject);
+                Debug.Log("雲！");
+                // スクリプト取得
+                CloudStatus script = collision.transform.parent.GetComponent<CloudStatus>();
+                if (!script.seedFlg)
+                {
+                    Debug.Log("種！", this);
+                    if (script.size == 3)
+                    {
+                        size = growSize;
+                        seedFlg = false;
+                    }
+                    else
+                    {
+                        // サイズに種のサイズを加算
+                        script.plusSize(growSize);
+                        // 種を破壊
+                        Destroy(this.gameObject);
+                    }
+                }
             }
         }
     }
@@ -78,11 +101,17 @@ public class CloudStatus : MonoBehaviour
     // 当たっている間
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // タグが「Window」だった場合
-        if (collision.CompareTag("Window"))
+        if (collision.CompareTag("Normal") || collision.CompareTag("Damage"))
         {
-            // 自身を上昇させる
-            transform.position += new Vector3(0, upSpeed, 0);
+            speed = 0;
+        }
+        else
+        {
+            // タグが「Window」だった場合
+            if (collision.CompareTag("Window"))
+            {
+                speed = upSpeed;
+            }
         }
     }
 
@@ -90,12 +119,13 @@ public class CloudStatus : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // 種状態かつタグが「Window」だった場合
-        if (size == 4 && collision.CompareTag("Window"))
+        if (collision.CompareTag("Window"))
         {
             // 種から雲に成長
             size = growSize;
             // 親子関係解除
             transform.parent = null;
+            speed = 0;
         }
     }
 }
