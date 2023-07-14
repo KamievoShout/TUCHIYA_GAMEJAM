@@ -15,7 +15,7 @@ public class Pillar : MonoBehaviour
         // カメラ外に行ったら自身を消す
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -29,6 +29,7 @@ public class Pillar : MonoBehaviour
         int direction = _directions[Random.Range(0, 2)];
 
         rb.AddForce(new Vector2(direction, 0) * _addPower * 100);
+        SeManager.Instance.Play("HitPillar");
     }
 
 
