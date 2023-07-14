@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             rigid2D.velocity = vel;
 
             // サウンド再生
-            SeManager.Instance.Play("Jump");
+            SeManager.Instance.Play("SingleJump");
 
             // 地面にいるときの処理
             // ジャンプキーが押されているか
