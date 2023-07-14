@@ -14,28 +14,36 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Playerのジャンプ力")]
     [SerializeField] private float JumpFouce;
 
-    private const float JUMPING_NUM_PERCENT = 3000f;
+    private const float JUMPING_NUM_PERCENT = 70f;
     //JumpFouceの操作値を少なくするための乗算変数
 
     [Tooltip("攻撃範囲")]
     [SerializeField]private CircleCollider2D AttackCollider;
 
+    [Tooltip("攻撃時間")]
+    [SerializeField]private float ATTACK_TIME = 1f;
+
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
     bool NotMoveSwitch = false;//操作選別,true=動けない
-    private float WAIT_TIME = 0.75f;//ノックバック時の停止時間
+    [Tooltip("ノックバック時の停止時間")]
+    [SerializeField]private float WAIT_TIME = 0.75f;
 
     Animator animator;
     AnimationClip cong;//goalアニメクリップ
     AnimationClip dead;//deadアニメクリップ
     SpriteRenderer rend;
+    string SceneName;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        ColliderChange(false);
+        AttackCollider.enabled = false;
         rend = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        animator.SetInteger("CatAction", 0);
+        animator.SetBool("CatAttack", false);
+        SceneName = SceneManager.GetActiveScene().name;
     }
     //コンポーネント挿入
  
@@ -67,7 +75,7 @@ public class PlayerController : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && rb.velocity.y == 0)
             {
                 float j = JumpFouce*JUMPING_NUM_PERCENT;
-                Vector2 addJump = new Vector2(0, j) * Time.deltaTime;
+                Vector2 addJump = new Vector2(0, j);
                 //本来与えたいFouce値に設定
                 rb.velocity = Vector2.zero;
                 rb.AddForce(addJump);
@@ -75,11 +83,13 @@ public class PlayerController : MonoBehaviour
             }
             //ジャンプ
 
-            bool col = Input.GetKey(KeyCode.Space) ? true : false;
-            ColliderChange(col);
+            if(Input.GetKey(KeyCode.Space))
+            {
+                StartCoroutine(Attack());
+            }
             //攻撃
 
-            if (rb.velocity.y != 0)
+            if (rb.velocity.y < 0)
             {
                 animator.SetInteger("CatAction", 3);
             }
@@ -87,11 +97,15 @@ public class PlayerController : MonoBehaviour
     }
     //キー入力動作
 
-    private void ColliderChange(bool attack)
+    private IEnumerator Attack()
     {
-        AttackCollider.enabled =attack;
+        animator.SetBool("CatAttack", true);
+        AttackCollider.enabled = true;
+        yield return new WaitForSeconds(ATTACK_TIME);
+        AttackCollider.enabled = false;
+        animator.SetBool("CatAttack", false);
     }
-    //攻撃範囲の変更操作
+    //攻撃コルーチン
 
     private void PlayerWarp()
     {
@@ -110,21 +124,22 @@ public class PlayerController : MonoBehaviour
     {
         if(rend.isVisible)
         {
-            float dis = Vector2.Distance(transform.position, Camera.main.transform.position);
+            float dis = 
+                Vector2.Distance(transform.position, Camera.main.transform.position);
             if (dis >=5.5f)
             {
                 Debug.Log("GameOver");
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene(SceneName);
             }
         }
     }
     //ある程度落下したらリターン
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        Destroy(col.gameObject);
-    }
-    //攻撃を当てたら
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    Destroy(col.gameObject);
+    //}
+    ////攻撃を当てたら
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -156,9 +171,16 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("CatAction", 0);
         }
     }
+    //Velocity.y=0ならステイに
 
+    private void PlayerDead()
+    {
+        animator.Play(dead.name);
+    }
+    //死亡アニメ再生（予定）
     private void Conglutination()
     {
-
+        animator.Play(cong.name);
     }
+    //クリアアニメ再生（予定）
 }
