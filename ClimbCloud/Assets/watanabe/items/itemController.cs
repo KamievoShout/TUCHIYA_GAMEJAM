@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,11 +42,6 @@ public class itemController : MonoBehaviour
                     parachute.parachuteUseItem(rigid2D, spRen);
                     break;
             }
-        }
-
-        //地面に着地するとパラシュートの効果を消す
-        if(this.rigid2D.velocity.y == 0) {
-            rigid2D.gravityScale = 0;
         }
 
         if (rigid2D.velocity.y != 0) {

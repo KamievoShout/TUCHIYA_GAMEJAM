@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Rocket : MonoBehaviour
 {
     [SerializeField] GameObject useitem;
-    [SerializeField] Image inventory;
     [SerializeField] Sprite rocket;
+    [SerializeField] Image inventory;
     Rigidbody2D rigid;
     SpriteRenderer spRen;
     bool enTrigger = true;

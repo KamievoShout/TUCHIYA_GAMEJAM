@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Parachute : MonoBehaviour
 {
     [SerializeField] GameObject useitem;
-    [SerializeField] Image inventory;
     [SerializeField] Sprite parachute;
-    Rigidbody2D rigid;
+    [SerializeField] Image inventory;
     SpriteRenderer spRen;
     bool enTrigger = true;
 
@@ -34,7 +32,6 @@ public class Parachute : MonoBehaviour
         spRen.enabled = true;
         spRen.sprite = parachute;
         this.spRen = spRen;
-        rigid = rigid2D;
 
         //アイテムの使用
         Invoke("rising", 1f);
@@ -44,8 +41,5 @@ public class Parachute : MonoBehaviour
     void rising() {
         spRen.enabled = false;
         enTrigger = true;
-
-        //低速落下
-        rigid.gravityScale = -10;
     }
 }

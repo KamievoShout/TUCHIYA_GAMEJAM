@@ -171,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcb45daab296c04ea80c26aafe86d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useitem: {fileID: 0}
+  useitem: {fileID: 3043368075247030024, guid: 3bddfd396dda58646a5fcf06da85d8bb, type: 3}
   inventory: {fileID: 0}
   parachute: {fileID: 21300000, guid: 4024780d45cb3a442acaea69a75af907, type: 3}
