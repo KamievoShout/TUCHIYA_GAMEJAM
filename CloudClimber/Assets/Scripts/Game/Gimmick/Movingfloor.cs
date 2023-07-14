@@ -25,6 +25,12 @@ public class Movingfloor : MonoBehaviour
         //もし、マップ外を出たら
         else if (this.transform.position.x > 9f)
         {
+            if(PrayerObj != null)
+            {
+                //Playerの親を消す
+                PrayerObj.transform.parent=null;
+                PrayerObj = null;
+            }
             //左のマップ外に移動させる
             this.transform.position = new Vector2(-9f, transform.position.y);
         }
@@ -39,10 +45,19 @@ public class Movingfloor : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Playerの親を触れた移動床にする
-            collision.transform.SetParent(transform);
+            collision.gameObject.transform.SetParent(transform);
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Playerの親を触れた移動床にする
+            collision.gameObject.transform.SetParent(transform);
+            PrayerObj = collision.gameObject;
+        }
+    }
+    GameObject PrayerObj;
 
     // 移動する床のコライダーからPlayerが離れた時
     private void OnCollisionExit2D(Collision2D collision)
@@ -51,6 +66,7 @@ public class Movingfloor : MonoBehaviour
         {
             //Playerの親を消す
             collision.transform.SetParent(null);
+            PrayerObj = null;
         }
     }
 }
