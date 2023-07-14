@@ -39,7 +39,6 @@ namespace Player
             else
             {
                 playerInput.InputUpdateReset();
-                Debug.Log("空中");
                 spriteRenderer.sprite = playerCore.jumpImage;
                 //空中にいるときのみ横移動ができる
                 SideMove();
