@@ -108,8 +108,8 @@ public class CloudGenerator : MonoBehaviour
         }
 
 
-        Vector3 WaterPos = WaterSlider.transform.position;
-        WaterPos.x = gameObject.transform.position.x;
-        WaterSlider.transform.position = WaterPos;
+        //Vector3 WaterPos = WaterSlider.transform.position;
+        //WaterPos.x = gameObject.transform.position.x;
+        //WaterSlider.transform.position = WaterPos;
     }
 }
