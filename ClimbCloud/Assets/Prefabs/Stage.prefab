@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6266174706289341262}
   - component: {fileID: 717955894462221664}
+  - component: {fileID: 8944246956721301766}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -49,6 +50,22 @@ MonoBehaviour:
   flagObj: {fileID: 700354728027725291}
   playerObj: {fileID: 0}
   blackOut: {fileID: 0}
+  fallPillar: {fileID: 8944246956721301766}
+  cameraShake: {fileID: 0}
+--- !u!114 &8944246956721301766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444528763866426674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f21cca3336063445bbf1b4f83c3b5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pillar: {fileID: 7121624107201284281, guid: e2b4148b44e928b43ac1e9a2fcef2dd0, type: 3}
+  _diffPosition: 10
 --- !u!1 &1449213010812152728
 GameObject:
   m_ObjectHideFlags: 0
