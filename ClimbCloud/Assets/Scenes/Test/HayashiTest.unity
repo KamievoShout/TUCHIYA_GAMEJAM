@@ -481,7 +481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &421369341
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2551,7 +2551,68 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+--- !u!1001 &2129075909855689825
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31654836335080005, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 517485490079858090, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
+      propertyPath: m_Name
+      value: Thunder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
 --- !u!1 &2245309967583023588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,7 +2630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &2589294500257245271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2581,6 +2642,10 @@ PrefabInstance:
     - target: {fileID: 758126917668338953, guid: e7ba85f4258c7604c9e3b94cb22fb4bc, type: 3}
       propertyPath: m_Name
       value: RainParticle_Medium
+      objectReference: {fileID: 0}
+    - target: {fileID: 758126917668338953, guid: e7ba85f4258c7604c9e3b94cb22fb4bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2189990095443670755, guid: e7ba85f4258c7604c9e3b94cb22fb4bc, type: 3}
       propertyPath: m_RootOrder
@@ -2642,6 +2707,10 @@ PrefabInstance:
     - target: {fileID: 4881667756735855671, guid: ea5c8f49bd36f3e44a64e69653dc27b9, type: 3}
       propertyPath: m_Name
       value: WindParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881667756735855671, guid: ea5c8f49bd36f3e44a64e69653dc27b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7280670054336215456, guid: ea5c8f49bd36f3e44a64e69653dc27b9, type: 3}
       propertyPath: m_RootOrder
@@ -7469,6 +7538,10 @@ PrefabInstance:
     - target: {fileID: 8166118304977776386, guid: e56a2c69fdc6ef845975b40d5013660f, type: 3}
       propertyPath: m_Name
       value: RainParticle_Small
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166118304977776386, guid: e56a2c69fdc6ef845975b40d5013660f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9088759484071142761, guid: e56a2c69fdc6ef845975b40d5013660f, type: 3}
       propertyPath: m_RootOrder
