@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,8 +27,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Vector2 doubleJumpForce =           // ダブルジャンプの力
         new Vector2(10f, 4f);
-    public bool isGoal = false;         // ゴールしたか
+    [HideInInspector] public bool isGoal = false;         // ゴールしたか
+    [HideInInspector] public bool isBounce;               // 跳ねる雲に乗ったか
     bool isPlaySE;                      // 雲のSEを再生できるか
+
+    [Space]
+    [SerializeField] string playSingleJumpSe = "SingleJump";
+    [SerializeField] string playDoubleJumpSe = "DoubleJump";
+    [SerializeField] string playBounceCloudSe = "BounceCloud";
+    [SerializeField] string playSlipCloudSe = "SlipCloud";
+    [SerializeField] string playGoalSe = "Goal";
 
     void Start()
     {
@@ -47,7 +56,6 @@ public class PlayerController : MonoBehaviour
 
         // ジャンプキーの入力取得
         inputJumpKey = Input.GetButtonDown("Jump");
-
     }
 
     private void FixedUpdate()
@@ -63,8 +71,6 @@ public class PlayerController : MonoBehaviour
             vel.y = 0;
             rigid2D.velocity = vel;
 
-            // サウンド再生
-            SeManager.Instance.Play("SingleJump");
 
             // 地面にいるときの処理
             // ジャンプキーが押されているか
@@ -79,6 +85,9 @@ public class PlayerController : MonoBehaviour
                 // ジャンプした位置取得
                 jumpedPos = transform.position;
 
+                // サウンド再生
+                SeManager.Instance.Play(playSingleJumpSe);
+
                 inputJumpKey = false;
             }
             else if (nowJumpState != jumpState.doubleJump)
@@ -92,12 +101,15 @@ public class PlayerController : MonoBehaviour
                 // DoubleJumpアニメーション再生
                 animScript.AnimPlay(AnimationController.animationParameter.DoubleJump);
 
+                // サウンド再生
+                SeManager.Instance.Play(playDoubleJumpSe);
+
                 inputJumpKey = false;
             }
         }
 
         // ダブルジャンプしたかつ位置がとんだ場所より下の時
-        if(nowJumpState == jumpState.doubleJump && transform.position.y < jumpedPos.y)
+        if (nowJumpState == jumpState.doubleJump && transform.position.y < jumpedPos.y)
         {
             nowJumpState = jumpState.falling;
             // Jumpアニメーション再生
@@ -136,7 +148,7 @@ public class PlayerController : MonoBehaviour
     {
         isGoal = true;
         SceneManager.LoadScene("ClearScene");
-        SeManager.Instance.Play("Goal");
+        SeManager.Instance.Play(playGoalSe);
     }
 
     /// <summary>
@@ -165,7 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             // レイが雲にヒットしたとき
             isGround = true;
-            if(isPlaySE) CloudSE(rayResult.collider.tag);
+            if (isPlaySE) CloudSE(rayResult.collider.tag);
         }
         Debug.Log(isGround);
 
@@ -190,15 +202,16 @@ public class PlayerController : MonoBehaviour
     void CloudSE(string tag)
     {
         // 跳ねる雲
-        if(tag == "Bounce")
+        if (tag == "Bounce")
         {
-            SeManager.Instance.Play("BounceCloud");
+            isBounce = true;
+            SeManager.Instance.Play(playBounceCloudSe);
         }
 
         // 滑る雲
-        if(tag == "Slip")
+        if (tag == "Slip")
         {
-            SeManager.Instance.Play("SlipCloud");
+            SeManager.Instance.Play(playSlipCloudSe);
         }
 
         isPlaySE = false;
