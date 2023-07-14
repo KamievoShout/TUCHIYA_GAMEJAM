@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CloudGenerator : MonoBehaviour
 {
+    CapsuleCollider2D cap;
+
     [Tooltip("è¨ì‹")]
     [SerializeField] private GameObject CloudS;
     [Tooltip("íÜÇÃì‹")]
@@ -49,6 +51,8 @@ public class CloudGenerator : MonoBehaviour
     float time;
     void Start()
     {
+        cap = GetComponent<CapsuleCollider2D>();
+
         size = 0;
         time = 0;
         NowWater = WaterGauge;
@@ -111,5 +115,14 @@ public class CloudGenerator : MonoBehaviour
         Vector3 WaterPos = WaterSlider.transform.position;
         WaterPos.x = gameObject.transform.position.x;
         WaterSlider.transform.position = WaterPos;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Rain"))
+        {
+            Debug.Log("ìñÇΩÇËâJ");
+            NowWater += 1.0f;
+        }
     }
 }
