@@ -69,14 +69,19 @@ public class PlayerController1 : MonoBehaviour
     void Start()
     {
         accelerator = airGravityaccelerator;
-        if ( RespawnController.instance != null && RespawnController.instance.RespawnPos == Vector3.zero)
+        if ( RespawnController.instance != null)
         {
-            RespawnController.instance.RespawnPos = this.transform.position;
+            if (RespawnController.instance.RespawnPos == Vector3.zero)
+            {
+
+                RespawnController.instance.RespawnPos = this.transform.position;
+            }
+            else
+            {
+                this.transform.position = RespawnController.instance.RespawnPos;
+            }
         }
-        else
-        {
-            this.transform.position = RespawnController.instance.RespawnPos;
-        }
+       
 
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
