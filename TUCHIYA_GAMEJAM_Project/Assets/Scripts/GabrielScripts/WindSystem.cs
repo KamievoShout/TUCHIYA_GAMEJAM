@@ -15,34 +15,37 @@ public class WindSystem : MonoBehaviour
     private float winRan1 = -1;
     [SerializeField]
     private float winRan2 = 5;
-    [SerializeField,Header("cˆÚ“®‚Ítrue ¦‚È‚È‚ßˆÚ“®‚ÍÀ‘•‚µ‚Ä‚¢‚È‚¢‚Å‚·")]
+    [SerializeField, Header("cˆÚ“®‚Ítrue ¦‚È‚È‚ßˆÚ“®‚ÍÀ‘•‚µ‚Ä‚¢‚È‚¢‚Å‚·")]
     private bool ver = false;
-    [SerializeField,Header("ˆê•û’Ês‚É‚µ‚½‚¢‚È‚çtrue")]
+    [SerializeField, Header("ˆê•û’Ês‚É‚µ‚½‚¢‚È‚çtrue")]
     private bool roop = false;
-    [SerializeField,Header("“®‚­•ûŒü‚P‚©-‚P"),Range(-1,1)]
-    private int key =1;
+    [SerializeField, Header("“®‚­•ûŒü‚P‚©-‚P"), Range(-1, 1)]
+    private int key = 1;
 
     private Vector2 thePos;
     Rigidbody2D rigi;
 
     private void Start()
     {
-        if (ver) transform.localRotation = Quaternion.Euler(0, 0, 90); 
+        if (ver) transform.localRotation = Quaternion.Euler(0, 0, 90);
         thePos = this.transform.position;
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (key == 0) key = 1;
-        if((rigi = other.gameObject.GetComponent<Rigidbody2D>()) != null)
+        rigi = other.gameObject.GetComponent<Rigidbody2D>();
+        if (rigi != null)
         {
             if (ver)
             {
-                rigi.AddForce(new Vector2(0, winFor * key*Time.deltaTime));
+                rigi.velocity = Vector2.zero;
+                rigi.AddForce(new Vector2(0, winFor * key * Time.deltaTime));
             }
             else
             {
-                rigi.AddForce(new Vector2(winFor*key*Time.deltaTime,0));
+                rigi.velocity = Vector2.zero;
+                rigi.AddForce(new Vector2(winFor * key * Time.deltaTime, 0));
             }
         }
     }
