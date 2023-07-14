@@ -830,6 +830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6717726270239430635, guid: a409bf9ef325b4441940ff89efc13078, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7671215108208190370, guid: a409bf9ef325b4441940ff89efc13078, type: 3}
       propertyPath: m_RootOrder
       value: 1
