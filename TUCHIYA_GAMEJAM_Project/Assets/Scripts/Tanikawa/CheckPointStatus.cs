@@ -9,6 +9,7 @@ namespace CheckPoint
         [SerializeField]
         private Vector3 restartPosition = Vector3.zero;
 
+
         public void CheckPosition(Vector3 checkPosition)
         {
             restartPosition = checkPosition;
