@@ -19,4 +19,9 @@ public static class GimmickStaticData
     /// ‰æ–Ê‚ğˆÃ‚­‚·‚éŠÔ
     /// </summary>
     public const float BLACKOUT_TIME = 5f;
+
+    /// <summary>
+    /// ƒMƒ~ƒbƒN‚ğ•œŠˆ‚³‚¹‚éŠÔ
+    /// </summary>
+    public const float SEED_REVIVAL_TIME = 5f;
 }

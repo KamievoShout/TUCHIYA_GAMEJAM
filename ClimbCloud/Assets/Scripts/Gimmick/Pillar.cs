@@ -27,7 +27,9 @@ public class Pillar : MonoBehaviour
     {
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         int direction = _directions[Random.Range(0, 2)];
-        rb.AddForce(new Vector2(direction, 0) * _addPower * 500);
+
+        rb.AddForce(new Vector2(direction, 0) * _addPower * 100);
+        SeManager.Instance.Play("HitPillar");
     }
 
 

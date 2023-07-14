@@ -36,6 +36,12 @@ public class LeftPlayerController : MonoBehaviour
     [Header("パワーアップデバフ")]
     public bool powerUpDebuff;
 
+    [SerializeField]
+    private DisplayPlayerDebuff displayPlayerDebuff;
+
+    // 歩くサウンドを出す
+    private PlayerWalkSound walkSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,20 +59,37 @@ public class LeftPlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) key = -1;
         if (Input.GetKey(KeyCode.D)) key = 1;
 
+        // キー入力があったら歩きアニメーションに移動する
+        if (key != 0f)
+        {
+            animator.SetBool("Walk", true);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+        }
+
         //操作反転デバフ
         if (reverse)
         {
+            displayPlayerDebuff.ShowMoveReverseUi();
             key *= -1;
+        }
+        else
+        {
+            displayPlayerDebuff.HideMoveReverseUi();
         }
 
         //パワーアップデバフ
         if (!powerUpDebuff)
         {
+            displayPlayerDebuff.HideBuffUi();
             moveForce = normalMoveForce;
             jumpForce = normalJumpForce;
         }
         else
         {
+            displayPlayerDebuff.ShowBuffUi();
             moveForce = debuffMoveForce;
             jumpForce = debuffJumpForce;
         }
@@ -115,8 +138,21 @@ public class LeftPlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
-        GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
-        gameStageManager.TouchGimmickLeft(this, gimmickKind);
+        if(collision.gameObject.GetComponent<GimmickSeed>() != null)
+        {
+            GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
+            GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
+            SeManager.Instance.Play("GetGimmick", 0.3f, 1f);
+            gameStageManager.TouchGimmickLeft(this, gimmickKind);
+            gimmickSeed.HideGimmick();
+            return;
+        }
+
+        if(collision.gameObject.GetComponent<Flag>() != null)
+        {
+            Flag flag = collision.gameObject.GetComponent<Flag>();
+            flag.TransResultScene();
+            return;
+        }
     }
 }

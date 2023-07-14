@@ -7,10 +7,14 @@ using System;
 
 public class GimmickSeed : MonoBehaviour
 {
+    private CircleCollider2D collider2D;
+    private SpriteRenderer spriteRenderer;
     private GimmickKinds gimmickKind;
 
     void Start()
     {
+        collider2D = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         MakeGimmickKind();
     }
 
@@ -29,7 +33,24 @@ public class GimmickSeed : MonoBehaviour
     /// </summary>
     public GimmickKinds GetGimmickKindType()
     {
-        gimmickKind = GimmickKinds.Pillar;
+        //gimmickKind = GimmickKinds.Pillar;
         return gimmickKind;
+    }
+
+    /// <summary>
+    /// ギミックを一時的に使用不可能にする
+    /// </summary>
+    public void HideGimmick()
+    {
+        collider2D.enabled = false;
+        spriteRenderer.enabled = false;
+        StartCoroutine(WaitGimmickRevival());
+    }
+
+    private IEnumerator WaitGimmickRevival()
+    {
+        yield return new WaitForSeconds(GimmickStaticData.SEED_REVIVAL_TIME);
+        collider2D.enabled = true;
+        spriteRenderer.enabled = true;
     }
 }

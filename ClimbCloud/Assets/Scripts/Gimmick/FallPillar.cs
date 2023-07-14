@@ -18,7 +18,6 @@ public class FallPillar : Gimmick
     public void GeneratePillar(Vector2 playerPos)
     {
         Vector2 generatePos = new Vector2(playerPos.x, playerPos.y + _diffPosition);
-        Debug.Log(generatePos);
         Instantiate(_pillar, generatePos, Quaternion.identity);
     }
 

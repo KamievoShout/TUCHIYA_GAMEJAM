@@ -36,11 +36,15 @@ public class Stage : MonoBehaviour
 
     [SerializeField]
     private FallPillar fallPillar;
-    
-    
+
+    [SerializeField]
+    private CameraShake cameraShake;
     
     
     public Gimmicks gimmicks;
+
+    private float cameraShakeDuration = 0.3f;
+    private float cameraShakeMagnitude = 0.1f;
 
 
     void Start()
@@ -59,28 +63,87 @@ public class Stage : MonoBehaviour
     /// <summary>
     /// 移動を反転させる
     /// </summary>
-    public void UseMoveReverse()
+    public void UseMoveReverseLeft()
     {
-        Debug.Log(gameObject.name + "反転");
+        if (gimmicks.isMoveReverse == true)
+        {
+            return;
+        }
         gimmicks.isMoveReverse = true;
+        StartCoroutine(RightRevers());
+    }
+
+    private IEnumerator RightRevers()
+    {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
+        playerObj.GetComponent<RightPlayerController>().reverse = true;
+        yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
+        playerObj.GetComponent<RightPlayerController>().reverse = false;
+        gimmicks.isMoveReverse = false;
+
+    }
+
+    public void UseMoveReverseRight()
+    {
+        if (gimmicks.isMoveReverse == true)
+        {
+            return;
+        }
+        gimmicks.isMoveReverse = true;
+        StartCoroutine(LeftRevers());
+
+    }
+
+    private IEnumerator LeftRevers()
+    {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
+        playerObj.GetComponent<LeftPlayerController>().reverse = true;
+        yield return new WaitForSeconds(GimmickStaticData.MOVE_REVERSE_TIME);
+        playerObj.GetComponent<LeftPlayerController>().reverse = false;
+        gimmicks.isMoveReverse = false;
+
     }
 
     /// <summary>
     /// バフ状態にする
     /// </summary>
-    public void UseBuff()
+    public void UseBuffLeft()
     {
-        Debug.Log(gameObject.name + "バフ");
+        if(gimmicks.isBuff == true)
+        {
+            return;
+        }
         gimmicks.isBuff = true;
+        StartCoroutine(BuffRight());
     }
 
-    /// <summary>
-    /// リフトを移動させる
-    /// </summary>
-    public void UseMoveLift()
+    private IEnumerator BuffRight()
     {
-        Debug.Log(gameObject.name + "リフト移動");
-        gimmicks.isMoveLift = true;
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
+        playerObj.GetComponent<RightPlayerController>().powerUpDebuff = true;
+        yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
+        playerObj.GetComponent<RightPlayerController>().powerUpDebuff = false;
+        gimmicks.isBuff = false;
+    }
+
+    public void UseBuffRight()
+    {
+        if (gimmicks.isBuff == true)
+        {
+            return;
+        }
+        gimmicks.isBuff = true;
+        StartCoroutine(BuffLeft());
+
+    }
+
+    private IEnumerator BuffLeft()
+    {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
+        playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = true;
+        yield return new WaitForSeconds(GimmickStaticData.BUFF_TIME);
+        playerObj.GetComponent<LeftPlayerController>().powerUpDebuff = false;
+        gimmicks.isBuff = false;
     }
 
     /// <summary>
@@ -99,6 +162,7 @@ public class Stage : MonoBehaviour
 
     private IEnumerator BlackOut()
     {
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
         blackOut.StartBlackOut();
         yield return new WaitForSeconds(GimmickStaticData.BLACKOUT_TIME);
         blackOut.QuitBlackOut();
@@ -110,7 +174,7 @@ public class Stage : MonoBehaviour
     /// </summary>
     public void UsePillar()
     {
-        Debug.Log(gameObject.name + "柱");
+        cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);  // カメラを振動させる
         gimmicks.isPillar = true;
         fallPillar.GeneratePillar(playerObj.transform.position);
     }
