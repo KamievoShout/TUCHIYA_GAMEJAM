@@ -139,9 +139,21 @@ public class RightPlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
-        GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
-        SeManager.Instance.Play("GetGimmick", 0.3f, 1f);
-        gameStageManager.TouchGimmickRight(this, gimmickKind);
+        if (collision.gameObject.GetComponent<GimmickSeed>() != null)
+        {
+            GimmickSeed gimmickSeed = collision.gameObject.GetComponent<GimmickSeed>();
+            GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
+            SeManager.Instance.Play("GetGimmick", 0.3f, 1f);
+            gameStageManager.TouchGimmickRight(this, gimmickKind);
+            gimmickSeed.HideGimmick();
+            return;
+        }
+        
+        if (collision.gameObject.GetComponent<Flag>() != null)
+        {
+            Flag flag = collision.gameObject.GetComponent<Flag>();
+            flag.TransResultScene();
+            return;
+        }
     }
 }

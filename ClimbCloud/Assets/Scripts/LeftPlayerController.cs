@@ -144,6 +144,7 @@ public class LeftPlayerController : MonoBehaviour
             GimmickKinds gimmickKind = gimmickSeed.GetGimmickKindType();
             SeManager.Instance.Play("GetGimmick", 0.3f, 1f);
             gameStageManager.TouchGimmickLeft(this, gimmickKind);
+            gimmickSeed.HideGimmick();
             return;
         }
 
