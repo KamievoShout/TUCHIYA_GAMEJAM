@@ -26,7 +26,7 @@ public class NowPosition : MonoBehaviour
         float ba = b - a;
         //ゴール - スタート
         float ca = c - a;
-        　
+        
         //割合
         float dir = ba / ca;
 

@@ -8,7 +8,7 @@ public class Enemyhato : MonoBehaviour
     //敵を自動で左右に移動させる
     //壁に当たったら反対を向く
 
-    #region　//インスペクターで設定
+    #region //インスペクターで設定
     //敵の移動速度
     [SerializeField,PropertyName("敵の移動速度")]
     private float EnemySpeed = 3.0f;
