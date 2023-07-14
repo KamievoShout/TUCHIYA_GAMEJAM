@@ -14,6 +14,13 @@ public class Flag : MonoBehaviour
     /// </summary>
     public void TransResultScene(bool isLeft)
     {
-        FadeManager.Instance.LoadScene("ResultScene", 1.0f);
+        if(isLeft)
+        {
+            FadeManager.Instance.LoadScene("LeftPlayerWinScene", 1.0f);
+        }
+        else
+        {
+            FadeManager.Instance.LoadScene("RightPlayerWInScene", 1.0f);
+        }
     }
 }
