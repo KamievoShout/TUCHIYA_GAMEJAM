@@ -19,6 +19,7 @@ namespace Player
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            return;
             switch (collision.GetComponent<ItemBase>().PowerUp())
             {
                 case ItemBase.Item.SpeedUpItem:
