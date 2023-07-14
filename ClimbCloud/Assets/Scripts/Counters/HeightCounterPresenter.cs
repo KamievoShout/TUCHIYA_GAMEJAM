@@ -20,7 +20,9 @@ namespace HeightCounters
                 .DistinctUntilChanged()
                 .Subscribe(posY =>
                 {
-                    _model.SetCounter((int)posY);
+                    int normalizationPosY= (int)posY / 32;
+
+                    _model.SetCounter(normalizationPosY);
                 })
                 .AddTo(this);
 
