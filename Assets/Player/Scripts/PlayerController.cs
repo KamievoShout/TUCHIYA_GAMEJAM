@@ -30,14 +30,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isGoal = false;         // ゴールしたか
     [HideInInspector] public bool isBounce;               // 跳ねる雲に乗ったか
     bool isPlaySE;                      // 雲のSEを再生できるか
-    [SerializeField] CountDown countDown;
+   // [SerializeField] CountDown countDown;
 
     [Space]
     [SerializeField] string playSingleJumpSe = "SingleJump";
     [SerializeField] string playDoubleJumpSe = "DoubleJump";
     [SerializeField] string playBounceCloudSe = "BounceCloud";
     [SerializeField] string playSlipCloudSe = "SlipCloud";
-    [SerializeField] string playGoalSe = "Goal";
 
     void Start()
     {
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (countDown.IsCounting) return;
+        //if (countDown.IsCounting) return;
 
         // 方向キーの入力取得
         inputDirKey = 0;
@@ -152,7 +151,6 @@ public class PlayerController : MonoBehaviour
     {
         isGoal = true;
         SceneManager.LoadScene("ClearScene");
-        SeManager.Instance.Play(playGoalSe);
     }
 
     /// <summary>
@@ -167,10 +165,10 @@ public class PlayerController : MonoBehaviour
 
         // レイの長さ指定
         Vector3 rayStart = GetFootPos();     // レイのスタート
-        rayStart.x -= colRadiusX;
+        rayStart.x -= colRadiusX + 0.05f;
         rayStart.y -= 0.05f;
         Vector3 rayEnd = GetFootPos();     // レイの終わり
-        rayEnd.x += colRadiusX;
+        rayEnd.x += colRadiusX + 0.05f;
         rayEnd.y -= 0.05f;
 
         // レイ射出
