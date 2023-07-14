@@ -27,7 +27,6 @@ public class Wind1 : MonoBehaviour
   
     void Start()
     {     
-        plvec = player.transform.position;
         windDirUI = windUI.GetComponent<WindUI>();
     }
 
