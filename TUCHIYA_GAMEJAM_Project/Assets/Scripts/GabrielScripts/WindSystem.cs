@@ -54,22 +54,22 @@ public class WindSystem : MonoBehaviour
         {
             if (ver)
             {
-                if (transform.position.y < winRan2)
+                if (transform.position.y <= winRan2)
                 {
                     transform.position += new Vector3(0, winSpeed * key * Time.deltaTime, 0);
                 }
-                else if (transform.position.y > winRan2)
+                else if (transform.position.y >= winRan2)
                 {
                     transform.position = new Vector3(thePos.x, winRan1, 0);
                 }
             }
             else
             {
-                if (transform.position.x < winRan2)
+                if (transform.position.x <= winRan2)
                 {
                     transform.position += new Vector3(winSpeed * key * Time.deltaTime, 0, 0);
                 }
-                else if (transform.position.x > winRan2)
+                else if (transform.position.x >= winRan2)
                 {
                     transform.position = new Vector3(winRan1, thePos.y, 0);
                 }
@@ -79,15 +79,15 @@ public class WindSystem : MonoBehaviour
         {
             if (ver)
             {
-                if (transform.position.y < winRan1) key = 1;
-                else if (transform.position.y > winRan2) key = -1;
+                if (transform.position.y <= winRan1) key = 1;
+                else if (transform.position.y >= winRan2) key = -1;
 
                 transform.position += new Vector3(0, winSpeed * key * Time.deltaTime, 0);
             }
             else
             {
-                if (transform.position.x < winRan1) key = 1;
-                else if (transform.position.x > winRan2) key = -1;
+                if (transform.position.x <= winRan1) key = 1;
+                else if (transform.position.x >= winRan2) key = -1;
 
                 transform.position += new Vector3(winSpeed * key * Time.deltaTime, 0, 0);
             }
