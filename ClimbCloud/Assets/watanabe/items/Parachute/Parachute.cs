@@ -1,20 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Parachute : MonoBehaviour
 {
-    [SerializeField] float flyJump = 30;
+    [SerializeField] GameObject useitem;
+    [SerializeField] Sprite parachute;
+    [SerializeField] Image inventory;
+    SpriteRenderer spRen;
+    bool enTrigger = true;
 
     void OnTriggerEnter2D(Collider2D obj) {
-        itemController.holdItemCheck = true;
-        itemController.stockItem = itemController.item.parachute;
-        Destroy(gameObject);
+        if (enTrigger) {
+            enTrigger = false;
+
+            //インベントリUI
+            inventory.enabled = true;
+            inventory.sprite = parachute;
+
+            //手持ちアイテム
+            itemController.holdItemCheck = true;
+            itemController.stockItem = itemController.item.parachute;
+
+            Destroy(gameObject);
+        }
     }
 
-    public void parachuteUseItem(Rigidbody2D rigid2D) {
-        //低速落下
-        rigid2D.AddForce(Vector2.up * flyJump, ForceMode2D.Impulse);
-        rigid2D.drag = 15;
+    public void parachuteUseItem(Rigidbody2D rigid2D, SpriteRenderer spRen) {
+        //アイテム取り出し
+        spRen.enabled = true;
+        spRen.sprite = parachute;
+        this.spRen = spRen;
+
+        //アイテムの使用
+        Invoke("rising", 1f);
+    }
+
+
+    void rising() {
+        spRen.enabled = false;
+        enTrigger = true;
     }
 }
