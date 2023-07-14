@@ -35,18 +35,46 @@ public class Wind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        plRb.AddForce(windVec * 10);
+        //plRb.AddForce(windVec * 10);
+        //windCtr += Time.deltaTime;
+        //if (windCtr >= windWait)
+        //{
+        //    windDir = Random.Range(0,181);
+        //    if (windDir<=90)
+        //    {
+        //        windDir = 0;
+
+        //    }
+        //    else
+        //    {
+        //        windDir = 180;
+        //    }
+        //    windDirUI.moveWind(windDir);
+        //    windVec= AngleToVector2(windDir);
+        //    windCtr = 0;
+        //}
+    }
+    public Vector3 WindVector()
+    {
         windCtr += Time.deltaTime;
         if (windCtr >= windWait)
         {
             windDir = Random.Range(0, 181);
+            if (windDir>=90)
+            {
+                windDir = 180;
+            }
+            else
+            {
+                windDir = 0;
+            }
             windDirUI.moveWind(windDir);
-            Debug.Log("windDir "+windDir);
-            windVec= AngleToVector2(windDir);
+            windVec = AngleToVector2(windDir);
             windCtr = 0;
         }
-    }
 
+        return windVec * Time.deltaTime * 2;
+    }
 
     // 角度からベクトルを計算
     public static Vector2 AngleToVector2(float angle)
