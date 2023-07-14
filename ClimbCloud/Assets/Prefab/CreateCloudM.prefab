@@ -253,7 +253,7 @@ MonoBehaviour:
   - {fileID: 8617810621162384227}
   growSize: 2
   upSpeed: 5
-  destroyTime: 5
+  destroyTime: 10
   seedFlg: 1
   create: 1
 --- !u!50 &2606001448877450123

@@ -22,6 +22,8 @@ public class CloudStatus : MonoBehaviour
     public bool seedFlg = false;
     [Tooltip("çÏÇÁÇÍÇΩâ_Ç©Ç«Ç§Ç©")]
     [SerializeField] bool create = false;
+    [SerializeField] BoxCollider2D box;
+    [SerializeField] bool rain = false;
 
     private void Start()
     {
@@ -34,6 +36,22 @@ public class CloudStatus : MonoBehaviour
 
     private void Update()
     {
+        if (box)
+        {
+            if (size == 1)
+            {
+                box.size = new Vector2(1, 15);
+            }
+            else if (size == 2)
+            {
+                box.size = new Vector2(2, 15);
+            }
+            else if (size == 3)
+            {
+                box.size = new Vector2(3, 15);
+            }
+        }
+
         ChangeSize();
         if (seedFlg)
         {

@@ -30,7 +30,7 @@ public class CloudGenerator : MonoBehaviour
     [SerializeField] private float WaterCostM;
     [Tooltip("‘å‰_‚ÌÁ”ï…ƒQ[ƒW")]
     [SerializeField] private float WaterCostL;
-    private float NowWater;
+    public float NowWater;
 
     [Tooltip("‰_‚ğ“®‚©‚µ‚½‚©‚Ç‚¤‚©")]
     public bool CloudMove = false;

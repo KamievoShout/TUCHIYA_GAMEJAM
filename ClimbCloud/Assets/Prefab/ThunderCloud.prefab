@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1225583920860922007}
   - component: {fileID: 6773516605742274688}
   - component: {fileID: -5841506086870568049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThunderCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 8814330976913555897}
   - {fileID: 5143642467638742570}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6773516605742274688
 MonoBehaviour:
@@ -70,9 +70,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b355fbb050232439cf6d22421e23cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropInterval: 0.1
-  rainObj: {fileID: 0}
+  dropInterval: 5
+  rainObj: {fileID: 517485490079858090, guid: 6601586893a75fb4b9b9d45442a1115e, type: 3}
   dropOffSetY: 0
+  cloudLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  thunder: 1
+  rayLength: -10
+  rayOffSet: {x: 0, y: -0.3, z: 0}
 --- !u!1 &1060821440688558604
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +90,7 @@ GameObject:
   - component: {fileID: 9203515927538551469}
   - component: {fileID: 125603804795409847}
   - component: {fileID: 4228482277223896928}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageCollider
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -180,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8814330976913555897}
   - component: {fileID: 7127967936618948134}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +273,7 @@ GameObject:
   - component: {fileID: 632292305794763173}
   - component: {fileID: 7110131665384392299}
   - component: {fileID: 2125442456861719970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageCollider
   m_TagString: Damage
   m_Icon: {fileID: 0}
@@ -363,7 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5729129289332183284}
   - component: {fileID: 4163741725521301299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +456,7 @@ GameObject:
   - component: {fileID: 5143642467638742570}
   - component: {fileID: 5970114968502381824}
   - component: {fileID: 6792412321437566579}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +562,7 @@ GameObject:
   - component: {fileID: 686057740115787345}
   - component: {fileID: 4233514292769896868}
   - component: {fileID: 8581593308787059548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalCollider
   m_TagString: Normal
   m_Icon: {fileID: 0}
@@ -653,7 +659,7 @@ GameObject:
   - component: {fileID: 38556033196270486}
   - component: {fileID: 6363916328492157573}
   - component: {fileID: 3498154974368684681}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalCollider
   m_TagString: Normal
   m_Icon: {fileID: 0}
@@ -750,7 +756,7 @@ GameObject:
   - component: {fileID: 7681075717162847301}
   - component: {fileID: 5425782080506358536}
   - component: {fileID: 1086764054766254419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalCollider
   m_TagString: Normal
   m_Icon: {fileID: 0}
@@ -847,7 +853,7 @@ GameObject:
   - component: {fileID: 7936955015032890099}
   - component: {fileID: 5315936795271546819}
   - component: {fileID: 4517493761092637553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageCollider
   m_TagString: Damage
   m_Icon: {fileID: 0}
