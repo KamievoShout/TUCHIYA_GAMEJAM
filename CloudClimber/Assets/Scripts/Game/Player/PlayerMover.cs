@@ -85,7 +85,7 @@ namespace PlayerInternal
         {
             rb.Move(Input.GetAxisRaw("Horizontal"), accel, accel, max);
 
-            currentSpeed.Value = rb.velocity.x / groundSpeedMax;
+            currentSpeed.SetValueAndForceNotify(rb.velocity.x / groundSpeedMax);
         }
 
         public void Jump(float height)

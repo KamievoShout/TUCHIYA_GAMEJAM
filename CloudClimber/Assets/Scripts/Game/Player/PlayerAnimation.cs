@@ -10,22 +10,28 @@ namespace PlayerInternal
         [SerializeField]
         Animator animator;
 
+        GroundDetector detector;
+
+        Rigidbody2D rb;
+
         private void Awake()
         {
+            detector = GetComponent<GroundDetector>();
+            rb = GetComponent<Rigidbody2D>();
+
             var mover = GetComponent<PlayerMover>();
             mover.Jumping
             .Subscribe(_ =>
             {
                 animator.SetTrigger("JumpTrigger");
-                animator.speed = 1.0f;
             })
             .AddTo(this);
 
             mover.Speed
-                .Where(_ => animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Jump")
+                .Where(_ => detector.IsGrounded())
                 .Subscribe(value =>
                 {
-                    animator.speed = Mathf.Abs(value);
+                    animator.SetBool("Walking", value != 0.0f);
                 }).AddTo(this);
 
             mover.Speed
@@ -36,6 +42,11 @@ namespace PlayerInternal
                     animator.transform.localEulerAngles = new Vector3(0.0f, rot, 0.0f);
                 })
                 .AddTo(this);
+        }
+
+        private void Update()
+        {
+            animator.SetBool("Ground", detector.IsGrounded() && rb.velocity.y <= 0.0f);
         }
     }
 }
