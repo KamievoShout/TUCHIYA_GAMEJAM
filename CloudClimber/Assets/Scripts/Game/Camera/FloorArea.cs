@@ -12,7 +12,7 @@ public class FloorArea : MonoBehaviour
     [SerializeField]
     private Vector2 size = Vector2.one;
 
-    public Vector2 Size => size;
+    public Vector2 Size => new Vector2(size.x * transform.lossyScale.x, size.y * transform.lossyScale.y);
     public Vector2 BottomLeft => (Vector2)transform.position - size * 0.5f;
     public Vector2 UpperRight => (Vector2)transform.position + size * 0.5f;
 
