@@ -211,6 +211,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CountdownNumber_5
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542b415ec4b7e0a4e961cd2264435c90
+      internalID: -689845683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -227,6 +248,7 @@ TextureImporter:
       CountdownNumber_2: -462536830
       CountdownNumber_3: 458927993
       CountdownNumber_4: 1169738723
+      CountdownNumber_5: -689845683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

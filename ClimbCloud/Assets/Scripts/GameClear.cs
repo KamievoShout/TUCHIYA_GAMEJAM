@@ -43,22 +43,22 @@ public class GameClear : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (time >= 10)
-        {
-            start.ScriptOff();
-            StartUI.SetActive(true);
-            ClearObj.SetActive(true);
-            if (Input.anyKeyDown)
-            {
-                clear = true;
-            }
-        }
-        if (clear == true)
-        {
-            StartUI.SetActive(false);
-            ClearObj.SetActive(false);
-            StartReset();
-        }
+        //if (time >= 10)
+        //{
+        //    start.ScriptOff();
+        //    StartUI.SetActive(true);
+        //    ClearObj.SetActive(true);
+        //    if (Input.anyKeyDown)
+        //    {
+        //        clear = true;
+        //    }
+        //}
+        //if (clear == true)
+        //{
+        //    StartUI.SetActive(false);
+        //    ClearObj.SetActive(false);
+        //    StartReset();
+        //}
     }
 
     public void StartReset()
