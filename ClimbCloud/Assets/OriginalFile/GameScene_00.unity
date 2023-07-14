@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 296179581}
     - target: {fileID: 5616700397792706019, guid: 0fc056422bbc507468e024cb9ff27c75, type: 3}
       propertyPath: GravityLimit
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5616700397792706019, guid: 0fc056422bbc507468e024cb9ff27c75, type: 3}
       propertyPath: windinterval

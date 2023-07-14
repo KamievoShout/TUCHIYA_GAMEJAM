@@ -9,7 +9,7 @@ public class TitleDirector : MonoBehaviour
 
     void Start()
     {
-        float height = PlayerHeightUI.height;
+        float height = RespawnController.instance.height;
         TitleText.text = "çÇÇ≥ÅF " + height.ToString("F2");
     }
 }

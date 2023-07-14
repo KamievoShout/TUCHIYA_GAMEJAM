@@ -9,7 +9,7 @@ public class ClearDirector : MonoBehaviour
     [SerializeField] Text heightText;
 
     void Start() {
-        float height = PlayerHeightUI.height;
+        float height = RespawnController.instance.height;
         heightText.text = ($"çÇÇ≥ÅF {height.ToString("F2")}");
     }
 

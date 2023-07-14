@@ -753,9 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageScene:
-  - TitleScene
-  - GameScene 1
-  - Stage02
+  - GameScene_00
   stageCount: 0
   textFrame: {fileID: 964143002}
   scoretext: {fileID: 1363949774}

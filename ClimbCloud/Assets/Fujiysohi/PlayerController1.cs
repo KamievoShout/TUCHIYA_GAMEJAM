@@ -123,7 +123,7 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (other.tag == "DeadLine")
         {
-            SceneManager.LoadScene("TitleScene");
+            SceneManager.LoadScene("ClearScene");
         }
     }
 

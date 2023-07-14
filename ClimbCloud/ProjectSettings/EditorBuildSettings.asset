@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Fujiysohi/Stage02.unity
     guid: bd93858d182f30c4684ac347f73d4171
   - enabled: 1
+    path: Assets/OriginalFile/GameScene_00.unity
+    guid: c03469aa74520354f92d24d738d0dbcc
+  - enabled: 1
     path: Assets/ClearScene.unity
     guid: 94a1b47fb59f220439a83b9733643bc9
   m_configObjects: {}
