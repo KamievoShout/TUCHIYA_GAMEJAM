@@ -123,6 +123,8 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (other.tag == "DeadLine")
         {
+
+            SoundEffectManager.instance.PlaySoundEffect(1);
             SceneManager.LoadScene("ClearScene");
         }
     }
@@ -144,11 +146,15 @@ public class PlayerController1 : MonoBehaviour
         {
             if (isGround)       // 通常ジャンプ
             {
+
+                SoundEffectManager.instance.PlaySoundEffect(3);
                 jump = true;
                 this.animator.SetTrigger("JumpTrigger");
             }
             else if (isWall)    // 壁キック
             {
+
+                SoundEffectManager.instance.PlaySoundEffect(4);
                 jump = true;
                 WallKick = true;
                 this.animator.SetTrigger("JumpTrigger");
