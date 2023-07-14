@@ -17,7 +17,7 @@ public class CloudStatus : MonoBehaviour
     float speed = 0;
     [Tooltip("Á–ÅŠÔ")]
     [SerializeField] float destroyTime = 5.0f;
-    [SerializeField] float countTime = 0;
+    float countTime = 0;
     [Tooltip("í‰_‚©‚Ç‚¤‚©")]
     public bool seedFlg = false;
 
