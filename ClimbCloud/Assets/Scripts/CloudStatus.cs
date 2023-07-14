@@ -17,9 +17,11 @@ public class CloudStatus : MonoBehaviour
     float speed = 0;
     [Tooltip("消滅時間")]
     [SerializeField] float destroyTime = 5.0f;
-    [SerializeField] float countTime = 0;
+    float countTime = 0;
     [Tooltip("種雲かどうか")]
     public bool seedFlg = false;
+    [Tooltip("作られた雲かどうか")]
+    [SerializeField] bool create = false;
 
     private void Start()
     {
@@ -39,12 +41,15 @@ public class CloudStatus : MonoBehaviour
         }
         else
         {
-            size = Mathf.Clamp(size, 0, 3);
-
-            countTime += Time.deltaTime;
-            if (countTime > destroyTime)
+            if (create)
             {
-                Destroy(gameObject);
+                size = Mathf.Clamp(size, 0, 3);
+
+                countTime += Time.deltaTime;
+                if (countTime > destroyTime)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
@@ -84,12 +89,12 @@ public class CloudStatus : MonoBehaviour
             // 「CloudStatus」がアタッチされているかどうか
             if (collision.gameObject.CompareTag("Normal") || collision.gameObject.CompareTag("Damage"))
             {
-                Debug.Log("雲！");
+                //Debug.Log("雲！");
                 // スクリプト取得
                 CloudStatus script = collision.transform.parent.GetComponent<CloudStatus>();
                 if (!script.seedFlg)
                 {
-                    Debug.Log("種！", this);
+                    //Debug.Log("種！", this);
                     if (script.size == 3)
                     {
                         size = growSize;
@@ -110,7 +115,7 @@ public class CloudStatus : MonoBehaviour
     // 当たっている間
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Normal") || collision.CompareTag("Damage"))
+        if (collision.CompareTag("Normal") || collision.CompareTag("Damage") || collision.CompareTag("CreateCloud"))
         {
             speed = 0;
         }
@@ -119,7 +124,7 @@ public class CloudStatus : MonoBehaviour
             // タグが「Window」だった場合
             if (collision.CompareTag("Window"))
             {
-                Debug.Log("風！");
+                //Debug.Log("風！");
                 speed = upSpeed;
                 // 親子関係解除
                 transform.parent = null;
