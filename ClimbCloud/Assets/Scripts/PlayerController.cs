@@ -6,33 +6,54 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [Tooltip("Playerのスピード")]
-    [SerializeField] private float Speed;
+    [SerializeField] private float Speed=4;
 
     private Vector2 MOVE_VECTOR=new Vector2(100,0);
     //Speedの操作値を少なくするための変数
 
     [Tooltip("Playerのジャンプ力")]
-    [SerializeField] private float JumpFouce;
-    private const float JUMPING_NUM_PLUS = 1500;
-    //JumpFouceの操作値を少なくするための加算変数
-    private const float JUMPING_NUM_PERCENT = 1200;
+    [SerializeField] private float JumpFouce=5;
+
+    private const float JUMPING_NUM_PERCENT = 70f;
     //JumpFouceの操作値を少なくするための乗算変数
 
-    [Tooltip("攻撃範囲横")]
-    [SerializeField]private CircleCollider2D SideAttackCollider;
+    [Tooltip("攻撃範囲")]
+    [SerializeField]private CircleCollider2D AttackCollider;
 
-    [Tooltip("攻撃範囲上")]
-    [SerializeField]private CircleCollider2D HeadAttackCollider;
+    [Tooltip("攻撃時間")]
+    [SerializeField]private float ATTACK_TIME = 1f;
+
+    [Tooltip("攻撃エフェクト")]
+    [SerializeField] private GameObject HitEffect;
 
     Rigidbody2D rb;
     private Vector2 KNOCKBACK_VECTOR = new Vector2(70, 240);
     //ノックバック処理時の加算座標
-    bool NotMoveSwitch = false;//操作選別,true=動けない
-    private float WAIT_TIME = 0.75f;//ノックバック時の停止時間
+    private bool NotMoveflg = false;//ノックバック判定,true=動けない
+    [Tooltip("ノックバック時の停止時間")]
+    [SerializeField]private float WAIT_TIME = 0.75f;
+
+    [Tooltip("死亡時にInstanceするオブジェクト")]
+    [SerializeField] private GameObject DeadPlayer;
+
+    Animator animator;
+    BoxCollider2D bc;
+    [SerializeField] AnimationClip attack;
+    AnimationClip cong;//goalアニメクリップ
+    SpriteRenderer rend;
+    string SceneName;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        ColliderChange(false, false);
+        AttackCollider.enabled = false;
+        rend = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        animator.SetInteger("CatAction", 0);
+        animator.SetBool("CatAttack", false);
+        bc = GetComponent<BoxCollider2D>();
+        bc.enabled = true;
+        NotMoveflg = false;
+        SceneName = SceneManager.GetActiveScene().name;
     }
     //コンポーネント挿入
  
@@ -45,45 +66,57 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        if(!NotMoveSwitch)
+        if(!NotMoveflg)
         {
             float x = Input.GetAxisRaw("Horizontal");
             Vector2 MoveX = new Vector2(x, 0) * Speed * Time.deltaTime;
             rb.AddForce(MOVE_VECTOR * MoveX);
-            if (x != 0) { transform.localScale = new Vector3(x, 1, 1); }
+            if (x != 0) 
+            { 
+                transform.localScale = new Vector3(x, 1, 1);
+                animator.SetInteger("CatAction", 1);
+            }
+            else
+            {
+                animator.SetInteger("CatAction", 0);
+            }
             //移動
 
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && rb.velocity.y == 0)
             {
-                float j = JUMPING_NUM_PLUS + JumpFouce * JUMPING_NUM_PERCENT;
+                float j = JumpFouce*JUMPING_NUM_PERCENT;
+                Vector2 addJump = new Vector2(0, j);
+                //本来与えたいFouce値に設定
                 rb.velocity = Vector2.zero;
-                rb.AddForce(new Vector2(0, j) * Time.deltaTime);
+                rb.AddForce(addJump);
+                animator.SetInteger("CatAction", 2);
             }
             //ジャンプ
 
-            if (Input.GetKey(KeyCode.Space))
+            if(Input.GetKey(KeyCode.Space))
             {
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                {
-                    ColliderChange(true, false);
-                }
-                else
-                {
-                    ColliderChange(false, true);
-                }
+                StartCoroutine(Attack());
             }
-            else { ColliderChange(false, false); }
             //攻撃
+
+            if (rb.velocity.y < 0)
+            {
+                animator.SetInteger("CatAction", 3);
+            }
         }
     }
     //キー入力動作
 
-    private void ColliderChange(bool head,bool side)
+    private IEnumerator Attack()
     {
-        HeadAttackCollider.enabled = head;
-        SideAttackCollider.enabled = side;
+        animator.Play(attack.name);
+        animator.SetBool("CatAttack", true);
+        AttackCollider.enabled = true;
+        yield return new WaitForSeconds(ATTACK_TIME);
+        AttackCollider.enabled = false;
+        animator.SetBool("CatAttack", false);
     }
-    //攻撃範囲の変更操作
+    //攻撃コルーチン
 
     private void PlayerWarp()
     {
@@ -100,39 +133,66 @@ public class PlayerController : MonoBehaviour
 
     private void GameOverCheck()
     {
-        if(transform.position.y<=-20)
+        if(rend.isVisible)
         {
-            SceneManager.LoadScene("Game");
+            float dis = 
+                Vector2.Distance(transform.position, Camera.main.transform.position);
+            if (dis >=5.5f)
+            {
+                PlayerDead();
+            }
         }
     }
     //ある程度落下したらリターン
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(col.gameObject);
+        Instantiate(HitEffect,col.gameObject.transform.position,Quaternion.identity);
     }
     //攻撃を当てたら
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Damage"))
+        if(TagCheck(col))
         {
+            NotMoveflg = false;
             float f = transform.position.x - col.gameObject.transform.position.x;
             float front = (f<0)?-1:1;
             Vector2 knockback = KNOCKBACK_VECTOR;
             knockback.x *= front;
             rb.velocity = Vector2.zero;
             rb.AddForce(knockback);
-            StartCoroutine(MovePause());
+            bc.enabled = false;
         }
     }
-    //ノックバック
+    //ノックバック（ダメージ雲死亡）
 
-    private IEnumerator MovePause()
+    bool TagCheck(Collision2D col)
     {
-        NotMoveSwitch = true;
-        yield return new WaitForSeconds(WAIT_TIME);
-        NotMoveSwitch = false;
+        if (col.gameObject.CompareTag("Damage")) return true;
+        if (col.gameObject.CompareTag("Thunder")) return true;
+
+        return false;
     }
-    //動作を一定時間制限する
+
+    public void GroundCheck()
+    {
+        if(rb.velocity.y == 0)
+        {
+            animator.SetInteger("CatAction", 0);
+        }
+    }
+    //Velocity.y=0ならステイに
+
+    public void PlayerDead()
+    {
+        Instantiate(DeadPlayer);
+        Destroy(this.gameObject);
+    }
+    //死亡アニメ再生（予定）
+    private void Conglutination()
+    {
+        animator.Play(cong.name);
+    }
+    //クリアアニメ再生（予定）
 }
