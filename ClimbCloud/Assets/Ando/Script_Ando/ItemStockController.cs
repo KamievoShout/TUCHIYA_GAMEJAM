@@ -56,6 +56,8 @@ public class ItemStockController : MonoBehaviour
         //imageComponent.sprite = images[currentIndex];
         if (Input.GetKeyDown(KeyCode.Z) && itemName == "ÉçÉPÉbÉg")
         {
+
+            SoundEffectManager.instance.PlaySoundEffect(5);
             rocketLaunch = true;
             itemName = "zero";
             imageComponent.sprite = images[0];
