@@ -29,6 +29,12 @@ public class GameStageManager : MonoBehaviour
     [SerializeField]
     private Image[] rightPlayerGoalDistImages = new Image[3];
 
+    [SerializeField]
+    private Trail leftRrail;
+
+    [SerializeField]
+    private Trail rightRrail;
+
     private const int DIGITS = 3;
 
     private IntToImage intToImage;
@@ -96,6 +102,7 @@ public class GameStageManager : MonoBehaviour
             default:
                 break;
         }
+        leftRrail.StartTrailing(leftPlayer.transform.position, rightPlayer.transform.position);
     }
 
     public void TouchGimmickRight(RightPlayerController rightPlayerController, GimmickKinds gimmickKind)
@@ -117,5 +124,6 @@ public class GameStageManager : MonoBehaviour
             default:
                 break;
         }
+        rightRrail.StartTrailing(rightPlayer.transform.position, leftPlayer.transform.position);
     }
 }
