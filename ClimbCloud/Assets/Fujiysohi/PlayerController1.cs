@@ -99,7 +99,16 @@ public class PlayerController1 : MonoBehaviour
         else if (other.tag == "Goal")
         {
             Debug.Log("ゴール");
-            Destroy(RespawnController.instance.obj);
+
+            RespawnController.instance.RespawnPos = Vector3.zero;
+
+            int RespawnNum = RespawnController.instance.Respawnobj.Length;
+
+            for (int i = 0; i < RespawnNum; i++)
+            {
+                Destroy(RespawnController.instance.Respawnobj[i]);
+            }
+
             SceneManager.LoadScene("ClearScene 1");
         }
         else if (other.tag == "dead")
@@ -144,7 +153,7 @@ public class PlayerController1 : MonoBehaviour
             // 壁キックをしているときはxの変位も加える
             if (WallKick)
             {
-                key /= 2;
+                key /= 1.5f;
                 if (isRightWall)
                 {
                     key += -jumpvec[0, i] * 1.5f;
