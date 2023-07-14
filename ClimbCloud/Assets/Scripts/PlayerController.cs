@@ -153,8 +153,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Damage"))
+        if(TagCheck(col))
         {
+            NotMoveflg = false;
             float f = transform.position.x - col.gameObject.transform.position.x;
             float front = (f<0)?-1:1;
             Vector2 knockback = KNOCKBACK_VECTOR;
@@ -165,6 +166,14 @@ public class PlayerController : MonoBehaviour
         }
     }
     //ノックバック（ダメージ雲死亡）
+
+    bool TagCheck(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Damage")) return true;
+        if (col.gameObject.CompareTag("Thunder")) return true;
+
+        return false;
+    }
 
     public void GroundCheck()
     {
