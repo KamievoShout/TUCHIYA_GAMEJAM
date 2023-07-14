@@ -5,29 +5,45 @@ using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField] GameObject useitem;
     [SerializeField] Image inventory;
-    [SerializeField] Image useitem;
     [SerializeField] Sprite rocket;
-    [SerializeField] float JumpSpeed = 10;
-    Rigidbody2D rig;
-
-    private void Start() {
-        rig = GameObject.Find("cat").GetComponent<Rigidbody2D>();
-    }
-
-    void Update() {
-        //rig.velocity -= new Vector2(0, 0.875f);
-    }
+    Rigidbody2D rigid;
+    SpriteRenderer spRen;
+    bool enTrigger = true;
 
     void OnTriggerEnter2D(Collider2D obj) {
-        inventory.enabled = true;
-        inventory.sprite = rocket;
-        itemController.holdItemCheck = true;
-        itemController.stockItem = itemController.item.rocket;
-        Destroy(gameObject);
+        if (enTrigger) {
+            enTrigger = false;
+
+            //インベントリUI
+            inventory.enabled = true;
+            inventory.sprite = rocket;
+
+            //手持ちアイテム
+            itemController.holdItemCheck = true;
+            itemController.stockItem = itemController.item.rocket;
+
+            Destroy(gameObject);
+        }
     }
 
-    public void rocketUseItem(Rigidbody2D rigid2D) {
-        rigid2D.AddForce(Vector2.up * JumpSpeed);
+    public void rocketUseItem(Rigidbody2D rigid2D, SpriteRenderer spRen) {
+        //アイテム取り出し
+        spRen.enabled = true;
+        spRen.sprite = rocket;
+        this.spRen = spRen;
+        rigid = rigid2D;
+
+        //アイテムの使用
+        Invoke("rising", 1f) ;
+    }
+
+    void rising() {
+        spRen.enabled = false;
+        enTrigger = true;
+
+        //上昇
+        rigid.AddForce(Vector2.up * 30, ForceMode2D.Impulse);
     }
 }

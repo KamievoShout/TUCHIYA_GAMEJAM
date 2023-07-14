@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7b5d21c7b70e049bbd7cd024fd8ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useitem: {fileID: 0}
   inventory: {fileID: 0}
-  useitem: {fileID: 789337781155339402, guid: 622b70c79b4c3bb4689f0a41b5ee9a0c, type: 3}
-  rocket: {fileID: 0}
-  JumpSpeed: 1000
+  rocket: {fileID: 21300000, guid: 14a1cc72de1242941b9d11adbce85e6c, type: 3}
