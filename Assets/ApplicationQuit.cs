@@ -9,7 +9,7 @@ public class ApplicationQuit : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("TitleScene");
 #else
         Application.Quit();
 #endif
