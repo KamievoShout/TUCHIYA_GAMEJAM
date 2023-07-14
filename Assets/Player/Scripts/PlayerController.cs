@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             rigid2D.velocity = vel;
 
             // サウンド再生
-            //SeManager.Instance.Play("Jump");
+            SeManager.Instance.Play("Jump");
 
             // 地面にいるときの処理
             // ジャンプキーが押されているか
@@ -191,13 +191,13 @@ public class PlayerController : MonoBehaviour
         // 跳ねる雲
         if(tag == "Bounce")
         {
-            //SeManager.Instance.Play("BounceCloud");
+            SeManager.Instance.Play("BounceCloud");
         }
 
         // 滑る雲
         if(tag == "Slip")
         {
-            //SeManager.Instance.Play("SlipCloud");
+            SeManager.Instance.Play("SlipCloud");
         }
 
         isPlaySE = false;
