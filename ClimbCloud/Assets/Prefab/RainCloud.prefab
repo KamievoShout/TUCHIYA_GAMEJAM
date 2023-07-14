@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4181437043378840589}
   - component: {fileID: 1999612030830122617}
+  - component: {fileID: 6087923639299874114}
   m_Layer: 0
   m_Name: RainCloud
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 6774778707723808901}
   - {fileID: 4313897105924039743}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1999612030830122617
 MonoBehaviour:
@@ -50,6 +51,26 @@ MonoBehaviour:
   dropInterval: 0.5
   rainObj: {fileID: 7923411927286674911, guid: 0870241f714fddf4bbacf005d5d55813, type: 3}
   dropOffSetY: -1.5
+--- !u!114 &6087923639299874114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4519668343424039514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291c26fe043058549b1730512d288567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 3
+  cloudObj:
+  - {fileID: 7533492729022639500}
+  - {fileID: 8663772599606032829}
+  - {fileID: 5331518906586657056}
+  growSize: 3
+  upSpeed: 1
+  seedFlg: 0
 --- !u!1 &5331518906586657056
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +85,7 @@ GameObject:
   - component: {fileID: 5636668186241020089}
   m_Layer: 0
   m_Name: Large
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +99,7 @@ Transform:
   m_GameObject: {fileID: 5331518906586657056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4181437043378840589}
@@ -179,7 +200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 0.5}
   m_EdgeRadius: 0
 --- !u!251 &5636668186241020089
 PlatformEffector2D:
@@ -214,7 +235,7 @@ GameObject:
   - component: {fileID: 1514239799500396570}
   m_Layer: 0
   m_Name: Small
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!251 &1514239799500396570
 PlatformEffector2D:
@@ -364,7 +385,7 @@ GameObject:
   - component: {fileID: 293410608660230371}
   m_Layer: 0
   m_Name: Medium
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +399,7 @@ Transform:
   m_GameObject: {fileID: 8663772599606032829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4181437043378840589}
@@ -479,7 +500,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 0.5}
   m_EdgeRadius: 0
 --- !u!251 &293410608660230371
 PlatformEffector2D:
