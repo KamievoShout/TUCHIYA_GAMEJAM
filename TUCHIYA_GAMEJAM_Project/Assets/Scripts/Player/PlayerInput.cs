@@ -37,6 +37,10 @@ namespace Player
         {
             jumpButtonPushTime = 0;
         }
+        public bool IsPushJumpButton()
+        {
+            return Input.GetKey(playerId == Utility.PLAYER1 ? KeyCode.W : KeyCode.UpArrow);
+        }
         public float IsPushSideButton()
         {
             if (playerId == Utility.PLAYER1)

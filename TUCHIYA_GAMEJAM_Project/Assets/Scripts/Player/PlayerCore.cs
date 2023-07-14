@@ -9,6 +9,9 @@ namespace Player
         [SerializeField] private int hp;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float jumpPower;
+        public Sprite stayImage;
+        public Sprite chargeImage;
+        public Sprite jumpImage;
         public int PlayerId { get { return playerId; } }
         public float PlayerJumpPower { get { return jumpPower; } }
         public float PlayerMovePower { get { return moveSpeed; } }

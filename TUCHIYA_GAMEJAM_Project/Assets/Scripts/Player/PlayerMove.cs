@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using UnityEngine;
 namespace Player
 {
-    [RequireComponent(typeof(Animator), (typeof(Rigidbody2D)))]
+    [RequireComponent(typeof(Rigidbody2D))]
     class PlayerMove : MonoBehaviour
     {
+
         CheckGround checkGround;
         PlayerCore playerCore;
         PlayerInput playerInput;
-        Animator animator;
         Rigidbody2D rigidbody2D;
-
+        SpriteRenderer spriteRenderer;
         private void Start()
         {
             playerCore = GetComponent<PlayerCore>();
             playerInput = new PlayerInput(playerCore.PlayerId);
             checkGround = GetComponent<CheckGround>();
-            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             playerInput.jumpButtonUp += Jump;
         }
@@ -29,11 +29,18 @@ namespace Player
             playerInput.InputUpdate();
             if (checkGround.IsGroundCheck())
             {
+                spriteRenderer.sprite = playerCore.stayImage;
                 //地面にいるときのみジャンプできる
+                if (playerInput.IsPushJumpButton())
+                {
+                    spriteRenderer.sprite = playerCore.chargeImage;
+                }
             }
             else
             {
                 playerInput.InputUpdateReset();
+                Debug.Log("空中");
+                spriteRenderer.sprite = playerCore.jumpImage;
                 //空中にいるときのみ横移動ができる
                 SideMove();
             }
@@ -43,7 +50,7 @@ namespace Player
         {
             if (checkGround.IsGroundCheck())
             {
-                rigidbody2D.AddForce(transform.up * pushTime * playerCore.PlayerJumpPower);
+                rigidbody2D.AddForce(transform.up * ((pushTime * playerCore.PlayerJumpPower) + playerCore.PlayerJumpPower));
             }
         }
         private void SideMove()
@@ -51,6 +58,8 @@ namespace Player
             //横移動
             transform.Translate(
                 playerInput.IsPushSideButton() * playerCore.PlayerMovePower * Time.deltaTime, 0, 0);
+            //反転処理
+            transform.localScale = new Vector3(playerInput.IsPushSideButton() != 0 ? playerInput.IsPushSideButton() : transform.localScale.x, 1, 1);
         }
     }
 }
