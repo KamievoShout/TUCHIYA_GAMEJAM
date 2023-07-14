@@ -674,7 +674,7 @@ MonoBehaviour:
   stageScene:
   - TitleScene
   - GameScene 1
-  - GameScene
+  - Stage02
   stageCount: 0
   textFrame: {fileID: 964143002}
 --- !u!1 &1804706193

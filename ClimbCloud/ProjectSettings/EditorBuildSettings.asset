@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/GameScene.unity
     guid: 145f0d5fc0379724dbd8ede4adffad05
   - enabled: 1
+    path: Assets/Fujiysohi/Stage02.unity
+    guid: bd93858d182f30c4684ac347f73d4171
+  - enabled: 1
+    path: Assets/Fujiysohi/Stage03.unity
+    guid: 1ec01c30506dbe6439db7b1dd1f3662a
+  - enabled: 1
     path: Assets/ClearScene.unity
     guid: 94a1b47fb59f220439a83b9733643bc9
   m_configObjects: {}
