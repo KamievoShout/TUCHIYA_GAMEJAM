@@ -12,17 +12,15 @@ namespace Utility
         [SerializeField] PostEffectCamera postEffectCamera = null;
         [SerializeField] PostEffectMaterialDB materialDB = null;
 
-        private static bool isActive = false;
 
         private void Awake()
         {
-            if (isActive) 
+            if (GameObject.FindObjectsOfType<Mappings>().Length > 1) 
             {
                 Destroy(gameObject);
                 Debug.Log("OK");
                 return;
 			}
-            isActive = true;
 
             Locator<IPlayAudio>.Register(audioPlayer);
             Locator<IAudioVolumeChange>.Register(audioPlayer);
@@ -33,11 +31,6 @@ namespace Utility
 
             new PostEffector().Fade(PostEffectType.SimpleFade, 1, Color.black, PostEffector.FadeType.In);
             DontDestroyOnLoad(gameObject);
-        }
-
-		private void OnDestroy()
-        {
-            isActive = false;
         }
 	}
 }

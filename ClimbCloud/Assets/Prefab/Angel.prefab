@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4468039744725313356}
   arrowPrefab: {fileID: 6408148821528449572}
-  shotInterval: 1.5
+  shotInterval: 2
   noticeDistance: 150
 --- !u!114 &4831196008507003234
 MonoBehaviour:
