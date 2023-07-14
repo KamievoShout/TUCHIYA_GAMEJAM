@@ -24,7 +24,9 @@ public class TimeCounter : MonoBehaviour
         if (!isCounting) return;
         time += Time.deltaTime;
         // ゴールしたらカウントをやめてスクリプタブルオブジェクトに代入する
-        //if (playerController.)
-        //timeCashAsset.SetTime(time);
+        if (playerController.isGoal)
+        {
+            timeCashAsset.SetTime(time);
+        }
     }
 }
