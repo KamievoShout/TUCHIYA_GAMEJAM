@@ -12,7 +12,7 @@ public class Flag : MonoBehaviour
     /// <summary>
     /// ResultScene‚ÉˆÚ“®‚·‚é
     /// </summary>
-    public void TransResultScene()
+    public void TransResultScene(bool isLeft)
     {
         FadeManager.Instance.LoadScene("ResultScene", 1.0f);
     }
