@@ -2753,8 +2753,14 @@ MonoBehaviour:
   lMask:
     serializedVersion: 2
     m_Bits: 8
-  doubleJumpForce: {x: 150, y: 150}
+  doubleJumpForce: {x: 10, y: 300}
   isGoal: 0
+  isBounce: 0
+  playSingleJumpSe: SingleJump
+  playDoubleJumpSe: DoubleJump
+  playBounceCloudSe: BounceCloud
+  playSlipCloudSe: SlipCloud
+  playGoalSe: Goal
 --- !u!114 &1532502723
 MonoBehaviour:
   m_ObjectHideFlags: 0
