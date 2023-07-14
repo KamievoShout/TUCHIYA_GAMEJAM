@@ -48,11 +48,20 @@ Shader "Unlit/Sky"
                 return o;
             }
 
+            void Posterize(float2 In, float2 Steps, out float2 Out)
+            {
+                Out = floor(In / (1 / Steps)) * (1 / Steps);
+            }
+
             float4 frag (v2f i) : SV_Target
             {
+                float2 uv = (float2)0;
+                // Posterize(i.uv.xy, float2(25, 25), out uv);
                 float3 col = (float3)0.;
                 float3 skyUpColor = lerp(_SkyNightColor, _SkyDayColor, _Day);
                 col = lerp(_SkyDownColor, skyUpColor, 1. / (1. + exp(-i.uv.y * _Power)));
+
+                // col = floor(col / (1 / (float3)35)) * (1 / (float3)35);
                 return float4((float3)col, 1.);
             }
             ENDCG
