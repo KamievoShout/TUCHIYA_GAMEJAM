@@ -61,6 +61,9 @@ MonoBehaviour:
   - {fileID: 378646775821182127, guid: 94be45dd69f6eda4d9a8645f83e0f26d, type: 3}
   - {fileID: 5982480481956507679, guid: e03923b1c0aefec49aa9f7ba71b6d5b9, type: 3}
   - {fileID: 2469101571192807438, guid: 90372d8658cdcea43a7417847e67ba89, type: 3}
+  - {fileID: 1218482036436572042, guid: b08fde0524f4cb7409175f5dedceaf6a, type: 3}
+  - {fileID: 7677746850100499757, guid: 368c9c0f6ea74ed42831217c277d4352, type: 3}
+  - {fileID: 6851588984312155055, guid: a929f88d533baf44287a6dc4a7ded047, type: 3}
 --- !u!1 &8483895934931047390
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +95,7 @@ Transform:
   - {fileID: 8631585439219114280}
   - {fileID: 6424995623585438}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8321956802706035706
 PrefabInstance:
