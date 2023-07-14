@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool isGoal = false;         // ƒS[ƒ‹‚µ‚½‚©
     [HideInInspector] public bool isBounce;               // ’µ‚Ë‚é‰_‚Éæ‚Á‚½‚©
     bool isPlaySE;                      // ‰_‚ÌSE‚ğÄ¶‚Å‚«‚é‚©
-   // [SerializeField] CountDown countDown;
+    [SerializeField] CountDown countDown;
 
     [Space]
     [SerializeField] string playSingleJumpSe = "SingleJump";
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //if (countDown.IsCounting) return;
+        if (countDown.IsCounting) return;
 
         // •ûŒüƒL[‚Ì“ü—Íæ“¾
         inputDirKey = 0;
