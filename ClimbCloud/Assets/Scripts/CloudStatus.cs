@@ -84,12 +84,12 @@ public class CloudStatus : MonoBehaviour
             // 「CloudStatus」がアタッチされているかどうか
             if (collision.gameObject.CompareTag("Normal") || collision.gameObject.CompareTag("Damage"))
             {
-                Debug.Log("雲！");
+                //Debug.Log("雲！");
                 // スクリプト取得
                 CloudStatus script = collision.transform.parent.GetComponent<CloudStatus>();
                 if (!script.seedFlg)
                 {
-                    Debug.Log("種！", this);
+                    //Debug.Log("種！", this);
                     if (script.size == 3)
                     {
                         size = growSize;
@@ -119,7 +119,7 @@ public class CloudStatus : MonoBehaviour
             // タグが「Window」だった場合
             if (collision.CompareTag("Window"))
             {
-                Debug.Log("風！");
+                //Debug.Log("風！");
                 speed = upSpeed;
                 // 親子関係解除
                 transform.parent = null;
