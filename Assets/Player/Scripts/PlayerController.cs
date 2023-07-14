@@ -47,7 +47,10 @@ public class PlayerController : MonoBehaviour
 
         // ジャンプキーの入力取得
         inputJumpKey = Input.GetButtonDown("Jump");
+<<<<<<< HEAD
 
+=======
+>>>>>>> teamABranch/SEandBGM
     }
 
     private void FixedUpdate()
@@ -167,6 +170,7 @@ public class PlayerController : MonoBehaviour
             isGround = true;
             if(isPlaySE) CloudSE(rayResult.collider.tag);
         }
+        Debug.Log(isGround);
 
         return isGround;
     }
