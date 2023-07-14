@@ -8,7 +8,7 @@ public static class JsonFileManager
 {
     private const string SaveFileName = "SaveData.json";
 
-    public static async void Save(RecordedObjectsData datas)
+    public static async void Save(RecordedObjectData datas)
     {
         using (StreamWriter writer = File.CreateText(GetSavePath()))
         {
@@ -18,9 +18,9 @@ public static class JsonFileManager
         }
     }
 
-    public static RecordedObjectsData Load()
+    public static RecordedObjectData Load()
     {
-        RecordedObjectsData data = new RecordedObjectsData();
+        RecordedObjectData data = new RecordedObjectData();
         // Œ©‚Â‚©‚ç‚È‚¢‚ÍV‹Kì¬
         if (!File.Exists(GetSavePath()))
         {

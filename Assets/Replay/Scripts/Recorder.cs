@@ -4,14 +4,16 @@ using UnityEngine;
 class Recorder : MonoBehaviour
 {
     [SerializeField]
-    RecordedObjectsData LogData;
+    RecordedObjectData LogData;
     [SerializeField]
     int frameInterval = 4;
+
+    int frameCount = 0;
 
     bool isLogging = false;
     public bool IsLogging => isLogging;
     GameObject loggingObject;
-    RecordedObjectsData loadedData;
+    RecordedObjectData loadedData;
     Animator animator;
 
     bool isLoaded = false;
@@ -21,31 +23,25 @@ class Recorder : MonoBehaviour
     GameObject applyObject;
     Animator targetAnimator;
 
-    int frameCount = 0;
-
-
     private void FixedUpdate()
     {
         frameCount += 1;
 
         if (isLogging)
         {
+            // 指定したフレーム毎に座標と向きとアニメーションを保存
             if (frameCount % frameInterval == 0)
             {
-                FrameData frame = new FrameData();
-                frame.frameTime = frameCount;
-
-                ObjectPoseData pose = new ObjectPoseData();
-                // 座標の保存
-                pose.position = loggingObject.transform.position;
+                // 座標
+                Vector3 position = loggingObject.transform.position;
                 // 向き
-                pose.direction = loggingObject.transform.localScale.x;
-                // アニメーションの名前を保存
+                float direction = loggingObject.transform.localScale.x;
+                // アニメーションの名前
                 AnimatorClipInfo[] clipInfo = targetAnimator.GetCurrentAnimatorClipInfo(0);
-                string clipName = clipInfo[0].clip.name;
-                pose.animationName = clipName;
+                string animationName = clipInfo[0].clip.name;
 
-                frame.objectPose = pose;
+                ObjectData objectDate = new ObjectData(position, direction, animationName);
+                FrameData frame = new FrameData(frameCount, objectDate);
                 LogData.frames.Add(frame);
             }
         }
@@ -54,41 +50,42 @@ class Recorder : MonoBehaviour
         {
             if (currentIndex > loadedData.frames.Count) return;
 
-            ObjectPoseData pose = loadedData.frames[currentIndex].objectPose;
+            ObjectData objectDate = loadedData.frames[currentIndex].objectData;
+
             // 座標を適用
-            applyObject.transform.localPosition = pose.position;
+            applyObject.transform.localPosition = objectDate.position;
             // 向き
             applyObject.transform.localScale =
-                new Vector3(pose.direction,
+                new Vector3(objectDate.direction,
                             applyObject.transform.localScale.y,
                             applyObject.transform.localScale.z);
             // アニメーションを設定
             AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
             string clipName = clipInfo[0].clip.name;
-            if (pose.animationName != clipName)
+            // 同じアニメーションの時は変えない
+            if (objectDate.animationName != clipName)
             {
-                animator.CrossFadeInFixedTime(pose.animationName, 0);
+                animator.CrossFadeInFixedTime(objectDate.animationName, 0);
             }
+
             // 最後まで読み込んだら終了
             if (currentIndex == loadedData.frames.Count - 1) return;
-
-            if (frameCount <= loadedData.frames[currentIndex + 1].frameTime) return;
+            // 次の保存フレームの時間まで待機
+            if (frameCount <= loadedData.frames[currentIndex + 1].frameCount) return;
             currentIndex++;
         }
-
     }
 
     public void StartRecord(GameObject target)
     {
-        LogData = new RecordedObjectsData();
-        LogData.frames = new List<FrameData>();
+        LogData = new RecordedObjectData();
         loggingObject = target;
         targetAnimator = loggingObject.GetComponent<Animator>();
 
         FrameData frame = new FrameData();
-        frame.frameTime = frameCount;
+        frame.frameCount = frameCount;
 
-        ObjectPoseData pose = new ObjectPoseData();
+        ObjectData pose = new ObjectData();
         // 座標の保存
         pose.position = loggingObject.transform.position;
         // アニメーションの名前を保存
@@ -96,7 +93,7 @@ class Recorder : MonoBehaviour
         string clipName = clipInfo[0].clip.name;
         pose.animationName = clipName;
 
-        frame.objectPose = pose;
+        frame.objectData = pose;
         LogData.frames.Add(frame);
 
         isLogging = true;
@@ -110,9 +107,10 @@ class Recorder : MonoBehaviour
 
     public void StartLoadLog(GameObject targetObject)
     {
-        RecordedObjectsData data = JsonFileManager.Load();
+        // データの読み込み
+        RecordedObjectData data = JsonFileManager.Load();
         loadedData = data;
-        Debug.Log($"{loadedData}:{targetObject}");
+
         targetObject.SetActive(loadedData.frames.Count != 0);
         if (loadedData.frames.Count == 0) return;
         applyObject = targetObject;
