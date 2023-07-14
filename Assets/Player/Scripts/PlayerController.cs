@@ -47,10 +47,7 @@ public class PlayerController : MonoBehaviour
 
         // ジャンプキーの入力取得
         inputJumpKey = Input.GetButtonDown("Jump");
-<<<<<<< HEAD
 
-=======
->>>>>>> teamABranch/SEandBGM
     }
 
     private void FixedUpdate()
