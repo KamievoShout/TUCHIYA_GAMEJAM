@@ -64,10 +64,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ゴールに到達
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("ゴール");
-        SceneManager.LoadScene("ClearScene");
-    }
 }
