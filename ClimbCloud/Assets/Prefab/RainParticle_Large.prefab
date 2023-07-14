@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 447046771330988446}
   - component: {fileID: 3895615905477183008}
   m_Layer: 0
-  m_Name: RainParticle
+  m_Name: RainParticle_Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
