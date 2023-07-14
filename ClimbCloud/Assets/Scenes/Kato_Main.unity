@@ -259,6 +259,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1982272809513012752, guid: 664d25866d1d46445aaf5ea98e094021, type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 1819464360}
     - target: {fileID: 2037504896750559855, guid: 664d25866d1d46445aaf5ea98e094021, type: 3}
       propertyPath: leftStage
       value: 
@@ -984,6 +988,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5133733666000805239, guid: a75bdf083cf6a20448e2ab4ff7c3233e, type: 3}
   m_PrefabInstance: {fileID: 1782366039}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1819464360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2690286939047701857, guid: fede23291905db94890f0568f9d0e657, type: 3}
+  m_PrefabInstance: {fileID: 8891942581617693168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1823223901 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6772557278053959511, guid: bc1ff10f22152e544aba3134b1453c1c, type: 3}
