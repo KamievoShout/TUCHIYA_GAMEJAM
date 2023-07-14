@@ -19,6 +19,7 @@ namespace Utility
             if (isActive) 
             {
                 Destroy(gameObject);
+                Debug.Log("OK");
                 return;
 			}
             isActive = true;
@@ -32,13 +33,6 @@ namespace Utility
 
             new PostEffector().Fade(PostEffectType.SimpleFade, 1, Color.black, PostEffector.FadeType.In);
             DontDestroyOnLoad(gameObject);
-            Destroy(this);
-        }
-
-		private void Start()
-		{
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
 		private void OnDestroy()
